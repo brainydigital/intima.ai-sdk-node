@@ -67,9 +67,8 @@
 
       // verify the required parameter 'pjeActionId' is set
       if (pjeActionId === undefined || pjeActionId === null) {
-        throw new Error("Missing the required parameter 'pjeActionId' when calling actionsStatusByPjeActionIdGet");
+        throw new Error("O parametro 'pjeActionId' é obrigatório!");
       }
-
 
       var pathParams = {
         'pje_action_id': pjeActionId

@@ -46,11 +46,31 @@
    */
   var exports = function() {
     var _this = this;
+  };
 
+  /**
+ * Constructs a new <code>Documento</code>.
+ * @alias module:model/Documento
+ * @class
+ */
+  var exports = function (data) {
+    if (data) {
+      var obj = obj || new exports();
 
-
-
-
+      if (data.hasOwnProperty('arquivo')) {
+        obj['arquivo'] = ApiClient.convertToType(data['arquivo'], 'Blob');
+      }
+      if (data.hasOwnProperty('tipo_documento')) {
+        obj['tipo_documento'] = ApiClient.convertToType(data['tipo_documento'], 'Number');
+      }
+      if (data.hasOwnProperty('descricao_documento')) {
+        obj['descricao_documento'] = ApiClient.convertToType(data['descricao_documento'], 'String');
+      }
+      if (data.hasOwnProperty('order')) {
+        obj['order'] = ApiClient.convertToType(data['order'], 'Number');
+      }
+    }
+    return obj;
   };
 
   /**

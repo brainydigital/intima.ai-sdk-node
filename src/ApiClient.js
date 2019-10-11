@@ -438,12 +438,23 @@
       request.send(querystring.stringify(this.normalizeParams(formParams)));
     } else if (contentType == 'multipart/form-data') {
       var _formParams = this.normalizeParams(formParams);
+
+      // console.log('Normalized: ', _formParams);
+
       for (var key in _formParams) {
         if (_formParams.hasOwnProperty(key)) {
           if (this.isFileParam(_formParams[key])) {
             // file field
             request.attach(key, _formParams[key]);
-          } else {
+          } else if (_formParams[key] instanceof Array) {
+            _formParams[key].map((doc, index) => {
+              request.attach(`${key}[arquivos][${index}]`, doc['arquivo']);
+              request.field(`${key}[documentos_info][${index}][tipo_documento]`, doc['tipo_documento']);
+              request.field(`${key}[documentos_info][${index}][descricao_documento]`, doc['descricao_documento']);
+              request.field(`${key}[documentos_info][${index}][order]`, doc['order']);
+            });
+          }
+          else {
             request.field(key, _formParams[key]);
           }
         }

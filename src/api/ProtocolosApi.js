@@ -48,8 +48,8 @@
 
 
     /**
-     * Callback function to receive the result of the actionsProcessProtocolByPjeAuthIdPost operation.
-     * @callback module:api/ProtocolosApi~actionsProcessProtocolByPjeAuthIdPostCallback
+     * Callback function to receive the result of the createProcessProtocolo operation.
+     * @callback module:api/ProtocolosApi~createProcessProtocoloCallback
      * @param {String} error Error message, if any.
      * @param {module:model/ActionsProcessProtocolResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -61,30 +61,51 @@
      * @param {Number} pjeAuthId é o id referente ao tribunal cadastrado em \&quot;Tribunais ativos\&quot; no Intima.ai
      * @param {String} numeroProcesso 
      * @param {Number} tipoDocumentoMensagemGeral 
-     * @param {Object} opts Optional parameters
-     * @param {Array.<String>} opts.documentos 
-     * @param {module:api/ProtocolosApi~actionsProcessProtocolByPjeAuthIdPostCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {Array.<module:model/Documento>} documentos Optional parameters
+     * @param {module:api/ProtocolosApi~createProcessProtocoloCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/ActionsProcessProtocolResponse}
      */
-    this.actionsProcessProtocolByPjeAuthIdPost = function(pjeAuthId, numeroProcesso, tipoDocumentoMensagemGeral, opts, callback) {
-      opts = opts || {};
+    this.createProcessProtocolo = function (pjeAuthId, numeroProcesso, tipoDocumentoMensagemGeral, documentos, mensagem_geral, descricao, callback) {
+      documentos = documentos || [];
       var postBody = null;
 
       // verify the required parameter 'pjeAuthId' is set
       if (pjeAuthId === undefined || pjeAuthId === null) {
-        throw new Error("Missing the required parameter 'pjeAuthId' when calling actionsProcessProtocolByPjeAuthIdPost");
+        throw new Error("O parametro 'pjeAuthId' é obrigatório!");
       }
 
       // verify the required parameter 'numeroProcesso' is set
       if (numeroProcesso === undefined || numeroProcesso === null) {
-        throw new Error("Missing the required parameter 'numeroProcesso' when calling actionsProcessProtocolByPjeAuthIdPost");
+        throw new Error("O parametro 'numeroProcesso' é obrigatório!");
       }
 
       // verify the required parameter 'tipoDocumentoMensagemGeral' is set
       if (tipoDocumentoMensagemGeral === undefined || tipoDocumentoMensagemGeral === null) {
-        throw new Error("Missing the required parameter 'tipoDocumentoMensagemGeral' when calling actionsProcessProtocolByPjeAuthIdPost");
+        throw new Error("O parametro 'tipoDocumentoMensagemGeral' é obrigatório!");
       }
 
+      // verify the required parameter 'documentos' is set
+      if (documentos === undefined || documentos === null) {
+        throw new Error("O parametro 'documentos' é obrigatório!");
+      } else {
+        documentos.map((doc, index) => {
+          if (doc === '' || doc === null || doc == undefined) {
+            throw new Error(`O parametro 'documentos' é obrigatório!`);
+          }
+          if (doc['arquivo'] === '' || doc['arquivo'] === null) {
+            throw new Error(`O parametro 'documentos[${index}].arquivo' é obrigatório!`);
+          }
+          if (doc['tipo_documento'] === '' || doc['tipo_documento'] === null) {
+            throw new Error(`O parametro 'documentos[${index}].tipo_documento' é obrigatório!`);
+          }
+          if (doc['descricao_documento'] === '' || doc['descricao_documento'] === null) {
+            throw new Error(`O parametro 'documentos[${index}].descricao_documento' é obrigatório!`);
+          }
+          if (doc['order'] === '' || doc['order'] === null) {
+            throw new Error(`O parametro 'documentos[${index}].order' é obrigatório!`);
+          }
+        });
+      }
 
       var pathParams = {
         'pje_auth_id': pjeAuthId
@@ -98,11 +119,17 @@
       var formParams = {
         'numero_processo': numeroProcesso,
         'tipo_documento_mensagem_geral': tipoDocumentoMensagemGeral,
-        'documentos': this.apiClient.buildCollectionParam(opts['documentos'], 'multi')
+        'mensagem_geral': mensagem_geral,
+        'descricao': descricao,
+        'documentos': documentos
       };
 
+      // 'documentos': this.apiClient.buildCollectionParam(documentos, 'multi')
+
+      // console.log(formParams, JSON.stringify(formParams));
+
       var authNames = ['api_token'];
-      var contentTypes = ['application/x-www-form-urlencoded'];
+      var contentTypes = ['multipart/form-data'];//multipart/form-data
       var accepts = ['application/json'];
       var returnType = ActionsProcessProtocolResponse;
 

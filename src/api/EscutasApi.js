@@ -68,14 +68,13 @@
 
       // verify the required parameter 'pjeAuthId' is set
       if (pjeAuthId === undefined || pjeAuthId === null) {
-        throw new Error("Missing the required parameter 'pjeAuthId' when calling actionsProcessDocsByPjeAuthIdPost");
+        throw new Error("O parametro 'pjeAuthId' é obrigatório!");
       }
 
       // verify the required parameter 'processo' is set
       if (processo === undefined || processo === null) {
-        throw new Error("Missing the required parameter 'processo' when calling actionsProcessDocsByPjeAuthIdPost");
+        throw new Error("O parametro 'processo' é obrigatório!");
       }
-
 
       var pathParams = {
         'pje_auth_id': pjeAuthId
