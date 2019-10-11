@@ -50,10 +50,10 @@
   }
 
   describe('ProtocolosApi', function() {
-    describe('actionsProcessProtocolByPjeAuthIdPost', function() {
-      it('should call actionsProcessProtocolByPjeAuthIdPost successfully', function(done) {
-        //uncomment below and update the code to test actionsProcessProtocolByPjeAuthIdPost
-        //instance.actionsProcessProtocolByPjeAuthIdPost(function(error) {
+    describe('createProcessProtocolo', function() {
+      it('should call createProcessProtocolo successfully', function(done) {
+        //uncomment below and update the code to test createProcessProtocolo
+        //instance.createProcessProtocolo(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

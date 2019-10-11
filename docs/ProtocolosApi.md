@@ -4,12 +4,12 @@ Todas as URIs são relativas a *https://app.intima.ai/api*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**actionsProcessProtocolByPjeAuthIdPost**](ProtocolosApi.md#actionsProcessProtocolByPjeAuthIdPost) | **POST** /actions/process-protocol/{pje_auth_id} | createProcessProtocolo
+[**createProcessProtocolo**](ProtocolosApi.md#createProcessProtocolo) | **POST** /actions/process-protocol/{pje_auth_id} | createProcessProtocolo
 
 
-<a name="actionsProcessProtocolByPjeAuthIdPost"></a>
-# **actionsProcessProtocolByPjeAuthIdPost**
-> ActionsProcessProtocolResponse actionsProcessProtocolByPjeAuthIdPost(pjeAuthId, numeroProcesso, tipoDocumentoMensagemGeral, mensagem_geral, descricao, opts)
+<a name="createProcessProtocolo"></a>
+# **createProcessProtocolo**
+> ActionsProcessProtocolResponse createProcessProtocolo(pjeAuthId, numeroProcesso, tipoDocumentoMensagemGeral, mensagem_geral, descricao, opts)
 
 createProcessProtocolo
 
@@ -32,9 +32,14 @@ var numeroProcesso = "0000000-00.0000.0.00.0000"; // String |
 
 var tipoDocumentoMensagemGeral = 56; // Number | 
 
-var opts = { 
-  'documentos': ["documentos_example"] // [String] | 
-};
+var mensagem_geral = "SEGUE EM ANEXO";
+
+var descricao = "Petição";
+
+var Documento = require('intimai-sdk-node/model/Documento');
+var documentos = [
+    new Documento({ arquivo: "path/to/peticao.pdf", tipo_documento: 11, descricao_documento: 'Petição', order: 1 })
+];
 
 var callback = function(error, data, response) {
   if (error) {
@@ -43,7 +48,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.actionsProcessProtocolByPjeAuthIdPost(pjeAuthId, numeroProcesso, tipoDocumentoMensagemGeral, mensagem_geral, descricao, opts, callback);
+apiInstance.createProcessProtocolo(pjeAuthId, numeroProcesso, tipoDocumentoMensagemGeral, documentos, mensagem_geral, descricao, callback);
 ```
 
 ### Parametros
@@ -53,9 +58,9 @@ Nome | Tipo | Descrição | Notas
  **pjeAuthId** | **Number**| é o id referente ao tribunal cadastrado em 'Tribunais ativos' no Intima.ai | [obrigatório]
  **numeroProcesso** | **String**| é o numero do processo no qual se deseja realizar o protocolo | [obrigatório]
  **tipoDocumentoMensagemGeral** | **Number**| é o id referente ao tipo de documento da mensagem geral | [obrigatório]
- **documentos** | [**[String]**](String.md)| são os anexos relacionados ao protocolo | [opcional] 
- **mensagem_geral** | **String**| é o texto do conteúdo do protocolo (texto padrão: SEGUE EM ANEXO) | [opcional]
- **descricao** | **String**| é a descrição da mensagem geral (caso não se informe este campo, ele assumira o valor do campo tipo_documento_mensagem_geral) | [opcional]
+ **documentos** | [\[**Documento**\]](Documento.md)| são os anexos relacionados ao protocolo | [obrigatório] 
+ **mensagem_geral** | **String**| é o texto do conteúdo do protocolo (texto padrão: SEGUE EM ANEXO) | [obrigatório]
+ **descricao** | **String**| é a descrição da mensagem geral (caso não se informe este campo, ele assumira o valor do campo tipo_documento_mensagem_geral) | [obrigatório]
 
 ### Tipo de retorno
 
