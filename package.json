@@ -1,0 +1,33 @@
+{
+  "name": "intimai-sdk-node",
+  "version": "1.0.0",
+  "description": "Implementação da API do Intima.ai em forma de SDK Client para NodeJS.",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brainydigital/intimai-sdk-node"
+  },
+  "keywords": [
+    "intimai",
+    "intima.ai",
+    "sdk",
+    "nodejs"
+  ],
+  "homepage": "https://github.com/brainydigital/intimai-sdk-node",
+  "author": "Rauny Henrique",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha --recursive"
+  },
+  "browser": {
+    "fs": false
+  },
+  "dependencies": {
+    "superagent": "3.7.0"
+  },
+  "devDependencies": {
+    "mocha": "~2.3.4",
+    "sinon": "1.17.3",
+    "expect.js": "~0.3.1"
+  }
+}
