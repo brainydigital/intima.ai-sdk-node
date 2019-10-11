@@ -17,7 +17,7 @@ Realiza um novo protocolo
 
 ### Exemplo
 ```javascript
-var IntimaiApi = require('intimai-sdk-node');
+var IntimaiApi = require('@brainy-digital/intimai-sdk-node');
 var defaultClient = IntimaiApi.ApiClient.instance;
 
 // Configure API key authorization: api_token
@@ -36,7 +36,7 @@ var mensagem_geral = "SEGUE EM ANEXO";
 
 var descricao = "Petição";
 
-var Documento = require('intimai-sdk-node/model/Documento');
+var Documento = IntimaiApi.Documento;
 var documentos = [
     new Documento({ arquivo: "path/to/peticao.pdf", tipo_documento: 11, descricao_documento: 'Petição', order: 1 })
 ];

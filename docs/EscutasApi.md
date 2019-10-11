@@ -17,7 +17,7 @@ Realiza uma nova escuta processual
 
 ### Exemplo
 ```javascript
-var IntimaiApi = require('intimai-sdk-node');
+var IntimaiApi = require('@brainy-digital/intimai-sdk-node');
 var defaultClient = IntimaiApi.ApiClient.instance;
 
 // Configure API key authorization: api_token
@@ -28,7 +28,7 @@ var apiInstance = new IntimaiApi.EscutasApi();
 
 var pjeAuthId = 56; // Number | é o id referente ao tribunal cadastrado em \"Tribunais ativos\" no Intima.ai
 
-var processo = "processo_example"; // String | 
+var processo = "0000000-00.0000.0.00.0000"; // String | 
 
 var callback = function(error, data, response) {
   if (error) {

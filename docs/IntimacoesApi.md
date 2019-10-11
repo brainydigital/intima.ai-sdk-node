@@ -17,7 +17,7 @@ Visualiza todas as intimações capturadas
 
 ### Exemplo
 ```javascript
-var IntimaiApi = require('intimai-sdk-node');
+var IntimaiApi = require('@brainy-digital/intimai-sdk-node');
 var defaultClient = IntimaiApi.ApiClient.instance;
 
 // Configure API key authorization: api_token

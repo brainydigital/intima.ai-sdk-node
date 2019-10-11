@@ -38,7 +38,7 @@ module: {
 Após seguir a [instalação](#installation):
 
 ```javascript
-var IntimaiApi = require('intimai-sdk-node');
+var IntimaiApi = require('@brainy-digital/intimai-sdk-node');
 
 var defaultClient = IntimaiApi.ApiClient.instance;
 
