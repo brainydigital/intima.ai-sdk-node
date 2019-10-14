@@ -50,10 +50,10 @@
   }
 
   describe('IntimacoesApi', function() {
-    describe('intimacoesGet', function() {
-      it('should call intimacoesGet successfully', function(done) {
-        //uncomment below and update the code to test intimacoesGet
-        //instance.intimacoesGet(function(error) {
+    describe('getAllIntimacoes', function() {
+      it('should call getAllIntimacoes successfully', function(done) {
+        //uncomment below and update the code to test getAllIntimacoes
+        //instance.getAllIntimacoes(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

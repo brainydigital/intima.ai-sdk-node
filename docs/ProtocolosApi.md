@@ -4,12 +4,12 @@ Todas as URIs são relativas a *https://app.intima.ai/api*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**createProcessProtocolo**](ProtocolosApi.md#createProcessProtocolo) | **POST** /actions/process-protocol/{pje_auth_id} | createProcessProtocolo
+[**createProcessProtocolo**](ProtocolosApi.md#createProcessProtocolo) | **POST** /actions/process-protocol/{pje_auth_id} | Realiza um novo protocolo
 
 
 <a name="createProcessProtocolo"></a>
 # **createProcessProtocolo**
-> ActionsProcessProtocolResponse createProcessProtocolo(pjeAuthId, numeroProcesso, tipoDocumentoMensagemGeral, mensagem_geral, descricao, opts)
+> ActionsProcessProtocolResponse createProcessProtocolo(pjeAuthId, numeroProcesso, tipoDocumentoMensagemGeral, documentos, mensagem_geral, descricao)
 
 createProcessProtocolo
 

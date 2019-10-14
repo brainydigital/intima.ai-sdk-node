@@ -4,12 +4,12 @@ Todas as URIs são relativas a *https://app.intima.ai/api*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**actionsProcessosCopyByPjeAuthIdPost**](CopiasApi.md#actionsProcessosCopyByPjeAuthIdPost) | **POST** /actions/processos/copy/{pje_auth_id} | createProcessCopy
+[**createProcessCopy**](CopiasApi.md#createProcessCopy) | **POST** /actions/processos/copy/{pje_auth_id} | Realiza uma nova cópia processual
 
 
-<a name="actionsProcessosCopyByPjeAuthIdPost"></a>
-# **actionsProcessosCopyByPjeAuthIdPost**
-> ActionsProcessosCopyResponse actionsProcessosCopyByPjeAuthIdPost(pjeAuthId, processo)
+<a name="createProcessCopy"></a>
+# **createProcessCopy**
+> ActionsProcessosCopyResponse createProcessCopy(pjeAuthId, processo)
 
 createProcessCopy
 
@@ -37,14 +37,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.actionsProcessosCopyByPjeAuthIdPost(pjeAuthId, processo, callback);
+apiInstance.createProcessCopy(pjeAuthId, processo, callback);
 ```
 
 ### Parametros
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
- **pjeAuthId** | **Number**| é o id referente ao tribunal cadastrado em \&quot;Tribunais ativos\&quot; no Intima.ai | [obrigatório]
+ **pjeAuthId** | **Number**| é o id referente ao tribunal cadastrado em 'Tribunais ativos' no Intima.ai | [obrigatório]
  **processo** | **String**| é o numero do processo no qual se deseja realizar a cópia processual | [obrigatório]
 
 ### Tipo de retorno

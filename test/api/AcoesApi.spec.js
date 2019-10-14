@@ -50,10 +50,10 @@
   }
 
   describe('AcoesApi', function() {
-    describe('actionsStatusByPjeActionIdGet', function() {
-      it('should call actionsStatusByPjeActionIdGet successfully', function(done) {
-        //uncomment below and update the code to test actionsStatusByPjeActionIdGet
-        //instance.actionsStatusByPjeActionIdGet(function(error) {
+    describe('getActionStatus', function() {
+      it('should call getActionStatus successfully', function(done) {
+        //uncomment below and update the code to test getActionStatus
+        //instance.getActionStatus(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

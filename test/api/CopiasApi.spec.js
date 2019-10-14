@@ -50,10 +50,10 @@
   }
 
   describe('CopiasApi', function() {
-    describe('actionsProcessosCopyByPjeAuthIdPost', function() {
-      it('should call actionsProcessosCopyByPjeAuthIdPost successfully', function(done) {
-        //uncomment below and update the code to test actionsProcessosCopyByPjeAuthIdPost
-        //instance.actionsProcessosCopyByPjeAuthIdPost(function(error) {
+    describe('createProcessCopy', function() {
+      it('should call createProcessCopy successfully', function(done) {
+        //uncomment below and update the code to test createProcessCopy
+        //instance.createProcessCopy(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

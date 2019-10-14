@@ -3,7 +3,7 @@
 ## Propriedades
 Nome | Tipo | Descrição | Notas
 ------------ | ------------- | ------------- | -------------
-**arquivo** | **Blob** |  | [obrigatório] 
+**arquivo** | **String** |  | [obrigatório] 
 **tipoDocumento** | **Number** |  | [obrigatório] 
 **descricaoDocumento** | **String** |  | [obrigatório] 
 **order** | **Number** |  | [obrigatório] 

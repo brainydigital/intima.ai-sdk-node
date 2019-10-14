@@ -48,8 +48,8 @@
 
 
     /**
-     * Callback function to receive the result of the actionsStatusByPjeActionIdGet operation.
-     * @callback module:api/AcoesApi~actionsStatusByPjeActionIdGetCallback
+     * Callback function to receive the result of the getActionStatus operation.
+     * @callback module:api/AcoesApi~getActionStatusCallback
      * @param {String} error Error message, if any.
      * @param {module:model/ActionsStatusResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -59,10 +59,10 @@
      * getActionStatus
      * Checa o resultado de uma ação
      * @param {Number} pjeActionId é fornecido após se realizar a requisição de qualquer ação para o Intima.ai
-     * @param {module:api/AcoesApi~actionsStatusByPjeActionIdGetCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:api/AcoesApi~getActionStatusCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/ActionsStatusResponse}
      */
-    this.actionsStatusByPjeActionIdGet = function(pjeActionId, callback) {
+    this.getActionStatus = function(pjeActionId, callback) {
       var postBody = null;
 
       // verify the required parameter 'pjeActionId' is set

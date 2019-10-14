@@ -4,12 +4,12 @@ Todas as URIs são relativas a *https://app.intima.ai/api*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**intimacoesGet**](IntimacoesApi.md#intimacoesGet) | **GET** /intimacoes | getAllIntimacoes
+[**getAllIntimacoes**](IntimacoesApi.md#getAllIntimacoes) | **GET** /intimacoes | Visualiza todas as intimações capturadas
 
 
-<a name="intimacoesGet"></a>
-# **intimacoesGet**
-> IntimacoesResponse intimacoesGet()
+<a name="getAllIntimacoes"></a>
+# **getAllIntimacoes**
+> IntimacoesResponse getAllIntimacoes()
 
 getAllIntimacoes
 
@@ -33,7 +33,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.intimacoesGet(callback);
+apiInstance.getAllIntimacoes(callback);
 ```
 
 ### Parametros

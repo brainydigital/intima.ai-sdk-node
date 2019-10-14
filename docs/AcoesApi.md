@@ -4,12 +4,12 @@ Todas as URIs são relativas a *https://app.intima.ai/api*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**actionsStatusByPjeActionIdGet**](AcoesApi.md#actionsStatusByPjeActionIdGet) | **GET** /actions/status/{pje_action_id} | getActionStatus
+[**getActionStatus**](AcoesApi.md#getActionStatus) | **GET** /actions/status/{pje_action_id} | Checa o resultado de uma ação
 
 
-<a name="actionsStatusByPjeActionIdGet"></a>
-# **actionsStatusByPjeActionIdGet**
-> ActionsStatusResponse actionsStatusByPjeActionIdGet(pjeActionId)
+<a name="getActionStatus"></a>
+# **getActionStatus**
+> ActionsStatusResponse getActionStatus(pjeActionId)
 
 getActionStatus
 
@@ -36,7 +36,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.actionsStatusByPjeActionIdGet(pjeActionId, callback);
+apiInstance.getActionStatus(pjeActionId, callback);
 ```
 
 ### Parametros

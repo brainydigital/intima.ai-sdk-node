@@ -57,7 +57,7 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.actionsStatusByPjeActionIdGet(pjeActionId, callback);
+api.getActionStatus(pjeActionId, callback);
 
 ```
 
@@ -67,11 +67,11 @@ Todas as URIs são relativas a *https://app.intima.ai/api*
 
 Classe | Metodo | Requisição HTTP | Descrição
 ------------ | ------------- | ------------- | -------------
-*IntimaiApi.AcoesApi* | [**actionsStatusByPjeActionIdGet**](docs/AcoesApi.md#actionsStatusByPjeActionIdGet) | **GET** /actions/status/{pje_action_id} | getActionStatus
-*IntimaiApi.CopiasApi* | [**actionsProcessosCopyByPjeAuthIdPost**](docs/CopiasApi.md#actionsProcessosCopyByPjeAuthIdPost) | **POST** /actions/processos/copy/{pje_auth_id} | createProcessCopy
-*IntimaiApi.EscutasApi* | [**actionsProcessDocsByPjeAuthIdPost**](docs/EscutasApi.md#actionsProcessDocsByPjeAuthIdPost) | **POST** /actions/process-docs/{pje_auth_id} | createProcessEscuta
-*IntimaiApi.IntimacoesApi* | [**intimacoesGet**](docs/IntimacoesApi.md#intimacoesGet) | **GET** /intimacoes | getAllIntimacoes
-*IntimaiApi.ProtocolosApi* | [**createProcessProtocolo**](docs/ProtocolosApi.md#createProcessProtocolo) | **POST** /actions/process-protocol/{pje_auth_id} | createProcessProtocolo
+*IntimaiApi.AcoesApi* | [**getActionStatus**](docs/AcoesApi.md#getActionStatus) | **GET** /actions/status/{pje_action_id} | Checa o resultado de uma ação
+*IntimaiApi.CopiasApi* | [**createProcessCopy**](docs/CopiasApi.md#createProcessCopy) | **POST** /actions/processos/copy/{pje_auth_id} | Realiza uma nova cópia processual
+*IntimaiApi.EscutasApi* | [**createProcessEscuta**](docs/EscutasApi.md#createProcessEscuta) | **POST** /actions/process-docs/{pje_auth_id} | Realiza uma nova escuta processual
+*IntimaiApi.IntimacoesApi* | [**getAllIntimacoes**](docs/IntimacoesApi.md#getAllIntimacoes) | **GET** /intimacoes | Visualiza todas as intimações capturadas
+*IntimaiApi.ProtocolosApi* | [**createProcessProtocolo**](docs/ProtocolosApi.md#createProcessProtocolo) | **POST** /actions/process-protocol/{pje_auth_id} | Realiza um novo protocolo
 
 
 ## Documentação para os Models

@@ -48,8 +48,8 @@
 
 
     /**
-     * Callback function to receive the result of the actionsProcessosCopyByPjeAuthIdPost operation.
-     * @callback module:api/CopiasApi~actionsProcessosCopyByPjeAuthIdPostCallback
+     * Callback function to receive the result of the createProcessCopy operation.
+     * @callback module:api/CopiasApi~createProcessCopyCallback
      * @param {String} error Error message, if any.
      * @param {module:model/ActionsProcessosCopyResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -60,10 +60,10 @@
      * Realiza uma nova cópia processual
      * @param {Number} pjeAuthId é o id referente ao tribunal cadastrado em \&quot;Tribunais ativos\&quot; no Intima.ai
      * @param {String} processo 
-     * @param {module:api/CopiasApi~actionsProcessosCopyByPjeAuthIdPostCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:api/CopiasApi~createProcessCopyCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/ActionsProcessosCopyResponse}
      */
-    this.actionsProcessosCopyByPjeAuthIdPost = function(pjeAuthId, processo, callback) {
+    this.createProcessCopy = function(pjeAuthId, processo, callback) {
       var postBody = null;
 
       // verify the required parameter 'pjeAuthId' is set

@@ -48,8 +48,8 @@
 
 
     /**
-     * Callback function to receive the result of the actionsProcessDocsByPjeAuthIdPost operation.
-     * @callback module:api/EscutasApi~actionsProcessDocsByPjeAuthIdPostCallback
+     * Callback function to receive the result of the createProcessEscuta operation.
+     * @callback module:api/EscutasApi~createProcessEscutaCallback
      * @param {String} error Error message, if any.
      * @param {module:model/ActionsProcessDocsResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -60,10 +60,10 @@
      * Realiza uma nova escuta processual
      * @param {Number} pjeAuthId é o id referente ao tribunal cadastrado em \&quot;Tribunais ativos\&quot; no Intima.ai
      * @param {String} processo 
-     * @param {module:api/EscutasApi~actionsProcessDocsByPjeAuthIdPostCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:api/EscutasApi~createProcessEscutaCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/ActionsProcessDocsResponse}
      */
-    this.actionsProcessDocsByPjeAuthIdPost = function(pjeAuthId, processo, callback) {
+    this.createProcessEscuta = function(pjeAuthId, processo, callback) {
       var postBody = null;
 
       // verify the required parameter 'pjeAuthId' is set

@@ -50,10 +50,10 @@
   }
 
   describe('EscutasApi', function() {
-    describe('actionsProcessDocsByPjeAuthIdPost', function() {
-      it('should call actionsProcessDocsByPjeAuthIdPost successfully', function(done) {
-        //uncomment below and update the code to test actionsProcessDocsByPjeAuthIdPost
-        //instance.actionsProcessDocsByPjeAuthIdPost(function(error) {
+    describe('createProcessEscuta', function() {
+      it('should call createProcessEscuta successfully', function(done) {
+        //uncomment below and update the code to test createProcessEscuta
+        //instance.createProcessEscuta(function(error) {
         //  if (error) throw error;
         //expect().to.be();
         //});

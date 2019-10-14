@@ -4,12 +4,12 @@ Todas as URIs são relativas a *https://app.intima.ai/api*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**actionsProcessDocsByPjeAuthIdPost**](EscutasApi.md#actionsProcessDocsByPjeAuthIdPost) | **POST** /actions/process-docs/{pje_auth_id} | createProcessEscuta
+[**createProcessEscuta**](EscutasApi.md#createProcessEscuta) | **POST** /actions/process-docs/{pje_auth_id} | Realiza uma nova escuta processual
 
 
-<a name="actionsProcessDocsByPjeAuthIdPost"></a>
-# **actionsProcessDocsByPjeAuthIdPost**
-> ActionsProcessDocsResponse actionsProcessDocsByPjeAuthIdPost(pjeAuthId, processo)
+<a name="createProcessEscuta"></a>
+# **createProcessEscuta**
+> ActionsProcessDocsResponse createProcessEscuta(pjeAuthId, processo)
 
 createProcessEscuta
 
@@ -37,14 +37,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-apiInstance.actionsProcessDocsByPjeAuthIdPost(pjeAuthId, processo, callback);
+apiInstance.createProcessEscuta(pjeAuthId, processo, callback);
 ```
 
 ### Parametros
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
- **pjeAuthId** | **Number**| é o id referente ao tribunal cadastrado em \&quot;Tribunais ativos\&quot; no Intima.ai | [obrigatório]
+ **pjeAuthId** | **Number**| é o id referente ao tribunal cadastrado em 'Tribunais ativos' no Intima.ai | [obrigatório]
  **processo** | **String**| é o numero do processo no qual se deseja realizar a escuta processual | [obrigatório]
 
 ### Tipo de retorno

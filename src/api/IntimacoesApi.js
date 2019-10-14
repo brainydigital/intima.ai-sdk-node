@@ -48,8 +48,8 @@
 
 
     /**
-     * Callback function to receive the result of the intimacoesGet operation.
-     * @callback module:api/IntimacoesApi~intimacoesGetCallback
+     * Callback function to receive the result of the getAllIntimacoes operation.
+     * @callback module:api/IntimacoesApi~getAllIntimacoesCallback
      * @param {String} error Error message, if any.
      * @param {module:model/IntimacoesResponse} data The data returned by the service call.
      * @param {String} response The complete HTTP response.
@@ -58,10 +58,10 @@
     /**
      * getAllIntimacoes
      * Visualiza todas as intimações capturadas
-     * @param {module:api/IntimacoesApi~intimacoesGetCallback} callback The callback function, accepting three arguments: error, data, response
+     * @param {module:api/IntimacoesApi~getAllIntimacoesCallback} callback The callback function, accepting three arguments: error, data, response
      * data is of type: {@link module:model/IntimacoesResponse}
      */
-    this.intimacoesGet = function(callback) {
+    this.getAllIntimacoes = function(callback) {
       var postBody = null;
 
 
