@@ -1,3 +1,12 @@
+<br />
+<div align="center">
+  <a href="https://github.com/brainydigital/intimai-sdk-php">
+    <img src="docs/images/logo.png" alt="Logo" width="120" height="120">
+  </a>
+  
+  [![Contributors][contributors-shield]][contributors-url]
+</div>
+
 # Intima.ai - SDK NodeJS
 
 Este repositório é a implementação da API do [Intima.ai](https://app.intima.ai) em forma de SDK Client para NodeJS. Este SDK cobre todas as ações disponíveis dentro da plataforma do `Intima.ai` e as disponibilizam como métodos, que podem ser integrados e utilizados por outros serviços ou aplicações, bastando somente possuir o `Token de acesso da API (api_token)`.
@@ -93,3 +102,6 @@ Classe | Metodo | Requisição HTTP | Descrição
 - **Parametro da API**: api_token
 - **Localização**: URL query string
 
+<!-- MARKDOWN LINKS & IMAGES -->
+[contributors-shield]: ./docs/images/contributors-count.svg
+[contributors-url]: https://github.com/brainydigital/intimai-sdk-php/graphs/contributors
