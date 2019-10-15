@@ -1,6 +1,6 @@
 <br />
 <div align="center">
-  <a href="https://github.com/brainydigital/intimai-sdk-php">
+  <a href="#">
     <img src="docs/images/logo.png" alt="Logo" width="120" height="120">
   </a>
   
@@ -104,4 +104,4 @@ Classe | Metodo | Requisição HTTP | Descrição
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [contributors-shield]: ./docs/images/contributors-count.svg
-[contributors-url]: https://github.com/brainydigital/intimai-sdk-php/graphs/contributors
+[contributors-url]: https://github.com/brainydigital/intimai-sdk-node/graphs/contributors
