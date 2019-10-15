@@ -1,6 +1,6 @@
 {
   "name": "@brainy-digital/intimai-sdk-node",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Implementação da API do Intima.ai em forma de SDK Client para NodeJS.",
   "license": "ISC",
   "repository": {
@@ -21,6 +21,9 @@
   },
   "browser": {
     "fs": false
+  },
+  "engines": {
+     "node": ">=6.4.0"
   },
   "dependencies": {
     "superagent": "3.7.0"
