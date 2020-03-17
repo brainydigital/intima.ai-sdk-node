@@ -25,7 +25,7 @@ Este repositório é a implementação da API do [Intima.ai](https://app.intima.
 Intale via npm:
 
 ```shell
-npm install @brainy-digital/intimai-sdk-node --save
+npm install @brainy-digital/intima.ai-sdk-node --save
 ```
 
 ### Configuração com Webpack
