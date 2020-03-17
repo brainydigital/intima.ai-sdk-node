@@ -1,5 +1,5 @@
 {
-  "name": "@brainy-digital/intimai-sdk-node",
+  "name": "@brainy-digital/intima.ai-sdk-node",
   "version": "1.0.6",
   "description": "Implementação da API do Intima.ai em forma de SDK Client para NodeJS.",
   "license": "ISC",
