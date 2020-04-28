@@ -1,0 +1,31 @@
+{
+  "name": "intima.ai-sdk-nodejs",
+  "version": "1.0.0",
+  "description": "Implementação da API do Intima.ai em forma de SDK Client para NodeJS.",
+  "homepage": "https://intima.ai",
+  "keywords": [
+    "intimai",
+    "intimaai",
+    "intima.ai",
+    "php",
+    "sdk",
+    "api"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsc -w",
+    "start": "node dist/index.js"
+  },
+  "authors": [
+    {
+      "name": "Rauny Henrique",
+      "email": "rauny22@gmail.com",
+      "role": "Dev"
+    }
+  ],
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {
+    "unirest": "^0.6.0"
+  }
+}
