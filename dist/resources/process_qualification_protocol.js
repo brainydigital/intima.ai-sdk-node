@@ -51,20 +51,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var resource_1 = require("../resource");
 var action_1 = require("./action");
-var ProcessCopy = /** @class */ (function (_super) {
-    __extends(ProcessCopy, _super);
-    function ProcessCopy(API) {
+var fs = require("fs");
+var ProcessQualificationProtocol = /** @class */ (function (_super) {
+    __extends(ProcessQualificationProtocol, _super);
+    function ProcessQualificationProtocol(API) {
         var _this = _super.call(this, API) || this;
         _this.action = new action_1.Action(API);
         return _this;
     }
-    ProcessCopy.prototype.getResourceEndpoint = function () {
-        return 'process-copies';
+    ProcessQualificationProtocol.prototype.getResourceEndpoint = function () {
+        return 'process-qualification-protocols';
     };
     /**
      * getById
      */
-    ProcessCopy.prototype.getById = function (id) {
+    ProcessQualificationProtocol.prototype.getById = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -75,18 +76,48 @@ var ProcessCopy = /** @class */ (function (_super) {
         });
     };
     /**
-     * getNewCopy
+     * getNewQualificationProtocolFirstStep
      */
-    ProcessCopy.prototype.getNewCopy = function (copy) {
+    ProcessQualificationProtocol.prototype.getNewQualificationProtocolFirstStep = function (qualification_protocol) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getAPI().post(this.action.getResourceEndpoint() + "/" + this.getResourceEndpoint(), copy)];
+                    case 0: return [4 /*yield*/, this.getAPI().post(this.action.getResourceEndpoint() + "/" + this.getResourceEndpoint(), qualification_protocol)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     };
-    return ProcessCopy;
+    /**
+     * getNewQualificationProtocolSecondStep
+     */
+    ProcessQualificationProtocol.prototype.getNewQualificationProtocolSecondStep = function (qualification_protocol_id, qualification_protocol) {
+        return __awaiter(this, void 0, void 0, function () {
+            var attachs, files;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        attachs = null;
+                        if (qualification_protocol.documentos) {
+                            if (qualification_protocol.documentos.length) {
+                                files = qualification_protocol.documentos.map(function (doc) {
+                                    var file_path = doc.arquivo;
+                                    if (!fs.existsSync(file_path)) {
+                                        throw "O caminho do arquivo informado é inválido!";
+                                    }
+                                    delete doc['arquivo'];
+                                    return file_path;
+                                });
+                                attachs = { field_name: 'documentos', files: files };
+                            }
+                        }
+                        return [4 /*yield*/, this.getAPI()
+                                .put(this.action.getResourceEndpoint() + "/" + this.getResourceEndpoint() + "/" + qualification_protocol_id, qualification_protocol, {}, {}, attachs)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    return ProcessQualificationProtocol;
 }(resource_1.Resource));
-exports.ProcessCopy = ProcessCopy;
+exports.ProcessQualificationProtocol = ProcessQualificationProtocol;

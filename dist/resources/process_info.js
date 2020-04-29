@@ -51,20 +51,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var resource_1 = require("../resource");
 var action_1 = require("./action");
-var ProcessCopy = /** @class */ (function (_super) {
-    __extends(ProcessCopy, _super);
-    function ProcessCopy(API) {
+var ProcessInfo = /** @class */ (function (_super) {
+    __extends(ProcessInfo, _super);
+    function ProcessInfo(API) {
         var _this = _super.call(this, API) || this;
         _this.action = new action_1.Action(API);
         return _this;
     }
-    ProcessCopy.prototype.getResourceEndpoint = function () {
-        return 'process-copies';
+    ProcessInfo.prototype.getResourceEndpoint = function () {
+        return 'process-infos';
     };
     /**
      * getById
      */
-    ProcessCopy.prototype.getById = function (id) {
+    ProcessInfo.prototype.getById = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -75,18 +75,18 @@ var ProcessCopy = /** @class */ (function (_super) {
         });
     };
     /**
-     * getNewCopy
+     * getNewProcessInfo
      */
-    ProcessCopy.prototype.getNewCopy = function (copy) {
+    ProcessInfo.prototype.getNewProcessInfo = function (process) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getAPI().post(this.action.getResourceEndpoint() + "/" + this.getResourceEndpoint(), copy)];
+                    case 0: return [4 /*yield*/, this.getAPI().post(this.action.getResourceEndpoint() + "/" + this.getResourceEndpoint(), process)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     };
-    return ProcessCopy;
+    return ProcessInfo;
 }(resource_1.Resource));
-exports.ProcessCopy = ProcessCopy;
+exports.ProcessInfo = ProcessInfo;

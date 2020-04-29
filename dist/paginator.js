@@ -62,7 +62,7 @@ var Paginator = /** @class */ (function () {
                 switch (_b.label) {
                     case 0:
                         _a = this;
-                        return [4 /*yield*/, this.resourceClass.get(this.resourceClass.getResourceEndpoint(), { page: page })];
+                        return [4 /*yield*/, this.resourceClass.getAPI().get(this.resourceClass.getResourceEndpoint(), { page: page })];
                     case 1:
                         _a.paginationData = _b.sent();
                         this.prepare();
@@ -141,7 +141,6 @@ var Paginator = /** @class */ (function () {
                     case 1: return [2 /*return*/, _a.sent()];
                     case 2:
                         resources = [];
-                        latestRequest = null;
                         _a.label = 3;
                     case 3:
                         if (!this.hasNextPage()) return [3 /*break*/, 5];
@@ -149,11 +148,10 @@ var Paginator = /** @class */ (function () {
                         return [4 /*yield*/, this.getPage(this.currentPage)];
                     case 4:
                         latestRequest = _a.sent();
-                        resources = resources.concat(latestRequest['data']);
+                        resources = resources.concat(latestRequest.getCollection());
                         return [3 /*break*/, 3];
                     case 5:
                         ;
-                        this.paginationData = latestRequest;
                         this.paginationData['data'] = resources;
                         this.prepare();
                         return [2 /*return*/, this];

@@ -1,4 +1,5 @@
 import { Resource } from "../resource";
+import { API } from "../api";
 
 export class Action extends Resource {
     
@@ -6,9 +7,8 @@ export class Action extends Resource {
         return 'actions';
     }
 
-    constructor() {
-        super();
+    constructor(API: API) {
+        super(API);
     }
-
     
 }

@@ -51,20 +51,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var resource_1 = require("../resource");
 var action_1 = require("./action");
-var ProcessCopy = /** @class */ (function (_super) {
-    __extends(ProcessCopy, _super);
-    function ProcessCopy(API) {
+var resource_result_1 = require("./resource_result");
+var ProcessListener = /** @class */ (function (_super) {
+    __extends(ProcessListener, _super);
+    function ProcessListener(API) {
         var _this = _super.call(this, API) || this;
         _this.action = new action_1.Action(API);
         return _this;
     }
-    ProcessCopy.prototype.getResourceEndpoint = function () {
-        return 'process-copies';
+    ProcessListener.prototype.getResourceEndpoint = function () {
+        return 'process-listeners';
     };
     /**
      * getById
      */
-    ProcessCopy.prototype.getById = function (id) {
+    ProcessListener.prototype.getById = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -75,18 +76,77 @@ var ProcessCopy = /** @class */ (function (_super) {
         });
     };
     /**
-     * getNewCopy
+     * getNewListener
      */
-    ProcessCopy.prototype.getNewCopy = function (copy) {
+    ProcessListener.prototype.getNewListener = function (listener) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getAPI().post(this.action.getResourceEndpoint() + "/" + this.getResourceEndpoint(), copy)];
+                    case 0: return [4 /*yield*/, this.getAPI().post("" + this.getResourceEndpoint(), listener)];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     };
-    return ProcessCopy;
+    /**
+     * captureListener
+     */
+    ProcessListener.prototype.captureListener = function (listener_id) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAPI().get(this.action.getResourceEndpoint() + "/" + this.getResourceEndpoint() + "/" + listener_id + "/capture")];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * captureListener
+     */
+    ProcessListener.prototype.getNewListenerAndCapture = function (listener) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAPI().post(this.action.getResourceEndpoint() + "/" + this.getResourceEndpoint() + "/create-and-capture", listener)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * getListenerResults
+     */
+    ProcessListener.prototype.getListenerResults = function (listener_id) {
+        var resource = new resource_result_1.ResourceResult(this.getAPI(), this, listener_id);
+        return resource.paginate();
+    };
+    /**
+     * updateListener
+     */
+    ProcessListener.prototype.updateListener = function (listener_id, listener) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAPI().put(this.getResourceEndpoint() + "/" + listener_id, listener)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * deleteListener
+     */
+    ProcessListener.prototype.deleteListener = function (listener_id) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAPI()["delete"](this.getResourceEndpoint() + "/" + listener_id)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    return ProcessListener;
 }(resource_1.Resource));
-exports.ProcessCopy = ProcessCopy;
+exports.ProcessListener = ProcessListener;

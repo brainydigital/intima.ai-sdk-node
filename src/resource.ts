@@ -1,19 +1,25 @@
 import { API } from "./api";
 import { Paginator } from "./paginator";
 
-export abstract class Resource extends API {
+export abstract class Resource {
     
-    abstract getResourceEndpoint(): string;
+    private API: API;
 
     private paginator: Paginator;
 
-    constructor() {
-        super();
+    constructor(API: API) {
+        this.API = API;
         this.paginator = new Paginator(this);
     }
 
+    abstract getResourceEndpoint(): string;
+
     public paginate() {
         return this.paginator;
+    }
+
+    public getAPI(): API {
+        return this.API;
     }
 
 }

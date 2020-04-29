@@ -35,8 +35,8 @@ export class Paginator {
     /**
      * getPage
      */
-    private async getPage(page: number) {
-        this.paginationData = await this.resourceClass.get(this.resourceClass.getResourceEndpoint(), { page });
+    public async getPage(page: number) {
+        this.paginationData = await this.resourceClass.getAPI().get(this.resourceClass.getResourceEndpoint(), { page });
         this.prepare();
         return this;
     }
@@ -104,16 +104,14 @@ export class Paginator {
         }
 
         let resources = [];
-        let latestRequest = null;
 
         while(this.hasNextPage()) {
             this.currentPage++;
-            latestRequest = await this.getPage(this.currentPage);
+            const latestRequest = await this.getPage(this.currentPage);
 
-            resources = resources.concat(latestRequest['data']);
+            resources = resources.concat(latestRequest.getCollection());
         };
 
-        this.paginationData = latestRequest;
         this.paginationData['data'] = resources;
 
         this.prepare();

@@ -1,55 +1,215 @@
-import * as unirest from 'unirest';
+import * as requestretry from 'requestretry';
+import * as fs from 'fs';
+import { serializeForm } from './utils/utils';
 
 export class API {
 
-    private baseUrl = 'http://ea51a18b.ngrok.io/api/v2';
+    private baseUrl = 'http://a466e4c2.ngrok.io/api/v2';
 
     private apiSecretKey: string;
 
-    public get(endpoint, query: any = {}): Promise<any> {
-        return new Promise((resolve, reject) => {
-            unirest
-                .get(this.getBaseUrl() + '/' + endpoint + '?api_token=' + this.getSecretKey())
-                .headers({
-                    'Accept': 'application/json'
-                })
-                .query(query)
-                .then((response) => {          
-                    if (response.status >= 200 && response.status <= 299){
-                        resolve(response.body);
-                    } else {
-                        reject(response.body);
-                    }          
-                })
-                .catch(err => {
-                    reject(err);
-                });
-        })
+    private proxy;
+
+    private timeout;
+
+    private max_attempts;
+
+    constructor(api_token: string, proxy?: string, timeout?: number, max_attempts?: number) {
+        this.apiSecretKey = api_token;
+        this.proxy = proxy;
+        this.timeout = timeout || 60000;
+        this.max_attempts = max_attempts || 1;
     }
 
-    public post(endpoint, body: any = {}, query: any = {}): Promise<any> {
+    private getError(error) {
+        const body = (error.hasOwnProperty('body')) ? error.body : error;
+        return { code: error.statusCode, error: body };
+    }
+
+    private getRequestDefaultOptions() {
+        return {
+            proxy: this.proxy,
+            timeout: this.timeout,
+            json: true,
+            maxAttempts: this.max_attempts
+        };
+    }
+
+    public get(endpoint, query: any = {}, options: any = {}): Promise<any> {
         return new Promise((resolve, reject) => {
-            unirest
-                .post(this.getBaseUrl() + '/' + endpoint + '?api_token=' + this.getSecretKey())
-                .headers({
+
+            let request_options = {
+                headers: {
                     'Accept': 'application/json'
-                })
-                .send(body)
-                .query(query)
+                },
+                qs: query,
+                ...this.getRequestDefaultOptions()
+            };
+
+            if (options) {
+                if (Object.keys(options).length) {
+                    request_options = { ...request_options, ...options };
+                }
+            }
+
+            requestretry
+                .get(this.getBaseUrl() + '/' + endpoint + '?api_token=' + this.getSecretKey(), request_options)
                 .then((response) => {
-                    if (response.status >= 200 && response.status <= 299){
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve(response.body);
                     } else {
-                        reject(response.body);
-                    }       
+                        reject(this.getError(response));
+                    }
                 })
                 .catch(err => {
-                    reject(err);
+                    reject(this.getError(err));
                 });
-        })
+        });
     }
 
-    public put(endpoint, body: any = null, query: any = null) { }
+    public post(endpoint, body: any = {}, query: any = {}, options: any = {}, attachs: { field_name: string, files: Array<string> } = null): Promise<any> {
+        return new Promise((resolve, reject) => {
+
+            let content_type = 'application/json';
+
+            if (attachs) {
+                content_type = 'multipart/form-data';
+            }
+
+            let formData = serializeForm(body);
+
+            if (attachs) {
+                const file_name = attachs.field_name;
+                attachs.files.map((file_path, index) => {
+                    formData[`${file_name}[${index}][arquivo]`] = {
+                        value: fs.createReadStream(file_path),
+                        options: {
+                            filename: file_path.split('/').pop(),
+                            contentType: 'application/pdf'
+                        }
+                    };
+                });
+            }
+
+            let request_options = {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': content_type
+                },
+                formData: formData,
+                qs: query,
+                ...this.getRequestDefaultOptions()
+            };
+
+            if (options) {
+                if (Object.keys(options).length) {
+                    request_options = { ...request_options, ...options };
+                }
+            }
+
+            requestretry
+                .post(this.getBaseUrl() + '/' + endpoint + '?api_token=' + this.getSecretKey(), request_options)
+                .then((response) => {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve(response.body);
+                    } else {
+                        reject(this.getError(response));
+                    }
+                })
+                .catch(err => {
+                    reject(this.getError(err));
+                });
+        });
+    }
+
+    public put(endpoint, body: any = {}, query: any = {}, options: any = {}, attachs: { field_name: string, files: Array<string> } = null) {
+        return new Promise((resolve, reject) => {
+
+            let content_type = 'application/json';
+
+            if (attachs) {
+                content_type = 'multipart/form-data';
+            }
+
+            let formData = {
+                '_method': 'PUT',
+                ...serializeForm(body)
+            };
+
+            if (attachs) {
+                const file_name = attachs.field_name;
+                attachs.files.map((file_path, index) => {
+                    formData[`${file_name}[${index}][arquivo]`] = {
+                        value: fs.createReadStream(file_path),
+                        options: {
+                            filename: file_path.split('/').pop(),
+                            contentType: 'application/pdf'
+                        }
+                    };
+                });
+            }
+
+            let request_options = {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': content_type
+                },
+                formData: formData,
+                qs: query,
+                ...this.getRequestDefaultOptions()
+            };
+
+            if (options) {
+                if (Object.keys(options).length) {
+                    request_options = { ...request_options, ...options };
+                }
+            }
+
+            requestretry.post(this.getBaseUrl() + '/' + endpoint + '?api_token=' + this.getSecretKey(), request_options)
+                .then((response) => {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve(response.body);
+                    } else {
+                        reject(this.getError(response));
+                    }
+                })
+                .catch(err => {
+                    reject(this.getError(err));
+                });
+        });
+    }
+
+    public delete(endpoint, query: any = {}, options: any = {}) {
+        return new Promise((resolve, reject) => {
+
+            let request_options = {
+                headers: {
+                    'Accept': 'application/json'
+                },
+                qs: query,
+                ...this.getRequestDefaultOptions()
+            };
+
+            if (options) {
+                if (Object.keys(options).length) {
+                    request_options = { ...request_options, ...options };
+                }
+            }
+
+            requestretry
+                .delete(this.getBaseUrl() + '/' + endpoint + '?api_token=' + this.getSecretKey(), request_options)
+                .then((response) => {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve(response.body);
+                    } else {
+                        reject(this.getError(response));
+                    }
+                })
+                .catch(err => {
+                    reject(this.getError(err));
+                });
+        });
+    }
 
     public getBaseUrl() {
         return this.baseUrl;
@@ -59,9 +219,32 @@ export class API {
         return this.apiSecretKey;
     }
 
-
     public setSecretKey(api_token: string) {
         this.apiSecretKey = api_token;
+    }
+
+    public getProxy() {
+        return this.proxy;
+    }
+
+    public setProxy(proxy: number) {
+        this.proxy = proxy;
+    }
+
+    public getTimeout() {
+        return this.timeout;
+    }
+
+    public setTimeout(timeout: number) {
+        this.timeout = timeout;
+    }
+
+    public getMaxAttempts() {
+        return this.max_attempts;
+    }
+
+    public setMaxAttempts(max_attempts: number) {
+        this.max_attempts = max_attempts;
     }
 
 }

@@ -24,8 +24,11 @@
     }
   ],
   "license": "MIT",
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/node": "^13.13.4"
+  },
   "dependencies": {
+    "requestretry": "^4.1.0",
     "unirest": "^0.6.0"
   }
 }

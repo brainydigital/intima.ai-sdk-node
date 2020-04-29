@@ -14,14 +14,16 @@ var __extends = (this && this.__extends) || (function () {
 })();
 exports.__esModule = true;
 var resource_1 = require("../resource");
-var Action = /** @class */ (function (_super) {
-    __extends(Action, _super);
-    function Action(API) {
-        return _super.call(this, API) || this;
+var ResourceResult = /** @class */ (function (_super) {
+    __extends(ResourceResult, _super);
+    function ResourceResult(API, resource, resource_id) {
+        var _this = _super.call(this, API) || this;
+        _this.resource_path = resource.getResourceEndpoint() + "/" + resource_id + "/results";
+        return _this;
     }
-    Action.prototype.getResourceEndpoint = function () {
-        return 'actions';
+    ResourceResult.prototype.getResourceEndpoint = function () {
+        return this.resource_path;
     };
-    return Action;
+    return ResourceResult;
 }(resource_1.Resource));
-exports.Action = Action;
+exports.ResourceResult = ResourceResult;
