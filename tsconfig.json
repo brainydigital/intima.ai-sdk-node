@@ -2,6 +2,7 @@
     "compilerOptions": {
         "lib": ["ES2015", "DOM"],
         "allowJs": true,
+        "rootDir": "src",
         "outDir": "./dist",
         // "skipLibCheck": true,
     },

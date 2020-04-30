@@ -3,3 +3,4 @@ node_modules
 main.ts
 main.js
 .DS_Store
+dist
