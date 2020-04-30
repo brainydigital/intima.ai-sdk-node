@@ -1,43 +1,34 @@
 {
-  "name": "@brainy-digital/intima.ai-sdk-node",
-  "version": "1.0.6",
+  "name": "intima.ai-sdk-nodejs",
+  "version": "1.0.0",
   "description": "Implementação da API do Intima.ai em forma de SDK Client para NodeJS.",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/brainydigital/intimai-sdk-node.git"
-  },
+  "homepage": "https://intima.ai",
   "keywords": [
     "intimai",
+    "intimaai",
     "intima.ai",
+    "php",
     "sdk",
-    "nodejs"
+    "api"
   ],
-  "homepage": "https://github.com/brainydigital/intimai-sdk-node",
-  "author": "Rauny Henrique",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha --recursive"
+    "dev": "tsc -w",
+    "start": "node dist/index.js"
   },
-  "browser": {
-    "fs": false
-  },
-  "engines": {
-     "node": ">=6.4.0"
+  "authors": [
+    {
+      "name": "Rauny Henrique",
+      "email": "rauny22@gmail.com",
+      "role": "Dev"
+    }
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^13.13.4"
   },
   "dependencies": {
-    "superagent": "3.7.0"
-  },
-  "devDependencies": {
-    "mocha": "~2.3.4",
-    "sinon": "1.17.3",
-    "expect.js": "~0.3.1"
-  },
-  "bugs": {
-    "url": "https://github.com/brainydigital/intimai-sdk-node/issues"
-  },
-  "directories": {
-    "doc": "docs",
-    "test": "test"
+    "request": "^2.88.2",
+    "requestretry": "^4.1.0"
   }
 }

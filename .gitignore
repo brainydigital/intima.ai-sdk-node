@@ -1,4 +1,5 @@
-.DS_Store
-git_push.sh
 node_modules
-test_js.js
+.env
+main.ts
+main.js
+.DS_Store
