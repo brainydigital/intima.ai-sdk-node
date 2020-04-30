@@ -1,12 +1,12 @@
 <br />
 <div align="center">
   <a href="#">
-    <img src="docs/images/logo.png" alt="Logo" width="120" height="120">
+    <img src="https://raw.githubusercontent.com/brainydigital/intima.ai-sdk-node/master/docs/images/logo.png" alt="Logo" width="120" height="120">
   </a>
   
-  [![Npm - Downloads](https://img.shields.io/npm/dt/@brainy-digital/intimai-sdk-node.svg?style=flat&color=97ca00)](https://www.npmjs.com/package/@brainy-digital/intimai-sdk-node "View this project on npm")
-  [![Node - Version](https://img.shields.io/badge/node-%3E=_6.4.0-blue.svg?style=flat)](https://www.npmjs.com/package/@brainy-digital/intimai-sdk-node "View this project on npm")
-  [![Contributors](https://img.shields.io/badge/contributors-1-yellow.svg)](https://github.com/brainydigital/intimai-sdk-node/graphs/contributors)
+  [![Npm - Downloads](https://img.shields.io/npm/dt/@brainy-digital/intima.ai-sdk-node.svg?style=flat&color=97ca00)](https://www.npmjs.com/package/@brainy-digital/intima.ai-sdk-node "View this project on npm")
+  [![Node - Version](https://img.shields.io/badge/node-%3E=_6.4.0-blue.svg?style=flat)](https://www.npmjs.com/package/@brainy-digital/intima.ai-sdk-node "View this project on npm")
+  [![Contributors](https://img.shields.io/badge/contributors-1-yellow.svg)](https://github.com/brainydigital/intima.ai-sdk-node/graphs/contributors)
   [![MIT license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT)
 </div>
 
