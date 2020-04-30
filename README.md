@@ -14,7 +14,7 @@
 
 Este repositório é a implementação da API do [Intima.ai](https://app.intima.ai) em forma de SDK Client para NodeJS. Este SDK cobre todas as ações disponíveis dentro da plataforma do `Intima.ai` e as disponibilizam como métodos, que podem ser integrados e utilizados por outros serviços ou aplicações, bastando somente possuir o `Token de acesso da API (api_token)`.
 
-- Versão da API: 1.0.0
+- Versão da API: 2.0.0
 
 ## Instalação
 
@@ -39,7 +39,8 @@ try
 {
   const intimaai = new Intimaai('api_secret_token');
 
-  const result = await intimaai.copyResource.getNewCopy({ process_number: '0000000-00.0000.0.00.0000', auth_id: 1 });
+  const copy = { process_number: '0000000-00.0000.0.00.0000', auth_id: 1 };
+  const result = await intimaai.copyResource.getNewCopy(copy);
 
   console.log(result);
 }
