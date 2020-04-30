@@ -28,7 +28,7 @@
     "@types/node": "^13.13.4"
   },
   "dependencies": {
-    "requestretry": "^4.1.0",
-    "unirest": "^0.6.0"
+    "request": "^2.88.2",
+    "requestretry": "^4.1.0"
   }
 }

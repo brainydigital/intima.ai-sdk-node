@@ -50,19 +50,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var resource_1 = require("../resource");
-var resource_result_1 = require("./resource_result");
-var Action = /** @class */ (function (_super) {
-    __extends(Action, _super);
-    function Action(API) {
+var fs = require("fs");
+var Certificate = /** @class */ (function (_super) {
+    __extends(Certificate, _super);
+    function Certificate(API) {
         return _super.call(this, API) || this;
     }
-    Action.prototype.getResourceEndpoint = function () {
-        return 'actions';
+    Certificate.prototype.getResourceEndpoint = function () {
+        return 'certificates';
     };
     /**
      * getById
      */
-    Action.prototype.getById = function (id) {
+    Certificate.prototype.getById = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -73,12 +73,62 @@ var Action = /** @class */ (function (_super) {
         });
     };
     /**
-     * getActionResults
+     * getNewCertificate
      */
-    Action.prototype.getActionResults = function (action_id) {
-        var resource = new resource_result_1.ResourceResult(this.getAPI(), this, action_id);
-        return resource.paginate();
+    Certificate.prototype.getNewCertificate = function (certificate) {
+        return __awaiter(this, void 0, void 0, function () {
+            var attachs;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        attachs = this.validateCertificate(certificate);
+                        return [4 /*yield*/, this.getAPI().post("" + this.getResourceEndpoint(), certificate, {}, {}, attachs)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
     };
-    return Action;
+    /**
+     * updateCertificate
+     */
+    Certificate.prototype.updateCertificate = function (certificate_id, certificate) {
+        return __awaiter(this, void 0, void 0, function () {
+            var attachs;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        attachs = this.validateCertificate(certificate);
+                        return [4 /*yield*/, this.getAPI().post(this.getResourceEndpoint() + "/" + certificate_id, certificate, {}, {}, attachs)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * deleteCertificate
+     */
+    Certificate.prototype.deleteCertificate = function (certificate_id) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAPI()["delete"](this.getResourceEndpoint() + "/" + certificate_id)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    Certificate.prototype.validateCertificate = function (certificate) {
+        var attachs = null;
+        if (certificate.pfx) {
+            var file_path = certificate.pfx;
+            if (!fs.existsSync(file_path)) {
+                throw "O caminho do arquivo informado é inválido!";
+            }
+            delete certificate['pfx'];
+            attachs = { field_name: 'pfx', files: file_path };
+        }
+        return attachs;
+    };
+    return Certificate;
 }(resource_1.Resource));
-exports.Action = Action;
+exports.Certificate = Certificate;

@@ -50,13 +50,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var resource_1 = require("../resource");
-var action_1 = require("./action");
 var resource_result_1 = require("./resource_result");
 var ProcessListener = /** @class */ (function (_super) {
     __extends(ProcessListener, _super);
-    function ProcessListener(API) {
+    function ProcessListener(API, action) {
         var _this = _super.call(this, API) || this;
-        _this.action = new action_1.Action(API);
+        _this.action = action;
         return _this;
     }
     ProcessListener.prototype.getResourceEndpoint = function () {
@@ -102,7 +101,7 @@ var ProcessListener = /** @class */ (function (_super) {
         });
     };
     /**
-     * captureListener
+     * getNewListenerAndCapture
      */
     ProcessListener.prototype.getNewListenerAndCapture = function (listener) {
         return __awaiter(this, void 0, void 0, function () {

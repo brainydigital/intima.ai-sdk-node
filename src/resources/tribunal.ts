@@ -1,11 +1,10 @@
 import { Resource } from "../resource";
 import { API } from "../api/api";
-import { ResourceResult } from "./resource_result";
 
-export class Action extends Resource {
+export class Tribunal extends Resource {
     
     getResourceEndpoint() {
-        return 'actions';
+        return 'tribunals';
     }
 
     constructor(API: API) {
@@ -18,12 +17,5 @@ export class Action extends Resource {
     public async getById(id: number): Promise<any> {
         return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`);
     }
-    
-    /**
-     * getActionResults
-     */
-    public getActionResults(action_id: number) {
-        const resource = new ResourceResult(this.getAPI(), this, action_id);
-        return resource.paginate();
-    }
+
 }

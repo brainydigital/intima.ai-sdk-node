@@ -51,18 +51,20 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var resource_1 = require("../resource");
 var resource_result_1 = require("./resource_result");
-var Action = /** @class */ (function (_super) {
-    __extends(Action, _super);
-    function Action(API) {
-        return _super.call(this, API) || this;
+var ProcessCourse = /** @class */ (function (_super) {
+    __extends(ProcessCourse, _super);
+    function ProcessCourse(API, action) {
+        var _this = _super.call(this, API) || this;
+        _this.action = action;
+        return _this;
     }
-    Action.prototype.getResourceEndpoint = function () {
-        return 'actions';
+    ProcessCourse.prototype.getResourceEndpoint = function () {
+        return 'process-courses';
     };
     /**
      * getById
      */
-    Action.prototype.getById = function (id) {
+    ProcessCourse.prototype.getById = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -73,12 +75,64 @@ var Action = /** @class */ (function (_super) {
         });
     };
     /**
-     * getActionResults
+     * getNewCourse
      */
-    Action.prototype.getActionResults = function (action_id) {
-        var resource = new resource_result_1.ResourceResult(this.getAPI(), this, action_id);
+    ProcessCourse.prototype.getNewCourse = function (course) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAPI().post("" + this.getResourceEndpoint(), course)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * captureCourse
+     */
+    ProcessCourse.prototype.captureCourse = function (course_id) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAPI().get(this.action.getResourceEndpoint() + "/" + this.getResourceEndpoint() + "/" + course_id + "/capture")];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * getNewCourseAndCapture
+     */
+    ProcessCourse.prototype.getNewCourseAndCapture = function (course) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAPI().post(this.action.getResourceEndpoint() + "/" + this.getResourceEndpoint() + "/create-and-capture", course)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * getCourseResults
+     */
+    ProcessCourse.prototype.getCourseResults = function (course_id) {
+        var resource = new resource_result_1.ResourceResult(this.getAPI(), this, course_id);
         return resource.paginate();
     };
-    return Action;
+    /**
+     * deleteCourse
+     */
+    ProcessCourse.prototype.deleteCourse = function (course_id) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAPI()["delete"](this.getResourceEndpoint() + "/" + course_id)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    return ProcessCourse;
 }(resource_1.Resource));
-exports.Action = Action;
+exports.ProcessCourse = ProcessCourse;

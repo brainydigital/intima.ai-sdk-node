@@ -1,10 +1,10 @@
 import * as requestretry from 'requestretry';
 import * as fs from 'fs';
-import { serializeForm } from './utils/utils';
+import { serializeForm } from '../utils/utils';
 
 export class API {
 
-    private baseUrl = 'http://a466e4c2.ngrok.io/api/v2';
+    private baseUrl = 'https://app.intima.ai/api/v2';
 
     private apiSecretKey: string;
 
@@ -67,7 +67,7 @@ export class API {
         });
     }
 
-    public post(endpoint, body: any = {}, query: any = {}, options: any = {}, attachs: { field_name: string, files: Array<string> } = null): Promise<any> {
+    public post(endpoint, body: any = {}, query: any = {}, options: any = {}, attachs: { field_name: string, files: Array<string> | string } = null): Promise<any> {
         return new Promise((resolve, reject) => {
 
             let content_type = 'application/json';
@@ -79,16 +79,7 @@ export class API {
             let formData = serializeForm(body);
 
             if (attachs) {
-                const file_name = attachs.field_name;
-                attachs.files.map((file_path, index) => {
-                    formData[`${file_name}[${index}][arquivo]`] = {
-                        value: fs.createReadStream(file_path),
-                        options: {
-                            filename: file_path.split('/').pop(),
-                            contentType: 'application/pdf'
-                        }
-                    };
-                });
+                formData = { ...formData, ...this.appendFiles(attachs) };
             }
 
             let request_options = {
@@ -122,7 +113,7 @@ export class API {
         });
     }
 
-    public put(endpoint, body: any = {}, query: any = {}, options: any = {}, attachs: { field_name: string, files: Array<string> } = null) {
+    public put(endpoint, body: any = {}, query: any = {}, options: any = {}, attachs: { field_name: string, files: Array<string> | string } = null) {
         return new Promise((resolve, reject) => {
 
             let content_type = 'application/json';
@@ -137,16 +128,7 @@ export class API {
             };
 
             if (attachs) {
-                const file_name = attachs.field_name;
-                attachs.files.map((file_path, index) => {
-                    formData[`${file_name}[${index}][arquivo]`] = {
-                        value: fs.createReadStream(file_path),
-                        options: {
-                            filename: file_path.split('/').pop(),
-                            contentType: 'application/pdf'
-                        }
-                    };
-                });
+                formData = { ...formData, ...this.appendFiles(attachs) };
             }
 
             let request_options = {
@@ -209,6 +191,32 @@ export class API {
                     reject(this.getError(err));
                 });
         });
+    }
+
+    private appendFiles(attachs: { field_name: string, files: Array<string> | string }) {
+        let formData = {};
+        const file_name = attachs.field_name;
+        if (attachs.files instanceof Array) {
+            attachs.files.map((file_path, index) => {
+                formData[`${file_name}[${index}][arquivo]`] = {
+                    value: fs.createReadStream(file_path),
+                    options: {
+                        filename: file_path.split('/').pop(),
+                        contentType: 'application/pdf'
+                    }
+                };
+            });
+        } else {
+            const file_path = attachs.files;
+            formData[`${file_name}`] = {
+                value: fs.createReadStream(file_path),
+                options: {
+                    filename: file_path.split('/').pop(),
+                    contentType: 'application/pdf'
+                }
+            };
+        }
+        return formData;
     }
 
     public getBaseUrl() {

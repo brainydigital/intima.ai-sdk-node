@@ -24,3 +24,7 @@ export function serializeForm(body) {
 
     return formData;
 }
+
+export function isEmpty(n){
+	return !(!!n ? typeof n === 'object' ? Array.isArray(n) ? !!n.length : !!Object.keys(n).length : true : false);
+}

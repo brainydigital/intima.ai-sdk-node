@@ -50,12 +50,11 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var resource_1 = require("../resource");
-var action_1 = require("./action");
 var ProcessCopy = /** @class */ (function (_super) {
     __extends(ProcessCopy, _super);
-    function ProcessCopy(API) {
+    function ProcessCopy(API, action) {
         var _this = _super.call(this, API) || this;
-        _this.action = new action_1.Action(API);
+        _this.action = action;
         return _this;
     }
     ProcessCopy.prototype.getResourceEndpoint = function () {

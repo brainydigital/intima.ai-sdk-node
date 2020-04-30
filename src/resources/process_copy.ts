@@ -1,6 +1,6 @@
 import { Resource } from "../resource";
 import { Action } from "./action";
-import { API } from "../api";
+import { API } from "../api/api";
 
 export type Copy = {
     process_number: string, 
@@ -15,9 +15,9 @@ export class ProcessCopy extends Resource {
         return 'process-copies';
     }
 
-    constructor(API: API) {
+    constructor(API: API, action: Action) {
         super(API);
-        this.action = new Action(API);
+        this.action = action;
     }
 
     /**

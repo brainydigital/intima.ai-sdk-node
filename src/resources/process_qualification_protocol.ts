@@ -1,6 +1,6 @@
 import { Resource } from "../resource";
 import { Action } from "./action";
-import { API } from "../api";
+import { API } from "../api/api";
 import * as fs from 'fs';
 
 export type FirstStepQualificationProtocol = {
@@ -27,9 +27,9 @@ export class ProcessQualificationProtocol extends Resource {
         return 'process-qualification-protocols';
     }
 
-    constructor(API: API) {
+    constructor(API: API, action: Action) {
         super(API);
-        this.action = new Action(API);
+        this.action = action;
     }
 
     /**

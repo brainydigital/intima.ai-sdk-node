@@ -49,36 +49,28 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-var resource_1 = require("../resource");
-var resource_result_1 = require("./resource_result");
-var Action = /** @class */ (function (_super) {
-    __extends(Action, _super);
-    function Action(API) {
+var resource_1 = require("../../resource");
+var User = /** @class */ (function (_super) {
+    __extends(User, _super);
+    function User(API) {
         return _super.call(this, API) || this;
     }
-    Action.prototype.getResourceEndpoint = function () {
-        return 'actions';
+    User.prototype.getResourceEndpoint = function () {
+        return 'user';
     };
     /**
-     * getById
+     * getUser
      */
-    Action.prototype.getById = function (id) {
+    User.prototype.getUser = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.getAPI().get(this.getResourceEndpoint() + "/" + id)];
+                    case 0: return [4 /*yield*/, this.getAPI().get("" + this.getResourceEndpoint())];
                     case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     };
-    /**
-     * getActionResults
-     */
-    Action.prototype.getActionResults = function (action_id) {
-        var resource = new resource_result_1.ResourceResult(this.getAPI(), this, action_id);
-        return resource.paginate();
-    };
-    return Action;
+    return User;
 }(resource_1.Resource));
-exports.Action = Action;
+exports.User = User;

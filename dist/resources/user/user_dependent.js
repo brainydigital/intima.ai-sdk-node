@@ -49,20 +49,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-var resource_1 = require("../resource");
-var resource_result_1 = require("./resource_result");
-var Action = /** @class */ (function (_super) {
-    __extends(Action, _super);
-    function Action(API) {
+var resource_1 = require("../../resource");
+var UserDependent = /** @class */ (function (_super) {
+    __extends(UserDependent, _super);
+    function UserDependent(API) {
         return _super.call(this, API) || this;
     }
-    Action.prototype.getResourceEndpoint = function () {
-        return 'actions';
+    UserDependent.prototype.getResourceEndpoint = function () {
+        return 'user-dependents';
     };
     /**
      * getById
      */
-    Action.prototype.getById = function (id) {
+    UserDependent.prototype.getById = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -73,12 +72,44 @@ var Action = /** @class */ (function (_super) {
         });
     };
     /**
-     * getActionResults
+     * getNewUserDependent
      */
-    Action.prototype.getActionResults = function (action_id) {
-        var resource = new resource_result_1.ResourceResult(this.getAPI(), this, action_id);
-        return resource.paginate();
+    UserDependent.prototype.getNewUserDependent = function (user_dependent) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAPI().post("" + this.getResourceEndpoint(), user_dependent)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
     };
-    return Action;
+    /**
+     * updateUserDependent
+     */
+    UserDependent.prototype.updateUserDependent = function (user_dependent_id, user_dependent) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAPI().put(this.getResourceEndpoint() + "/" + user_dependent_id, user_dependent)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * deleteUserDependent
+     */
+    UserDependent.prototype.deleteUserDependent = function (user_dependent_id) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAPI()["delete"](this.getResourceEndpoint() + "/" + user_dependent_id)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    return UserDependent;
 }(resource_1.Resource));
-exports.Action = Action;
+exports.UserDependent = UserDependent;

@@ -1,6 +1,6 @@
 import { Resource } from "../resource";
 import { Action } from "./action";
-import { API } from "../api";
+import { API } from "../api/api";
 import { ResourceResult } from "./resource_result";
 
 export type Listener = {
@@ -21,9 +21,9 @@ export class ProcessListener extends Resource {
         return 'process-listeners';
     }
 
-    constructor(API: API) {
+    constructor(API: API, action: Action) {
         super(API);
-        this.action = new Action(API);
+        this.action = action;
     }
 
     /**
@@ -48,7 +48,7 @@ export class ProcessListener extends Resource {
     }
 
     /**
-     * captureListener
+     * getNewListenerAndCapture
      */
     public async getNewListenerAndCapture(listener: Listener): Promise<any> {
         return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}/create-and-capture`, listener);

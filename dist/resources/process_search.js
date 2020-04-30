@@ -51,18 +51,23 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var resource_1 = require("../resource");
 var resource_result_1 = require("./resource_result");
-var Action = /** @class */ (function (_super) {
-    __extends(Action, _super);
-    function Action(API) {
-        return _super.call(this, API) || this;
+var process_search_analyse_1 = require("./process_search_analyse");
+var utils_1 = require("../utils/utils");
+var ProcessSearch = /** @class */ (function (_super) {
+    __extends(ProcessSearch, _super);
+    function ProcessSearch(API, action) {
+        var _this = _super.call(this, API) || this;
+        _this.action = action;
+        _this.search_analyse = new process_search_analyse_1.ProcessSearchAnalyse(API, action, _this);
+        return _this;
     }
-    Action.prototype.getResourceEndpoint = function () {
-        return 'actions';
+    ProcessSearch.prototype.getResourceEndpoint = function () {
+        return 'process-searchs';
     };
     /**
      * getById
      */
-    Action.prototype.getById = function (id) {
+    ProcessSearch.prototype.getById = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -73,12 +78,72 @@ var Action = /** @class */ (function (_super) {
         });
     };
     /**
-     * getActionResults
+     * getNewSearch
      */
-    Action.prototype.getActionResults = function (action_id) {
-        var resource = new resource_result_1.ResourceResult(this.getAPI(), this, action_id);
+    ProcessSearch.prototype.getNewSearch = function (search) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (utils_1.isEmpty(search.process_number) && utils_1.isEmpty(search.nome_parte) && utils_1.isEmpty(search.nome_representante)) {
+                            throw 'Você precisa fornecer ao menos um parametro para a busca.';
+                        }
+                        return [4 /*yield*/, this.getAPI().post(this.action.getResourceEndpoint() + "/" + this.getResourceEndpoint(), search)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * getSearchResults
+     */
+    ProcessSearch.prototype.getSearchResults = function (search_id) {
+        var resource = new resource_result_1.ResourceResult(this.getAPI(), this, search_id);
         return resource.paginate();
     };
-    return Action;
+    /**
+     * getSearchAnalyses
+     */
+    ProcessSearch.prototype.getSearchAnalyses = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.search_analyse.paginate()];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * getSearchAnalysesById
+     */
+    ProcessSearch.prototype.getSearchAnalysesById = function (id) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAPI().get(this.search_analyse.getResourceEndpoint() + "/" + id)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+    * getNewSearchAnalyses
+    */
+    ProcessSearch.prototype.getNewSearchAnalyses = function (search_analyse) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (utils_1.isEmpty(search_analyse.process_number) && utils_1.isEmpty(search_analyse.nome_parte) && utils_1.isEmpty(search_analyse.nome_representante)) {
+                            throw 'Você precisa fornecer ao menos um parametro para a busca.';
+                        }
+                        return [4 /*yield*/, this.getAPI().post(this.action.getResourceEndpoint() + "/" + this.search_analyse.getResourceEndpoint(), search_analyse)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    return ProcessSearch;
 }(resource_1.Resource));
-exports.Action = Action;
+exports.ProcessSearch = ProcessSearch;

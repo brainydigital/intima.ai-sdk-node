@@ -49,20 +49,39 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-var resource_1 = require("../resource");
-var resource_result_1 = require("./resource_result");
-var Action = /** @class */ (function (_super) {
-    __extends(Action, _super);
-    function Action(API) {
+var resource_1 = require("../../resource");
+var ACTION_TYPE;
+(function (ACTION_TYPE) {
+    ACTION_TYPE[ACTION_TYPE["PROCESS_INFO"] = 0] = "PROCESS_INFO";
+    ACTION_TYPE[ACTION_TYPE["PROCESS_COPY"] = 1] = "PROCESS_COPY";
+    ACTION_TYPE[ACTION_TYPE["PROCESS_INTIMACOES"] = 2] = "PROCESS_INTIMACOES";
+    ACTION_TYPE[ACTION_TYPE["PROCESS_ESCUTA"] = 3] = "PROCESS_ESCUTA";
+    ACTION_TYPE[ACTION_TYPE["PROCESS_PROTOCOLO"] = 4] = "PROCESS_PROTOCOLO";
+    ACTION_TYPE[ACTION_TYPE["PROCESS_PROTOCOLO_HABILITACAO"] = 5] = "PROCESS_PROTOCOLO_HABILITACAO";
+    ACTION_TYPE[ACTION_TYPE["PROCESS_ANDAMENTOS"] = 6] = "PROCESS_ANDAMENTOS";
+    ACTION_TYPE[ACTION_TYPE["PROCESS_CONSULTA"] = 7] = "PROCESS_CONSULTA";
+    ACTION_TYPE[ACTION_TYPE["PROCESS_CONSULTA_PRE_ANALISE"] = 8] = "PROCESS_CONSULTA_PRE_ANALISE";
+})(ACTION_TYPE = exports.ACTION_TYPE || (exports.ACTION_TYPE = {}));
+var HTTP_VERB;
+(function (HTTP_VERB) {
+    HTTP_VERB["GET"] = "GET";
+    HTTP_VERB["POST"] = "POST";
+    HTTP_VERB["PUT"] = "PUT";
+    HTTP_VERB["PATCH"] = "PATCH";
+    HTTP_VERB["DELETE"] = "DELETE";
+})(HTTP_VERB = exports.HTTP_VERB || (exports.HTTP_VERB = {}));
+var UserWebhook = /** @class */ (function (_super) {
+    __extends(UserWebhook, _super);
+    function UserWebhook(API) {
         return _super.call(this, API) || this;
     }
-    Action.prototype.getResourceEndpoint = function () {
-        return 'actions';
+    UserWebhook.prototype.getResourceEndpoint = function () {
+        return 'user-webhooks';
     };
     /**
      * getById
      */
-    Action.prototype.getById = function (id) {
+    UserWebhook.prototype.getById = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -73,12 +92,44 @@ var Action = /** @class */ (function (_super) {
         });
     };
     /**
-     * getActionResults
+     * getNewUserWebhook
      */
-    Action.prototype.getActionResults = function (action_id) {
-        var resource = new resource_result_1.ResourceResult(this.getAPI(), this, action_id);
-        return resource.paginate();
+    UserWebhook.prototype.getNewUserWebhook = function (user_webhook) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAPI().post("" + this.getResourceEndpoint(), user_webhook)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
     };
-    return Action;
+    /**
+     * updateUserWebhook
+     */
+    UserWebhook.prototype.updateUserWebhook = function (user_webhook_id, user_webhook) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAPI().put(this.getResourceEndpoint() + "/" + user_webhook_id, user_webhook)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    /**
+     * deleteUserWebhook
+     */
+    UserWebhook.prototype.deleteUserWebhook = function (user_webhook_id) {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAPI()["delete"](this.getResourceEndpoint() + "/" + user_webhook_id)];
+                    case 1: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    return UserWebhook;
 }(resource_1.Resource));
-exports.Action = Action;
+exports.UserWebhook = UserWebhook;

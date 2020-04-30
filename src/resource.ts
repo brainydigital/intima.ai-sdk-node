@@ -1,4 +1,4 @@
-import { API } from "./api";
+import { API } from "./api/api";
 import { Paginator } from "./paginator";
 
 export abstract class Resource {
@@ -14,7 +14,7 @@ export abstract class Resource {
 
     abstract getResourceEndpoint(): string;
 
-    public paginate() {
+    public paginate(): Paginator {
         return this.paginator;
     }
 

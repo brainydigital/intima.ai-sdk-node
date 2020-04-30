@@ -13,10 +13,10 @@ var __assign = (this && this.__assign) || function () {
 exports.__esModule = true;
 var requestretry = require("requestretry");
 var fs = require("fs");
-var utils_1 = require("./utils/utils");
+var utils_1 = require("../utils/utils");
 var API = /** @class */ (function () {
     function API(api_token, proxy, timeout, max_attempts) {
-        this.baseUrl = 'http://a466e4c2.ngrok.io/api/v2';
+        this.baseUrl = 'https://app.intima.ai/api/v2';
         this.apiSecretKey = api_token;
         this.proxy = proxy;
         this.timeout = timeout || 60000;
@@ -74,16 +74,7 @@ var API = /** @class */ (function () {
             }
             var formData = utils_1.serializeForm(body);
             if (attachs) {
-                var file_name_1 = attachs.field_name;
-                attachs.files.map(function (file_path, index) {
-                    formData[file_name_1 + "[" + index + "][arquivo]"] = {
-                        value: fs.createReadStream(file_path),
-                        options: {
-                            filename: file_path.split('/').pop(),
-                            contentType: 'application/pdf'
-                        }
-                    };
-                });
+                formData = __assign(__assign({}, formData), _this.appendFiles(attachs));
             }
             var request_options = __assign({ headers: {
                     'Accept': 'application/json',
@@ -121,16 +112,7 @@ var API = /** @class */ (function () {
             }
             var formData = __assign({ '_method': 'PUT' }, utils_1.serializeForm(body));
             if (attachs) {
-                var file_name_2 = attachs.field_name;
-                attachs.files.map(function (file_path, index) {
-                    formData[file_name_2 + "[" + index + "][arquivo]"] = {
-                        value: fs.createReadStream(file_path),
-                        options: {
-                            filename: file_path.split('/').pop(),
-                            contentType: 'application/pdf'
-                        }
-                    };
-                });
+                formData = __assign(__assign({}, formData), _this.appendFiles(attachs));
             }
             var request_options = __assign({ headers: {
                     'Accept': 'application/json',
@@ -179,6 +161,32 @@ var API = /** @class */ (function () {
                 reject(_this.getError(err));
             });
         });
+    };
+    API.prototype.appendFiles = function (attachs) {
+        var formData = {};
+        var file_name = attachs.field_name;
+        if (attachs.files instanceof Array) {
+            attachs.files.map(function (file_path, index) {
+                formData[file_name + "[" + index + "][arquivo]"] = {
+                    value: fs.createReadStream(file_path),
+                    options: {
+                        filename: file_path.split('/').pop(),
+                        contentType: 'application/pdf'
+                    }
+                };
+            });
+        }
+        else {
+            var file_path = attachs.files;
+            formData["" + file_name] = {
+                value: fs.createReadStream(file_path),
+                options: {
+                    filename: file_path.split('/').pop(),
+                    contentType: 'application/pdf'
+                }
+            };
+        }
+        return formData;
     };
     API.prototype.getBaseUrl = function () {
         return this.baseUrl;
