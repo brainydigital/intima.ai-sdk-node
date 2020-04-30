@@ -1,12 +1,12 @@
 {
   "name": "@brainy-digital/intima.ai-sdk-node",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Implementação da API do Intima.ai em forma de SDK Client para NodeJS.",
   "homepage": "https://intima.ai",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/brainydigital/intima.ai-sdk-node.git"
-   },
+  },
   "keywords": [
     "intimai",
     "intimaai",
@@ -19,10 +19,11 @@
     "access": "public"
   },
   "main": "./dist/index.js",
-  "types": "./typings/index.d.ts",
+  "types": "./index.d.ts",
   "scripts": {
     "dev": "tsc -w",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "dts": "./node_modules/.bin/npm-dts generate"
   },
   "authors": [
     {
@@ -33,7 +34,9 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^13.13.4"
+    "@types/node": "^13.13.4",
+    "npm-dts": "^1.2.1",
+    "typescript": "^3.8.3"
   },
   "dependencies": {
     "request": "^2.88.2",
