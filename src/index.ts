@@ -74,7 +74,7 @@ class Intimaai {
 
 }
 
-export default Intimaai;
+export = Intimaai;
 
 // async function test() {
 //     try {
