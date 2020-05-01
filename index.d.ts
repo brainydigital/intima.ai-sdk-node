@@ -67,8 +67,7 @@ declare module '@brainy-digital/intima.ai-sdk-node/index' {
       constructor(api_token: string, proxy?: string, timeout?: number, max_attempts?: number);
       private getAPI;
   }
-  export default Intimaai;
-
+  export = Intimaai;
 }
 declare module '@brainy-digital/intima.ai-sdk-node/paginator' {
   import { Resource } from "@brainy-digital/intima.ai-sdk-node/resource";
@@ -629,5 +628,5 @@ declare module '@brainy-digital/intima.ai-sdk-node/utils/utils' {
 }
 declare module '@brainy-digital/intima.ai-sdk-node' {
   import main = require('@brainy-digital/intima.ai-sdk-node/index');
-  export = main;
+  export default main;
 }
