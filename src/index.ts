@@ -88,11 +88,11 @@ export default Intimaai;
         // await paginator.getPage(1);
 
 
-        // const result = await intimaai.copyResource.getNewCopy({ process_number: '0037250-06.2018.8.17.2001', auth_id: 1 });
+        // const result = await intimaai.copyResource.getNewCopy({ process_number: '0000000-00.0000.0.00.0000', auth_id: 1 });
         // const result = await intimaai.copyResource.getById(45202);
 
 
-        // const listener = { process_number: '0037250-06.2018.8.17.2001', auth_id: 1, schedule_times: ['07:00'] };
+        // const listener = { process_number: '0000000-00.0000.0.00.0000', auth_id: 1, schedule_times: ['07:00'] };
         // const result = await intimaai.listenerResource.getById(21);
         // const result = await intimaai.listenerResource.deleteListener(27);
         // const result = await intimaai.listenerResource.captureListener(30);
@@ -106,31 +106,31 @@ export default Intimaai;
 
         
         // const qualification_protocol = {
-        //     tipo_solicitacao: 5000000,
+        //     tipo_solicitacao: 0,
         //     tipo_declaracao: 0,
         //     polo: 1,
-        //     partes_vinculadas: ['BANCO DAYCOVAL S/A - CNPJ: 62.232.889/0001-90 (APELADO)'],
+        //     partes_vinculadas: ['BANCO FULANO'],
         //     tipo_documento_mensagem_geral: 0,
         //     documentos: [
-        //         { arquivo: '/Users/raunyhenrique/Downloads/peticao.pdf', tipo_documento: 0, descricao_documento: 'teste', order: 1 }
+        //         { arquivo: '/path/to/peticao.pdf', tipo_documento: 0, descricao_documento: 'teste', order: 1 }
         //     ]
         // };
 
         // const result = await intimaai.qualificationProtocolResource.getById(21);
         // const paginator = await intimaai.qualificationProtocolResource.paginate();
-        // const result = await intimaai.qualificationProtocolResource.getNewQualificationProtocolFirstStep({ process_number: '0026468-61.2018.8.17.8201', auth_id: 1 });
+        // const result = await intimaai.qualificationProtocolResource.getNewQualificationProtocolFirstStep({ process_number: '0000000-00.0000.0.00.0000', auth_id: 1 });
         // const result = await intimaai.qualificationProtocolResource.getNewQualificationProtocolSecondStep(4039, qualification_protocol);
 
         // const result = await intimaai.processInfoResource.getById(21);
         // const paginator = await intimaai.processInfoResource.paginate();
         // await paginator.getPage(1);
-        // const result = await intimaai.processInfoResource.getNewProcessInfo({ process_number: '00002361720205060144', auth_id: 120 });
+        // const result = await intimaai.processInfoResource.getNewProcessInfo({ process_number: '0000000-00.0000.0.00.0000', auth_id: 120 });
 
 
         // const result = await intimaai.processCourseResource.getById(31);
-        // const result = await intimaai.processCourseResource.getNewCourse({ process_number: '00002361720205060144', auth_id: 120 });
+        // const result = await intimaai.processCourseResource.getNewCourse({ process_number: '0000000-00.0000.0.00.0000', auth_id: 120 });
         // const result = await intimaai.processCourseResource.captureCourse(32);
-        // const result = await intimaai.processCourseResource.getNewCourseAndCapture({ process_number: '0800075-70.2019.8.20.5122', auth_id: 3 });
+        // const result = await intimaai.processCourseResource.getNewCourseAndCapture({ process_number: '0000000-00.0000.0.00.0000', auth_id: 3 });
         // const paginator = await intimaai.processCourseResource.getCourseResults(31);
         // await paginator.getPage(1);
         // const result = await intimaai.processCourseResource.deleteCourse(23);
@@ -141,7 +141,7 @@ export default Intimaai;
         // await paginator.getPage(1);
 
 
-        // const result = await intimaai.processSearchResource.getNewSearch({ process_number: '0800075-70.2019.8.20.5122', auth_id: 3 });
+        // const result = await intimaai.processSearchResource.getNewSearch({ process_number: '0000000-00.0000.0.00.0000', auth_id: 3 });
         // const result = await intimaai.processSearchResource.getById(44);
         // const paginator = await intimaai.processSearchResource.getSearchResults(44);
         // const paginator = await intimaai.processSearchResource.paginate();
@@ -150,27 +150,27 @@ export default Intimaai;
         // const paginator = await intimaai.processSearchResource.getSearchAnalyses();
         // await paginator.getPage(1);
         // const result = await intimaai.processSearchResource.getSearchAnalysesById(23);
-        // const result = await intimaai.processSearchResource.getNewSearchAnalyses({ process_number: '0800075-70.2019.8.20.5122', auth_id: 3 });
+        // const result = await intimaai.processSearchResource.getNewSearchAnalyses({ process_number: '0000000-00.0000.0.00.0000', auth_id: 3 });
 
 
         // const result = await intimaai.userResource.getUser();
 
         // const result = await intimaai.userDependentResource.getById(1);
-        // const result = await intimaai.userDependentResource.getNewUserDependent({ email: 'jusuee@email.com' });
-        // const result = await intimaai.userDependentResource.updateUserDependent(3, { email: 'jusue22@email.com' });
+        // const result = await intimaai.userDependentResource.getNewUserDependent({ email: 'user@email.com' });
+        // const result = await intimaai.userDependentResource.updateUserDependent(3, { email: 'user2@email.com' });
         // const result = await intimaai.userDependentResource.deleteUserDependent(3);
         // const paginator = await intimaai.userDependentResource.paginate();
         // await paginator.getPage(1);
         
 
         // const result = await intimaai.userWebhookResource.getById(4);
-        // const result = await intimaai.userWebhookResource.getNewUserWebhook({ action_type: ACTION_TYPE.PROCESS_COPY, http_verb: HTTP_VERB.GET, url: 'https://www.youtube.com/watch?v=HkdLSW4q9gs4545' });
+        // const result = await intimaai.userWebhookResource.getNewUserWebhook({ action_type: ACTION_TYPE.PROCESS_COPY, http_verb: HTTP_VERB.GET, url: 'https://example.com' });
         // const result = await intimaai.userWebhookResource.deleteUserWebhook(6);
         // const paginator = await intimaai.userWebhookResource.paginate();
         // await paginator.getPage(1);
 
 
-        // const certificate = { pfx: '/Users/raunyhenrique/Downloads/CARLA_ELISANGELA_FERREIRA_ALVES_TEIXEIRA_78045762420_1575983014801300000.pfx', password: '12345678' };
+        // const certificate = { pfx: '/path/to/file.pfx', password: '12345678' };
         // const result = await intimaai.certificateResource.getById(18);
         // const result = await intimaai.certificateResource.getNewCertificate(certificate);
         // const result = await intimaai.certificateResource.deleteCertificate(19);
@@ -185,8 +185,8 @@ export default Intimaai;
         // const result = await intimaai.authResource.getNewAuth({ 
         //     tribunal_id: 1, 
         //     user_certificate_id: 1,
-        //     // login: 'string',
-        //     // password: 'string'
+        //     // login: '',
+        //     // password: ''
         //  });
         // const result = await intimaai.authResource.enableIntimationsAuth(199, { day_hour: ['06:00'], tabs: ['SEM_PRAZO'], week_days: [0] });
         // const result = await intimaai.authResource.disableIntimationsAuth(199);
@@ -197,14 +197,13 @@ export default Intimaai;
         // const paginator = await intimaai.intimationResource.paginate();
         // await paginator.getPage(1);
 
-        // console.log('result: ', paginator);
+        // console.log('result: ', result);
 
         // const paginator = await intimaai.copyResource.paginate();
 
         // await paginator.nextPage();
         // await paginator.loadAll();
 
-        // console.log('results: ', paginator);
 //     } catch (error) {
 //         console.error('error: ', error);
 //     }

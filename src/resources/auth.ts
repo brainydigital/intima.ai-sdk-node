@@ -28,28 +28,28 @@ export class Auth extends Resource {
      * getById
      */
     public async getById(id: number): Promise<any> {
-        return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`);
+        return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
      * getNewAuth
      */
     public async getNewAuth(auth: NewAuth): Promise<any> {
-        return await this.getAPI().post(`${this.getResourceEndpoint()}`, auth);
+        return await this.getAPI().post(`${this.getResourceEndpoint()}`, auth, {}, {}, null, true);
     }
 
     /**
      * enableIntimationsAuth
      */
     public async enableIntimationsAuth(auth_id: number, enable_auth: EnableAuth): Promise<any> {
-        return await this.getAPI().put(`${this.getResourceEndpoint()}/${auth_id}/intimations/enable`, enable_auth);
+        return await this.getAPI().put(`${this.getResourceEndpoint()}/${auth_id}/intimations/enable`, enable_auth, {}, {}, null, true);
     }
 
     /**
      * disableIntimationsAuth
      */
     public async disableIntimationsAuth(auth_id: number): Promise<any> {
-        return await this.getAPI().put(`${this.getResourceEndpoint()}/${auth_id}/intimations/disable`);
+        return await this.getAPI().put(`${this.getResourceEndpoint()}/${auth_id}/intimations/disable`, {}, {}, {}, null, true);
     }
 
 }

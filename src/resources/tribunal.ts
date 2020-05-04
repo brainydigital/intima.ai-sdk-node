@@ -15,7 +15,7 @@ export class Tribunal extends Resource {
      * getById
      */
     public async getById(id: number): Promise<any> {
-        return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`);
+        return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
 }

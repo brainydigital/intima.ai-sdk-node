@@ -24,13 +24,13 @@ export class ProcessCopy extends Resource {
      * getById
      */
     public async getById(id: number): Promise<any> {
-        return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`);
+        return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
      * getNewCopy
      */
     public async getNewCopy(copy: Copy): Promise<any> {
-        return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}`, copy);
+        return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}`, copy, {}, {}, null, true);
     }
 }

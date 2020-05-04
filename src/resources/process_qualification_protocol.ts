@@ -36,14 +36,14 @@ export class ProcessQualificationProtocol extends Resource {
      * getById
      */
     public async getById(id: number): Promise<any> {
-        return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`);
+        return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
      * getNewQualificationProtocolFirstStep
      */
     public async getNewQualificationProtocolFirstStep(qualification_protocol: FirstStepQualificationProtocol): Promise<any> {
-        return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}`, qualification_protocol);
+        return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}`, qualification_protocol, {}, {}, null, true);
     }
 
     /**
@@ -75,7 +75,8 @@ export class ProcessQualificationProtocol extends Resource {
                 qualification_protocol,
                 {},
                 {},
-                attachs
+                attachs,
+                true
             );
     }
 }

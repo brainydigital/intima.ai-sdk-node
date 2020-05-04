@@ -15,14 +15,14 @@ export class Intimation extends Resource {
      * getById
      */
     public async getById(id: number): Promise<any> {
-        return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`);
+        return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
      * markAsRevised
      */
     public async markAsRevised(intimation_id: number): Promise<any> {
-        return await this.getAPI().put(`${this.getResourceEndpoint()}/${intimation_id}/mark-as-revised`);
+        return await this.getAPI().put(`${this.getResourceEndpoint()}/${intimation_id}/mark-as-revised`, {}, {}, {}, null, true);
     }
 
 }

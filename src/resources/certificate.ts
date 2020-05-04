@@ -27,7 +27,7 @@ export class Certificate extends Resource {
      * getById
      */
     public async getById(id: number): Promise<any> {
-        return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`);
+        return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
@@ -35,7 +35,7 @@ export class Certificate extends Resource {
      */
     public async getNewCertificate(certificate: NewCertificate): Promise<any> {
         let attachs = this.validateCertificate(certificate);
-        return await this.getAPI().post(`${this.getResourceEndpoint()}`, certificate, {} , {}, attachs);
+        return await this.getAPI().post(`${this.getResourceEndpoint()}`, certificate, {} , {}, attachs, true);
     }
 
     /**
@@ -43,14 +43,14 @@ export class Certificate extends Resource {
      */
     public async updateCertificate(certificate_id: number, certificate: UpdateCertificate): Promise<any> {
         let attachs = this.validateCertificate(certificate);
-        return await this.getAPI().post(`${this.getResourceEndpoint()}/${certificate_id}`, certificate, {} , {}, attachs);
+        return await this.getAPI().post(`${this.getResourceEndpoint()}/${certificate_id}`, certificate, {} , {}, attachs, true);
     }
 
     /**
      * deleteCertificate
      */
     public async deleteCertificate(certificate_id: number): Promise<any> {
-        return await this.getAPI().delete(`${this.getResourceEndpoint()}/${certificate_id}`);
+        return await this.getAPI().delete(`${this.getResourceEndpoint()}/${certificate_id}`, {}, {}, true);
     }
 
     private validateCertificate(certificate: UpdateCertificate) {

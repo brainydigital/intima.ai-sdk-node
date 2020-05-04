@@ -15,7 +15,7 @@ export class User extends Resource {
      * getUser
      */
     public async getUser(): Promise<any> {
-        return await this.getAPI().get(`${this.getResourceEndpoint()}`);
+        return await this.getAPI().get(`${this.getResourceEndpoint()}`, {}, {}, true);
     }
 
 }

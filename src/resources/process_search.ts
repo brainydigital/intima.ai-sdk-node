@@ -34,7 +34,7 @@ export class ProcessSearch extends Resource {
      * getById
      */
     public async getById(id: number): Promise<any> {
-        return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`);
+        return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
@@ -44,7 +44,7 @@ export class ProcessSearch extends Resource {
         if (isEmpty(search.process_number) && isEmpty(search.nome_parte) && isEmpty(search.nome_representante)) {
             throw 'Você precisa fornecer ao menos um parametro para a busca.';
         }
-        return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}`, search);
+        return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}`, search, {}, {}, null, true);
     }
 
     /**
@@ -66,7 +66,7 @@ export class ProcessSearch extends Resource {
      * getSearchAnalysesById
      */
     public async getSearchAnalysesById(id: number): Promise<any> {
-        return await this.getAPI().get(`${this.search_analyse.getResourceEndpoint()}/${id}`);
+        return await this.getAPI().get(`${this.search_analyse.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
      /**
@@ -76,7 +76,7 @@ export class ProcessSearch extends Resource {
         if (isEmpty(search_analyse.process_number) && isEmpty(search_analyse.nome_parte) && isEmpty(search_analyse.nome_representante)) {
             throw 'Você precisa fornecer ao menos um parametro para a busca.';
         }
-        return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.search_analyse.getResourceEndpoint()}`, search_analyse);
+        return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.search_analyse.getResourceEndpoint()}`, search_analyse, {}, {}, null, true);
     }
 
 }

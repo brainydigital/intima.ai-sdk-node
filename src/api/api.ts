@@ -26,6 +26,10 @@ export class API {
         return { code: error.statusCode, error: body };
     }
 
+    private getResponse(response, get_data_only: boolean) {
+        return (get_data_only && response.body.hasOwnProperty('data')) ? response.body.data : response.body;
+    }
+
     private getRequestDefaultOptions() {
         return {
             proxy: this.proxy,
@@ -35,7 +39,7 @@ export class API {
         };
     }
 
-    public get(endpoint, query: any = {}, options: any = {}): Promise<any> {
+    public get(endpoint, query: any = {}, options: any = {}, get_data_only: boolean = false): Promise<any> {
         return new Promise((resolve, reject) => {
 
             let request_options = {
@@ -56,7 +60,7 @@ export class API {
                 .get(this.getBaseUrl() + '/' + endpoint + '?api_token=' + this.getSecretKey(), request_options)
                 .then((response) => {
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve(response.body);
+                        resolve(this.getResponse(response, get_data_only));
                     } else {
                         reject(this.getError(response));
                     }
@@ -67,7 +71,7 @@ export class API {
         });
     }
 
-    public post(endpoint, body: any = {}, query: any = {}, options: any = {}, attachs: { field_name: string, files: Array<string> | string } = null): Promise<any> {
+    public post(endpoint, body: any = {}, query: any = {}, options: any = {}, attachs: { field_name: string, files: Array<string> | string } = null, get_data_only: boolean = false): Promise<any> {
         return new Promise((resolve, reject) => {
 
             let content_type = 'application/json';
@@ -102,7 +106,7 @@ export class API {
                 .post(this.getBaseUrl() + '/' + endpoint + '?api_token=' + this.getSecretKey(), request_options)
                 .then((response) => {
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve(response.body);
+                        resolve(this.getResponse(response, get_data_only));
                     } else {
                         reject(this.getError(response));
                     }
@@ -113,7 +117,7 @@ export class API {
         });
     }
 
-    public put(endpoint, body: any = {}, query: any = {}, options: any = {}, attachs: { field_name: string, files: Array<string> | string } = null) {
+    public put(endpoint, body: any = {}, query: any = {}, options: any = {}, attachs: { field_name: string, files: Array<string> | string } = null, get_data_only: boolean = false) {
         return new Promise((resolve, reject) => {
 
             let content_type = 'application/json';
@@ -150,7 +154,7 @@ export class API {
             requestretry.post(this.getBaseUrl() + '/' + endpoint + '?api_token=' + this.getSecretKey(), request_options)
                 .then((response) => {
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve(response.body);
+                        resolve(this.getResponse(response, get_data_only));
                     } else {
                         reject(this.getError(response));
                     }
@@ -161,7 +165,7 @@ export class API {
         });
     }
 
-    public delete(endpoint, query: any = {}, options: any = {}) {
+    public delete(endpoint, query: any = {}, options: any = {}, get_data_only: boolean = false) {
         return new Promise((resolve, reject) => {
 
             let request_options = {
@@ -182,7 +186,7 @@ export class API {
                 .delete(this.getBaseUrl() + '/' + endpoint + '?api_token=' + this.getSecretKey(), request_options)
                 .then((response) => {
                     if (response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve(response.body);
+                        resolve(this.getResponse(response, get_data_only));
                     } else {
                         reject(this.getError(response));
                     }

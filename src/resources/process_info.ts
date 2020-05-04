@@ -24,13 +24,13 @@ export class ProcessInfo extends Resource {
      * getById
      */
     public async getById(id: number): Promise<any> {
-        return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`);
+        return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
      * getNewProcessInfo
      */
     public async getNewProcessInfo(process: Process): Promise<any> {
-        return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}`, process);
+        return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}`, process, {}, {}, null, true);
     }
 }

@@ -41,28 +41,28 @@ export class UserWebhook extends Resource {
      * getById
      */
     public async getById(id: number): Promise<any> {
-        return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`);
+        return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
      * getNewUserWebhook
      */
     public async getNewUserWebhook(user_webhook: Webhook): Promise<any> {
-        return await this.getAPI().post(`${this.getResourceEndpoint()}`, user_webhook);
+        return await this.getAPI().post(`${this.getResourceEndpoint()}`, user_webhook, {}, {}, null, true);
     }
 
     /**
      * updateUserWebhook
      */
     public async updateUserWebhook(user_webhook_id: number, user_webhook: Webhook): Promise<any> {
-        return await this.getAPI().put(`${this.getResourceEndpoint()}/${user_webhook_id}`, user_webhook);
+        return await this.getAPI().put(`${this.getResourceEndpoint()}/${user_webhook_id}`, user_webhook, {}, {}, null, true);
     }
 
     /**
      * deleteUserWebhook
      */
     public async deleteUserWebhook(user_webhook_id: number): Promise<any> {
-        return await this.getAPI().delete(`${this.getResourceEndpoint()}/${user_webhook_id}`);
+        return await this.getAPI().delete(`${this.getResourceEndpoint()}/${user_webhook_id}`, {}, {}, true);
     }
 
 }
