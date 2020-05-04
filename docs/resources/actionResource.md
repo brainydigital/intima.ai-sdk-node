@@ -5,7 +5,7 @@ Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
 [**getById**](actionResource.md#getById) | **GET** /actions/{id} | Visualiza um auth
-[**getActionResults**](actionResource.md#getActionResults) | **GET** /actions | Retorna um *Paginator* com todas as ações
+[**getActionResults**](actionResource.md#getActionResults) | **GET** /actions/{action_id}/results | Retorna um *Paginator* com o resultado de uma ação
 
 # **getById**
 
@@ -21,7 +21,7 @@ Nome | Tipo | Descrição | Notas
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-- | -| - | -
+**action_id** | **number**| é o id referente a ação no Intima.ai | [obrigatório]
 
 ### Exemplos
 ```javascript
