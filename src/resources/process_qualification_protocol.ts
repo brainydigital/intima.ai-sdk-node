@@ -70,7 +70,7 @@ export class ProcessQualificationProtocol extends Resource {
         }
 
         return await this.getAPI()
-            .put(
+            .post(
                 `${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}/${qualification_protocol_id}`,
                 qualification_protocol,
                 {},
