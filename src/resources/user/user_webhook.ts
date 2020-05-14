@@ -1,4 +1,4 @@
-import { Resource } from "../../resource";
+import { Resource } from "../../api/resource";
 import { API } from "../../api/api";
 
 export enum ACTION_TYPE {
@@ -22,8 +22,8 @@ export enum HTTP_VERB {
 }
 
 export type Webhook = {
-    action_type: ACTION_TYPE,
-    http_verb: HTTP_VERB,
+    action_type: ACTION_TYPE | number,
+    http_verb: HTTP_VERB | string,
     url: string
 }
 
@@ -38,30 +38,30 @@ export class UserWebhook extends Resource {
     }
 
     /**
-     * getById
+     * consultarPorId
      */
-    public async getById(id: number): Promise<any> {
+    public async consultarPorId(id: number): Promise<any> {
         return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
-     * getNewUserWebhook
+     * cadastrarNovoWebhook
      */
-    public async getNewUserWebhook(user_webhook: Webhook): Promise<any> {
+    public async cadastrarNovoWebhook(user_webhook: Webhook): Promise<any> {
         return await this.getAPI().post(`${this.getResourceEndpoint()}`, user_webhook, {}, {}, null, true);
     }
 
     /**
-     * updateUserWebhook
+     * atualizarWebhook
      */
-    public async updateUserWebhook(user_webhook_id: number, user_webhook: Webhook): Promise<any> {
+    public async atualizarWebhook(user_webhook_id: number, user_webhook: Webhook): Promise<any> {
         return await this.getAPI().put(`${this.getResourceEndpoint()}/${user_webhook_id}`, user_webhook, {}, {}, null, true);
     }
 
     /**
-     * deleteUserWebhook
+     * excluirWebhook
      */
-    public async deleteUserWebhook(user_webhook_id: number): Promise<any> {
+    public async excluirWebhook(user_webhook_id: number): Promise<any> {
         return await this.getAPI().delete(`${this.getResourceEndpoint()}/${user_webhook_id}`, {}, {}, true);
     }
 

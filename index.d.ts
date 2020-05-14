@@ -33,7 +33,7 @@ declare module '@brainy-digital/intima.ai-sdk-node/api/api' {
 }
 declare module '@brainy-digital/intima.ai-sdk-node/index' {
   import { User } from "@brainy-digital/intima.ai-sdk-node/resources/user/user";
-  import { UserDependent } from "@brainy-digital/intima.ai-sdk-node/resources/user/user_dependent";
+  import { UserNotification } from "@brainy-digital/intima.ai-sdk-node/resources/user/user_dependent";
   import { UserWebhook } from "@brainy-digital/intima.ai-sdk-node/resources/user/user_webhook";
   import { Action } from "@brainy-digital/intima.ai-sdk-node/resources/action";
   import { ProcessCopy } from "@brainy-digital/intima.ai-sdk-node/resources/process_copy";
@@ -49,28 +49,28 @@ declare module '@brainy-digital/intima.ai-sdk-node/index' {
   import { Intimation } from "@brainy-digital/intima.ai-sdk-node/resources/intimation";
   class Intimaai {
       private API;
-      authResource: Auth;
-      tribunalResource: Tribunal;
-      intimationResource: Intimation;
-      certificateResource: Certificate;
-      userResource: User;
-      userDependentResource: UserDependent;
-      userWebhookResource: UserWebhook;
-      actionResource: Action;
-      copyResource: ProcessCopy;
-      listenerResource: ProcessListener;
-      qualificationProtocolResource: ProcessQualificationProtocol;
-      processInfoResource: ProcessInfo;
-      processCourseResource: ProcessCourse;
-      processProtocolResource: ProcessProtocol;
-      processSearchResource: ProcessSearch;
+      autenticacoesResources: Auth;
+      tribunaisResources: Tribunal;
+      intimacoesResources: Intimation;
+      certificadosResources: Certificate;
+      usuariosResources: User;
+      notificacoesResources: UserNotification;
+      webhooksResources: UserWebhook;
+      acoesResources: Action;
+      copiasProcessuaisResources: ProcessCopy;
+      escutasProcessuaisResources: ProcessListener;
+      protocolosDeHabilitacaoResources: ProcessQualificationProtocol;
+      informacoesProcessuaisResources: ProcessInfo;
+      andamentosProcessuaisResources: ProcessCourse;
+      protocolosProcessuaisResources: ProcessProtocol;
+      consultasProcessuaisResources: ProcessSearch;
       constructor(api_token: string, proxy?: string, timeout?: number, max_attempts?: number);
       private getAPI;
   }
   export = Intimaai;
 }
-declare module '@brainy-digital/intima.ai-sdk-node/paginator' {
-  import { Resource } from "@brainy-digital/intima.ai-sdk-node/resource";
+declare module '@brainy-digital/intima.ai-sdk-node/api/paginator' {
+  import { Resource } from "@brainy-digital/intima.ai-sdk-node/api/resource";
   export class Paginator {
       protected currentPage: number;
       protected lastPage: number;
@@ -116,9 +116,9 @@ declare module '@brainy-digital/intima.ai-sdk-node/paginator' {
   }
 
 }
-declare module '@brainy-digital/intima.ai-sdk-node/resource' {
+declare module '@brainy-digital/intima.ai-sdk-node/api/resource' {
   import { API } from "@brainy-digital/intima.ai-sdk-node/api/api";
-  import { Paginator } from "@brainy-digital/intima.ai-sdk-node/paginator";
+  import { Paginator } from "@brainy-digital/intima.ai-sdk-node/api/paginator";
   export abstract class Resource {
       private API;
       private paginator;
@@ -130,24 +130,24 @@ declare module '@brainy-digital/intima.ai-sdk-node/resource' {
 
 }
 declare module '@brainy-digital/intima.ai-sdk-node/resources/action' {
-  import { Resource } from "@brainy-digital/intima.ai-sdk-node/resource";
+  import { Resource } from "@brainy-digital/intima.ai-sdk-node/api/resource";
   import { API } from "@brainy-digital/intima.ai-sdk-node/api/api";
   export class Action extends Resource {
       getResourceEndpoint(): string;
       constructor(API: API);
       /**
-       * getById
+       * consultarPorId
        */
-      getById(id: number): Promise<any>;
+      consultarPorId(id: number): Promise<any>;
       /**
-       * getActionResults
+       * consultarResultadosDaAcao
        */
-      getActionResults(action_id: number): import("@brainy-digital/intima.ai-sdk-node/paginator").Paginator;
+      consultarResultadosDaAcao(action_id: number): import("@brainy-digital/intima.ai-sdk-node/api/paginator").Paginator;
   }
 
 }
 declare module '@brainy-digital/intima.ai-sdk-node/resources/auth' {
-  import { Resource } from "@brainy-digital/intima.ai-sdk-node/resource";
+  import { Resource } from "@brainy-digital/intima.ai-sdk-node/api/resource";
   import { API } from "@brainy-digital/intima.ai-sdk-node/api/api";
   export type NewAuth = {
       tribunal_id: number;
@@ -164,26 +164,26 @@ declare module '@brainy-digital/intima.ai-sdk-node/resources/auth' {
       getResourceEndpoint(): string;
       constructor(API: API);
       /**
-       * getById
+       * consultarPorId
        */
-      getById(id: number): Promise<any>;
+      consultarPorId(id: number): Promise<any>;
       /**
-       * getNewAuth
+       * cadastrarNovaAutenticacao
        */
-      getNewAuth(auth: NewAuth): Promise<any>;
+      cadastrarNovaAutenticacao(auth: NewAuth): Promise<any>;
       /**
-       * enableIntimationsAuth
+       * ativarCapturaDeIntimacoesParaAutenticacao
        */
-      enableIntimationsAuth(auth_id: number, enable_auth: EnableAuth): Promise<any>;
+      ativarCapturaDeIntimacoesParaAutenticacao(auth_id: number, enable_auth: EnableAuth): Promise<any>;
       /**
-       * disableIntimationsAuth
+       * desativarCapturaDeIntimacoesParaAutenticacao
        */
-      disableIntimationsAuth(auth_id: number): Promise<any>;
+      desativarCapturaDeIntimacoesParaAutenticacao(auth_id: number): Promise<any>;
   }
 
 }
 declare module '@brainy-digital/intima.ai-sdk-node/resources/certificate' {
-  import { Resource } from "@brainy-digital/intima.ai-sdk-node/resource";
+  import { Resource } from "@brainy-digital/intima.ai-sdk-node/api/resource";
   import { API } from "@brainy-digital/intima.ai-sdk-node/api/api";
   export type NewCertificate = {
       pfx: string;
@@ -197,44 +197,44 @@ declare module '@brainy-digital/intima.ai-sdk-node/resources/certificate' {
       getResourceEndpoint(): string;
       constructor(API: API);
       /**
-       * getById
+       * consultarPorId
        */
-      getById(id: number): Promise<any>;
+      consultarPorId(id: number): Promise<any>;
       /**
-       * getNewCertificate
+       * cadastrarNovoCertificado
        */
-      getNewCertificate(certificate: NewCertificate): Promise<any>;
+      cadastrarNovoCertificado(certificate: NewCertificate): Promise<any>;
       /**
-       * updateCertificate
+       * atualizarCertificado
        */
-      updateCertificate(certificate_id: number, certificate: UpdateCertificate): Promise<any>;
+      atualizarCertificado(certificate_id: number, certificate: UpdateCertificate): Promise<any>;
       /**
-       * deleteCertificate
+       * excluirCertificado
        */
-      deleteCertificate(certificate_id: number): Promise<any>;
+      excluirCertificado(certificate_id: number): Promise<any>;
       private validateCertificate;
   }
 
 }
 declare module '@brainy-digital/intima.ai-sdk-node/resources/intimation' {
-  import { Resource } from "@brainy-digital/intima.ai-sdk-node/resource";
+  import { Resource } from "@brainy-digital/intima.ai-sdk-node/api/resource";
   import { API } from "@brainy-digital/intima.ai-sdk-node/api/api";
   export class Intimation extends Resource {
       getResourceEndpoint(): string;
       constructor(API: API);
       /**
-       * getById
+       * consultarPorId
        */
-      getById(id: number): Promise<any>;
+      consultarPorId(id: number): Promise<any>;
       /**
-       * markAsRevised
+       * marcarIntimacaoComoRevisada
        */
-      markAsRevised(intimation_id: number): Promise<any>;
+      marcarIntimacaoComoRevisada(intimation_id: number): Promise<any>;
   }
 
 }
 declare module '@brainy-digital/intima.ai-sdk-node/resources/process_copy' {
-  import { Resource } from "@brainy-digital/intima.ai-sdk-node/resource";
+  import { Resource } from "@brainy-digital/intima.ai-sdk-node/api/resource";
   import { Action } from "@brainy-digital/intima.ai-sdk-node/resources/action";
   import { API } from "@brainy-digital/intima.ai-sdk-node/api/api";
   export type Copy = {
@@ -246,18 +246,18 @@ declare module '@brainy-digital/intima.ai-sdk-node/resources/process_copy' {
       getResourceEndpoint(): string;
       constructor(API: API, action: Action);
       /**
-       * getById
+       * consultarPorId
        */
-      getById(id: number): Promise<any>;
+      consultarPorId(id: number): Promise<any>;
       /**
-       * getNewCopy
+       * cadastrarNovaCopia
        */
-      getNewCopy(copy: Copy): Promise<any>;
+      cadastrarNovaCopia(copy: Copy): Promise<any>;
   }
 
 }
 declare module '@brainy-digital/intima.ai-sdk-node/resources/process_course' {
-  import { Resource } from "@brainy-digital/intima.ai-sdk-node/resource";
+  import { Resource } from "@brainy-digital/intima.ai-sdk-node/api/resource";
   import { Action } from "@brainy-digital/intima.ai-sdk-node/resources/action";
   import { API } from "@brainy-digital/intima.ai-sdk-node/api/api";
   export type Course = {
@@ -269,34 +269,34 @@ declare module '@brainy-digital/intima.ai-sdk-node/resources/process_course' {
       getResourceEndpoint(): string;
       constructor(API: API, action: Action);
       /**
-       * getById
+       * consultarPorId
        */
-      getById(id: number): Promise<any>;
+      consultarPorId(id: number): Promise<any>;
       /**
-       * getNewCourse
+       * cadastrarNovoAndamento
        */
-      getNewCourse(course: Course): Promise<any>;
+      cadastrarNovoAndamento(course: Course): Promise<any>;
       /**
-       * captureCourse
+       * capturarAndamentos
        */
-      captureCourse(course_id: number): Promise<any>;
+      capturarAndamentos(course_id: number): Promise<any>;
       /**
-       * getNewCourseAndCapture
+       * cadastrarNovoAndamentoECapturarAndamentos
        */
-      getNewCourseAndCapture(course: Course): Promise<any>;
+      cadastrarNovoAndamentoECapturarAndamentos(course: Course): Promise<any>;
       /**
-       * getCourseResults
+       * consultarResultadosDoAndamento
        */
-      getCourseResults(course_id: number): import("@brainy-digital/intima.ai-sdk-node/paginator").Paginator;
+      consultarResultadosDoAndamento(course_id: number): import("@brainy-digital/intima.ai-sdk-node/api/paginator").Paginator;
       /**
-       * deleteCourse
+       * excluirAndamento
        */
-      deleteCourse(course_id: number): Promise<any>;
+      excluirAndamento(course_id: number): Promise<any>;
   }
 
 }
 declare module '@brainy-digital/intima.ai-sdk-node/resources/process_info' {
-  import { Resource } from "@brainy-digital/intima.ai-sdk-node/resource";
+  import { Resource } from "@brainy-digital/intima.ai-sdk-node/api/resource";
   import { Action } from "@brainy-digital/intima.ai-sdk-node/resources/action";
   import { API } from "@brainy-digital/intima.ai-sdk-node/api/api";
   export type Process = {
@@ -308,18 +308,18 @@ declare module '@brainy-digital/intima.ai-sdk-node/resources/process_info' {
       getResourceEndpoint(): string;
       constructor(API: API, action: Action);
       /**
-       * getById
+       * consultarPorId
        */
-      getById(id: number): Promise<any>;
+      consultarPorId(id: number): Promise<any>;
       /**
-       * getNewProcessInfo
+       * capturarNovaInformacaoProcessual
        */
-      getNewProcessInfo(process: Process): Promise<any>;
+      capturarNovaInformacaoProcessual(process: Process): Promise<any>;
   }
 
 }
 declare module '@brainy-digital/intima.ai-sdk-node/resources/process_listener' {
-  import { Resource } from "@brainy-digital/intima.ai-sdk-node/resource";
+  import { Resource } from "@brainy-digital/intima.ai-sdk-node/api/resource";
   import { Action } from "@brainy-digital/intima.ai-sdk-node/resources/action";
   import { API } from "@brainy-digital/intima.ai-sdk-node/api/api";
   export type Listener = {
@@ -335,38 +335,38 @@ declare module '@brainy-digital/intima.ai-sdk-node/resources/process_listener' {
       getResourceEndpoint(): string;
       constructor(API: API, action: Action);
       /**
-       * getById
+       * consultarPorId
        */
-      getById(id: number): Promise<any>;
+      consultarPorId(id: number): Promise<any>;
       /**
-       * getNewListener
+       * cadastrarNovaEscuta
        */
-      getNewListener(listener: Listener): Promise<any>;
+      cadastrarNovaEscuta(listener: Listener): Promise<any>;
       /**
-       * captureListener
+       * capturarEscuta
        */
-      captureListener(listener_id: number): Promise<any>;
+      capturarEscuta(listener_id: number): Promise<any>;
       /**
-       * getNewListenerAndCapture
+       * cadastrarNovaEscutaECapturar
        */
-      getNewListenerAndCapture(listener: Listener): Promise<any>;
+      cadastrarNovaEscutaECapturar(listener: Listener): Promise<any>;
       /**
-       * getListenerResults
+       * consultarResultadosCapturadosDaEscuta
        */
-      getListenerResults(listener_id: number): import("@brainy-digital/intima.ai-sdk-node/paginator").Paginator;
+      consultarResultadosCapturadosDaEscuta(listener_id: number): import("@brainy-digital/intima.ai-sdk-node/api/paginator").Paginator;
       /**
-       * updateListener
+       * atualizarEscuta
        */
-      updateListener(listener_id: number, listener: ListenerUpdate): Promise<any>;
+      atualizarEscuta(listener_id: number, listener: ListenerUpdate): Promise<any>;
       /**
-       * deleteListener
+       * excluirEscuta
        */
-      deleteListener(listener_id: number): Promise<any>;
+      excluirEscuta(listener_id: number): Promise<any>;
   }
 
 }
 declare module '@brainy-digital/intima.ai-sdk-node/resources/process_protocol' {
-  import { Resource } from "@brainy-digital/intima.ai-sdk-node/resource";
+  import { Resource } from "@brainy-digital/intima.ai-sdk-node/api/resource";
   import { Action } from "@brainy-digital/intima.ai-sdk-node/resources/action";
   import { API } from "@brainy-digital/intima.ai-sdk-node/api/api";
   export type Protocol = {
@@ -392,18 +392,18 @@ declare module '@brainy-digital/intima.ai-sdk-node/resources/process_protocol' {
       getResourceEndpoint(): string;
       constructor(API: API, action: Action);
       /**
-       * getById
+       * consultarPorId
        */
-      getById(id: number): Promise<any>;
+      consultarPorId(id: number): Promise<any>;
       /**
-       * getNewProtocol
+       * cadastrarNovoProtocolo
        */
-      getNewProtocol(protocol: Protocol): Promise<any>;
+      cadastrarNovoProtocolo(protocol: Protocol): Promise<any>;
   }
 
 }
 declare module '@brainy-digital/intima.ai-sdk-node/resources/process_qualification_protocol' {
-  import { Resource } from "@brainy-digital/intima.ai-sdk-node/resource";
+  import { Resource } from "@brainy-digital/intima.ai-sdk-node/api/resource";
   import { Action } from "@brainy-digital/intima.ai-sdk-node/resources/action";
   import { API } from "@brainy-digital/intima.ai-sdk-node/api/api";
   export type FirstStepQualificationProtocol = {
@@ -430,26 +430,26 @@ declare module '@brainy-digital/intima.ai-sdk-node/resources/process_qualificati
       getResourceEndpoint(): string;
       constructor(API: API, action: Action);
       /**
-       * getById
+       * consultarPorId
        */
-      getById(id: number): Promise<any>;
+      consultarPorId(id: number): Promise<any>;
       /**
-       * getNewQualificationProtocolFirstStep
+       * cadastrarPrimeiraEtapaParaNovoProtocoloDeHabilitacao
        */
-      getNewQualificationProtocolFirstStep(qualification_protocol: FirstStepQualificationProtocol): Promise<any>;
+      cadastrarPrimeiraEtapaParaNovoProtocoloDeHabilitacao(qualification_protocol: FirstStepQualificationProtocol): Promise<any>;
       /**
-       * getNewQualificationProtocolSecondStep
+       * cadastrarSegundaEtapaParaNovoProtocoloDeHabilitacao
        */
-      getNewQualificationProtocolSecondStep(qualification_protocol_id: number, qualification_protocol: SecondStepQualificationProtocol): Promise<any>;
+      cadastrarSegundaEtapaParaNovoProtocoloDeHabilitacao(qualification_protocol_id: number, qualification_protocol: SecondStepQualificationProtocol): Promise<any>;
   }
 
 }
 declare module '@brainy-digital/intima.ai-sdk-node/resources/process_search' {
-  import { Resource } from "@brainy-digital/intima.ai-sdk-node/resource";
+  import { Resource } from "@brainy-digital/intima.ai-sdk-node/api/resource";
   import { Action } from "@brainy-digital/intima.ai-sdk-node/resources/action";
   import { API } from "@brainy-digital/intima.ai-sdk-node/api/api";
   import { ProcessSearchAnalyse, SearchAnalyse } from "@brainy-digital/intima.ai-sdk-node/resources/process_search_analyse";
-  import { Paginator } from "@brainy-digital/intima.ai-sdk-node/paginator";
+  import { Paginator } from "@brainy-digital/intima.ai-sdk-node/api/paginator";
   export type Search = {
       auth_id: number;
       process_number?: string;
@@ -463,34 +463,34 @@ declare module '@brainy-digital/intima.ai-sdk-node/resources/process_search' {
       getResourceEndpoint(): string;
       constructor(API: API, action: Action);
       /**
-       * getById
+       * consultarPorId
        */
-      getById(id: number): Promise<any>;
+      consultarPorId(id: number): Promise<any>;
       /**
-       * getNewSearch
+       * cadastrarNovaConsulta
        */
-      getNewSearch(search: Search): Promise<any>;
+      cadastrarNovaConsulta(search: Search): Promise<any>;
       /**
-       * getSearchResults
+       * consultarResultadosDaConsulta
        */
-      getSearchResults(search_id: number): Paginator;
+      consultarResultadosDaConsulta(search_id: number): Paginator;
       /**
-       * getSearchAnalyses
+       * listarPreAnalisesDeConsultas
        */
-      getSearchAnalyses(): Promise<Paginator>;
+      listarPreAnalisesDeConsultas(): Promise<Paginator>;
       /**
-       * getSearchAnalysesById
+       * consultarPorIdPreAnaliseDeConsulta
        */
-      getSearchAnalysesById(id: number): Promise<any>;
+      consultarPorIdPreAnaliseDeConsulta(id: number): Promise<any>;
       /**
-      * getNewSearchAnalyses
+      * cadastrarPreAnaliseDeConsulta
       */
-      getNewSearchAnalyses(search_analyse: SearchAnalyse): Promise<any>;
+      cadastrarPreAnaliseDeConsulta(search_analyse: SearchAnalyse): Promise<any>;
   }
 
 }
 declare module '@brainy-digital/intima.ai-sdk-node/resources/process_search_analyse' {
-  import { Resource } from "@brainy-digital/intima.ai-sdk-node/resource";
+  import { Resource } from "@brainy-digital/intima.ai-sdk-node/api/resource";
   import { Action } from "@brainy-digital/intima.ai-sdk-node/resources/action";
   import { API } from "@brainy-digital/intima.ai-sdk-node/api/api";
   import { ProcessSearch } from "@brainy-digital/intima.ai-sdk-node/resources/process_search";
@@ -510,7 +510,7 @@ declare module '@brainy-digital/intima.ai-sdk-node/resources/process_search_anal
 
 }
 declare module '@brainy-digital/intima.ai-sdk-node/resources/resource_result' {
-  import { Resource } from "@brainy-digital/intima.ai-sdk-node/resource";
+  import { Resource } from "@brainy-digital/intima.ai-sdk-node/api/resource";
   import { API } from "@brainy-digital/intima.ai-sdk-node/api/api";
   export class ResourceResult extends Resource {
       protected resource_path: string;
@@ -520,61 +520,61 @@ declare module '@brainy-digital/intima.ai-sdk-node/resources/resource_result' {
 
 }
 declare module '@brainy-digital/intima.ai-sdk-node/resources/tribunal' {
-  import { Resource } from "@brainy-digital/intima.ai-sdk-node/resource";
+  import { Resource } from "@brainy-digital/intima.ai-sdk-node/api/resource";
   import { API } from "@brainy-digital/intima.ai-sdk-node/api/api";
   export class Tribunal extends Resource {
       getResourceEndpoint(): string;
       constructor(API: API);
       /**
-       * getById
+       * consultarPorId
        */
-      getById(id: number): Promise<any>;
+      consultarPorId(id: number): Promise<any>;
   }
 
 }
 declare module '@brainy-digital/intima.ai-sdk-node/resources/user/user' {
-  import { Resource } from "@brainy-digital/intima.ai-sdk-node/resource";
+  import { Resource } from "@brainy-digital/intima.ai-sdk-node/api/resource";
   import { API } from "@brainy-digital/intima.ai-sdk-node/api/api";
   export class User extends Resource {
       getResourceEndpoint(): string;
       constructor(API: API);
       /**
-       * getUser
+       * consultarUsuario
        */
-      getUser(): Promise<any>;
+      consultarUsuario(): Promise<any>;
   }
 
 }
 declare module '@brainy-digital/intima.ai-sdk-node/resources/user/user_dependent' {
-  import { Resource } from "@brainy-digital/intima.ai-sdk-node/resource";
+  import { Resource } from "@brainy-digital/intima.ai-sdk-node/api/resource";
   import { API } from "@brainy-digital/intima.ai-sdk-node/api/api";
   export type Dependent = {
       email: string;
   };
-  export class UserDependent extends Resource {
+  export class UserNotification extends Resource {
       getResourceEndpoint(): string;
       constructor(API: API);
       /**
-       * getById
+       * consultarPorId
        */
-      getById(id: number): Promise<any>;
+      consultarPorId(id: number): Promise<any>;
       /**
-       * getNewUserDependent
+       * cadastrarNovoEmailParaNotificacoes
        */
-      getNewUserDependent(user_dependent: Dependent): Promise<any>;
+      cadastrarNovoEmailParaNotificacoes(user_dependent: Dependent): Promise<any>;
       /**
-       * updateUserDependent
+       * atualizarEmailParaNotificacoes
        */
-      updateUserDependent(user_dependent_id: number, user_dependent: Dependent): Promise<any>;
+      atualizarEmailParaNotificacoes(user_dependent_id: number, user_dependent: Dependent): Promise<any>;
       /**
-       * deleteUserDependent
+       * excluirEmailParaNotificacoes
        */
-      deleteUserDependent(user_dependent_id: number): Promise<any>;
+      excluirEmailParaNotificacoes(user_dependent_id: number): Promise<any>;
   }
 
 }
 declare module '@brainy-digital/intima.ai-sdk-node/resources/user/user_webhook' {
-  import { Resource } from "@brainy-digital/intima.ai-sdk-node/resource";
+  import { Resource } from "@brainy-digital/intima.ai-sdk-node/api/resource";
   import { API } from "@brainy-digital/intima.ai-sdk-node/api/api";
   export enum ACTION_TYPE {
       PROCESS_INFO = 0,
@@ -603,21 +603,21 @@ declare module '@brainy-digital/intima.ai-sdk-node/resources/user/user_webhook' 
       getResourceEndpoint(): string;
       constructor(API: API);
       /**
-       * getById
+       * consultarPorId
        */
-      getById(id: number): Promise<any>;
+      consultarPorId(id: number): Promise<any>;
       /**
-       * getNewUserWebhook
+       * cadastrarNovoWebhook
        */
-      getNewUserWebhook(user_webhook: Webhook): Promise<any>;
+      cadastrarNovoWebhook(user_webhook: Webhook): Promise<any>;
       /**
-       * updateUserWebhook
+       * atualizarWebhook
        */
-      updateUserWebhook(user_webhook_id: number, user_webhook: Webhook): Promise<any>;
+      atualizarWebhook(user_webhook_id: number, user_webhook: Webhook): Promise<any>;
       /**
-       * deleteUserWebhook
+       * excluirWebhook
        */
-      deleteUserWebhook(user_webhook_id: number): Promise<any>;
+      excluirWebhook(user_webhook_id: number): Promise<any>;
   }
 
 }

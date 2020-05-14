@@ -1,4 +1,4 @@
-import { Resource } from "../resource";
+import { Resource } from "../api/resource";
 import { API } from "../api/api";
 
 export type NewAuth = {
@@ -25,30 +25,30 @@ export class Auth extends Resource {
     }
 
     /**
-     * getById
+     * consultarPorId
      */
-    public async getById(id: number): Promise<any> {
+    public async consultarPorId(id: number): Promise<any> {
         return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
-     * getNewAuth
+     * cadastrarNovaAutenticacao
      */
-    public async getNewAuth(auth: NewAuth): Promise<any> {
+    public async cadastrarNovaAutenticacao(auth: NewAuth): Promise<any> {
         return await this.getAPI().post(`${this.getResourceEndpoint()}`, auth, {}, {}, null, true);
     }
 
     /**
-     * enableIntimationsAuth
+     * ativarCapturaDeIntimacoesParaAutenticacao
      */
-    public async enableIntimationsAuth(auth_id: number, enable_auth: EnableAuth): Promise<any> {
+    public async ativarCapturaDeIntimacoesParaAutenticacao(auth_id: number, enable_auth: EnableAuth): Promise<any> {
         return await this.getAPI().put(`${this.getResourceEndpoint()}/${auth_id}/intimations/enable`, enable_auth, {}, {}, null, true);
     }
 
     /**
-     * disableIntimationsAuth
+     * desativarCapturaDeIntimacoesParaAutenticacao
      */
-    public async disableIntimationsAuth(auth_id: number): Promise<any> {
+    public async desativarCapturaDeIntimacoesParaAutenticacao(auth_id: number): Promise<any> {
         return await this.getAPI().put(`${this.getResourceEndpoint()}/${auth_id}/intimations/disable`, {}, {}, {}, null, true);
     }
 

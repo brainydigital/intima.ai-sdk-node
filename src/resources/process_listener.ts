@@ -1,4 +1,4 @@
-import { Resource } from "../resource";
+import { Resource } from "../api/resource";
 import { Action } from "./action";
 import { API } from "../api/api";
 import { ResourceResult } from "./resource_result";
@@ -6,11 +6,11 @@ import { ResourceResult } from "./resource_result";
 export type Listener = {
     process_number: string,
     auth_id: number,
-    schedule_times: Array<String>
+    schedule_times: Array<string>
 }
 
 export type ListenerUpdate = {
-    schedule_times: Array<String>
+    schedule_times: Array<string>
 }
 
 export class ProcessListener extends Resource {
@@ -27,52 +27,52 @@ export class ProcessListener extends Resource {
     }
 
     /**
-     * getById
+     * consultarPorId
      */
-    public async getById(id: number): Promise<any> {
+    public async consultarPorId(id: number): Promise<any> {
         return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
-     * getNewListener
+     * cadastrarNovaEscuta
      */
-    public async getNewListener(listener: Listener): Promise<any> {
+    public async cadastrarNovaEscuta(listener: Listener): Promise<any> {
         return await this.getAPI().post(`${this.getResourceEndpoint()}`, listener, {}, {}, null, true);
     }
 
     /**
-     * captureListener
+     * capturarEscuta
      */
-    public async captureListener(listener_id: number): Promise<any> {
+    public async capturarEscuta(listener_id: number): Promise<any> {
         return await this.getAPI().get(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}/${listener_id}/capture`, {}, {}, true);
     }
 
     /**
-     * getNewListenerAndCapture
+     * cadastrarNovaEscutaECapturar
      */
-    public async getNewListenerAndCapture(listener: Listener): Promise<any> {
+    public async cadastrarNovaEscutaECapturar(listener: Listener): Promise<any> {
         return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}/create-and-capture`, listener, {}, {}, null, true);
     }
 
     /**
-     * getListenerResults
+     * consultarResultadosCapturadosDaEscuta
      */
-    public getListenerResults(listener_id: number) {
+    public consultarResultadosCapturadosDaEscuta(listener_id: number) {
         const resource = new ResourceResult(this.getAPI(), this, listener_id);
         return resource.paginate();
     }
 
     /**
-     * updateListener
+     * atualizarEscuta
      */
-    public async updateListener(listener_id: number, listener: ListenerUpdate): Promise<any> {
+    public async atualizarEscuta(listener_id: number, listener: ListenerUpdate): Promise<any> {
         return await this.getAPI().put(`${this.getResourceEndpoint()}/${listener_id}`, listener, {}, {}, null, true);
     }
 
     /**
-     * deleteListener
+     * excluirEscuta
      */
-    public async deleteListener(listener_id: number): Promise<any> {
+    public async excluirEscuta(listener_id: number): Promise<any> {
         return await this.getAPI().delete(`${this.getResourceEndpoint()}/${listener_id}`, {}, {}, true);
     }
 }

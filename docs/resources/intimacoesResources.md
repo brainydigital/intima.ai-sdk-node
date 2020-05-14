@@ -1,13 +1,13 @@
-# **intimationResource**
+# **intimacoesResources**
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**getById**](intimationResource.md#getById) | **GET** /intimations/{id} | Visualiza uma intimação
-[**markAsRevised**](intimationResource.md#markAsRevised) | **PUT** /intimations/{intimation_id}/mark-as-revised | Marca uma intimação como revisada
+[**consultarPorId**](intimacoesResources.md#consultarPorId) | **GET** /intimations/{id} | Visualiza uma intimação
+[**marcarIntimacaoComoRevisada**](intimacoesResources.md#marcarIntimacaoComoRevisada) | **PUT** /intimations/{intimation_id}/mark-as-revised | Marca uma intimação como revisada
 
-# **getById**
+# **consultarPorId**
 
 ### Parametros
 
@@ -15,7 +15,7 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **id** | **number**| é o id referente a intimação no Intima.ai | [obrigatório]
 
-# **markAsRevised**
+# **marcarIntimacaoComoRevisada**
 
 ### Parametros
 
@@ -33,10 +33,11 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const result = await intimaai.intimationResource.getById(1);
-    const result = await intimaai.intimationResource.markAsRevised(1);
+    const by_id_result = await intimaai.intimacoesResources.consultarPorId(1);
+
+    const mark_intimation_result = await intimaai.intimacoesResources.marcarIntimacaoComoRevisada(1);
     
-    const paginator = await intimaai.intimationResource.paginate();
+    const paginator = await intimaai.intimacoesResources.paginate();
     await paginator.getPage(1);
 }
 catch (error)

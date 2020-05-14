@@ -1,4 +1,4 @@
-import { Resource } from "../resource";
+import { Resource } from "../api/resource";
 import { Action } from "./action";
 import { API } from "../api/api";
 import * as fs from 'fs';
@@ -33,23 +33,23 @@ export class ProcessQualificationProtocol extends Resource {
     }
 
     /**
-     * getById
+     * consultarPorId
      */
-    public async getById(id: number): Promise<any> {
+    public async consultarPorId(id: number): Promise<any> {
         return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
-     * getNewQualificationProtocolFirstStep
+     * cadastrarPrimeiraEtapaParaNovoProtocoloDeHabilitacao
      */
-    public async getNewQualificationProtocolFirstStep(qualification_protocol: FirstStepQualificationProtocol): Promise<any> {
+    public async cadastrarPrimeiraEtapaParaNovoProtocoloDeHabilitacao(qualification_protocol: FirstStepQualificationProtocol): Promise<any> {
         return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}`, qualification_protocol, {}, {}, null, true);
     }
 
     /**
-     * getNewQualificationProtocolSecondStep
+     * cadastrarSegundaEtapaParaNovoProtocoloDeHabilitacao
      */
-    public async getNewQualificationProtocolSecondStep(qualification_protocol_id: number, qualification_protocol: SecondStepQualificationProtocol): Promise<any> {
+    public async cadastrarSegundaEtapaParaNovoProtocoloDeHabilitacao(qualification_protocol_id: number, qualification_protocol: SecondStepQualificationProtocol): Promise<any> {
 
         let attachs = null;
 

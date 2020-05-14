@@ -1,18 +1,18 @@
-# **userResource**
+# **tribunaisResources**
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**getUser**](userResource.md#getUser) | **GET** /user | Visualiza um tribunal
+[**consultarPorId**](tribunaisResources.md#consultarPorId) | **GET** /tribunals/{id} | Visualiza um tribunal
 
-# **getUser**
+# **consultarPorId**
 
 ### Parametros
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-- | - | - | -
+**id** | **number**| é o id referente ao tribunal disponível no Intima.ai | [obrigatório]
 
 ### Exemplos
 ```javascript
@@ -24,8 +24,9 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const result = await intimaai.userResource.getUser();
-    const paginator = await intimaai.userResource.paginate();
+    const result = await intimaai.tribunaisResources.consultarPorId(18);
+
+    const paginator = await intimaai.tribunaisResources.paginate();
     await paginator.getPage(1);
 }
 catch (error)

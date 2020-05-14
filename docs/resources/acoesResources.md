@@ -1,13 +1,13 @@
-# **actionResource**
+# **acoesResources**
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**getById**](actionResource.md#getById) | **GET** /actions/{id} | Visualiza um auth
-[**getActionResults**](actionResource.md#getActionResults) | **GET** /actions/{action_id}/results | Retorna um *Paginator* com o resultado de uma ação
+[**consultarPorId**](acoesResources.md#consultarPorId) | **GET** /actions/{id} | Visualiza uma ação pelo id
+[**consultarResultadosDaAcao**](acoesResources.md#consultarResultadosDaAcao) | **GET** /actions/{action_id}/results | Retorna um [**Paginator**](../models/api/Paginator.md) com o resultados de uma ação
 
-# **getById**
+# **consultarPorId**
 
 ### Parametros
 
@@ -15,7 +15,7 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **id** | **number**| é o id referente a ação no Intima.ai | [obrigatório]
 
-# **getActionResults**
+# **consultarResultadosDaAcao**
 
 ### Parametros
 
@@ -33,12 +33,12 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const result = await intimaai.actionResource.getById(95388);
+    const by_id_result = await intimaai.acoesResources.consultarPorId(95388);
 
-    const paginator = await intimaai.actionResource.getActionResults(95371);
-    await paginator.getPage(1);
+    const results_action_paginator = await intimaai.acoesResources.consultarResultadosDaAcao(95371);
+    await results_action_paginator.getPage(1);
     
-    const paginator = await intimaai.actionResource.paginate();
+    const paginator = await intimaai.acoesResources.paginate();
     await paginator.getPage(1);
 }
 catch (error)

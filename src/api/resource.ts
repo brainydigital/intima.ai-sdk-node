@@ -1,4 +1,4 @@
-import { API } from "./api/api";
+import { API } from "./api";
 import { Paginator } from "./paginator";
 
 export abstract class Resource {

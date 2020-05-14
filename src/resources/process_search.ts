@@ -1,10 +1,10 @@
-import { Resource } from "../resource";
+import { Resource } from "../api/resource";
 import { Action } from "./action";
 import { API } from "../api/api";
 import { ResourceResult } from "./resource_result";
 import { ProcessSearchAnalyse, SearchAnalyse } from "./process_search_analyse";
 import { isEmpty } from "../utils/utils";
-import { Paginator } from "../paginator";
+import { Paginator } from "../api/paginator";
 
 export type Search = {
     auth_id: number,
@@ -31,16 +31,16 @@ export class ProcessSearch extends Resource {
     }
 
     /**
-     * getById
+     * consultarPorId
      */
-    public async getById(id: number): Promise<any> {
+    public async consultarPorId(id: number): Promise<any> {
         return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
-     * getNewSearch
+     * cadastrarNovaConsulta
      */
-    public async getNewSearch(search: Search): Promise<any> {
+    public async cadastrarNovaConsulta(search: Search): Promise<any> {
         if (isEmpty(search.process_number) && isEmpty(search.nome_parte) && isEmpty(search.nome_representante)) {
             throw 'Você precisa fornecer ao menos um parametro para a busca.';
         }
@@ -48,31 +48,31 @@ export class ProcessSearch extends Resource {
     }
 
     /**
-     * getSearchResults
+     * consultarResultadosDaConsulta
      */
-    public getSearchResults(search_id: number) {
+    public consultarResultadosDaConsulta(search_id: number) {
         const resource = new ResourceResult(this.getAPI(), this, search_id);
         return resource.paginate();
     }
 
     /**
-     * getSearchAnalyses
+     * listarPreAnalisesDeConsultas
      */
-    public async getSearchAnalyses(): Promise<Paginator> {
+    public async listarPreAnalisesDeConsultas(): Promise<Paginator> {
         return await this.search_analyse.paginate();
     }
 
     /**
-     * getSearchAnalysesById
+     * consultarPorIdPreAnaliseDeConsulta
      */
-    public async getSearchAnalysesById(id: number): Promise<any> {
+    public async consultarPorIdPreAnaliseDeConsulta(id: number): Promise<any> {
         return await this.getAPI().get(`${this.search_analyse.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
      /**
-     * getNewSearchAnalyses
+     * cadastrarPreAnaliseDeConsulta
      */
-    public async getNewSearchAnalyses(search_analyse: SearchAnalyse): Promise<any> {
+    public async cadastrarPreAnaliseDeConsulta(search_analyse: SearchAnalyse): Promise<any> {
         if (isEmpty(search_analyse.process_number) && isEmpty(search_analyse.nome_parte) && isEmpty(search_analyse.nome_representante)) {
             throw 'Você precisa fornecer ao menos um parametro para a busca.';
         }

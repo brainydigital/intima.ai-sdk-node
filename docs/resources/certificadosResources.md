@@ -1,15 +1,15 @@
-# **certificateResource**
+# **certificadosResources**
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**getById**](certificateResource.md#getById) | **GET** /certificates/{id} | Visualiza um certificado
-[**getNewCertificate**](certificateResource.md#getNewCertificate) | **POST** /certificates | Cadastra um novo certificado
-[**updateCertificate**](certificateResource.md#updateCertificate) | **POST** /certificates/{certificate_id} | Atualiza um certificado
-[**deleteCertificate**](certificateResource.md#deleteCertificate) | **DELETE** /certificates/{certificate_id} | Exclui um certificado
+[**consultarPorId**](certificadosResources.md#consultarPorId) | **GET** /certificates/{id} | Visualiza um certificado
+[**cadastrarNovoCertificado**](certificadosResources.md#cadastrarNovoCertificado) | **POST** /certificates | Cadastra um novo certificado
+[**atualizarCertificado**](certificadosResources.md#atualizarCertificado) | **POST** /certificates/{certificate_id} | Atualiza um certificado
+[**excluirCertificado**](certificadosResources.md#excluirCertificado) | **DELETE** /certificates/{certificate_id} | Exclui um certificado
 
-# **getById**
+# **consultarPorId**
 
 ### Parametros
 
@@ -17,24 +17,24 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **id** | **number**| é o id referente ao certificado cadastrado no Intima.ai | [obrigatório]
 
-# **getNewCertificate**
+# **cadastrarNovoCertificado**
 
 ### Parametros
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**certificate** | **NewCertificate**| parametros necessários para a criação de um novo registro | [obrigatório]
+**certificate** | [**NewCertificate**](../models/certificate/NewCertificate.md)| parametros necessários para a criação de um novo registro | [obrigatório]
 
-# **updateCertificate**
+# **atualizarCertificado**
 
 ### Parametros
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **certificate_id** | **number**| é o id referente ao certificado cadastrado no Intima.ai | [obrigatório]
-**certificate** | **UpdateCertificate**| parametros necessários para a atualização do registro | [obrigatório]
+**certificate** | [**UpdateCertificate**](../models/certificate/UpdateCertificate.md)| parametros necessários para a atualização do registro | [obrigatório]
 
-# **deleteCertificate**
+# **excluirCertificado**
 
 ### Parametros
 
@@ -52,11 +52,14 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
+    const by_id_result = await intimaai.certificadosResources.consultarPorId(18);
+
     const certificate = { pfx: '/path/to/file.pfx', password: '12345678' };
-    const result = await intimaai.certificateResource.getById(18);
-    const result = await intimaai.certificateResource.getNewCertificate(certificate);
-    const result = await intimaai.certificateResource.deleteCertificate(19);
-    const paginator = await intimaai.certificateResource.paginate();
+    const new_certificate_result = await intimaai.certificadosResources.cadastrarNovoCertificado(certificate);
+
+    const delete_certificate_result = await intimaai.certificadosResources.excluirCertificado(19);
+
+    const paginator = await intimaai.certificadosResources.paginate();
     await paginator.getPage(1);
 }
 catch (error)

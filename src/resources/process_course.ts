@@ -1,4 +1,4 @@
-import { Resource } from "../resource";
+import { Resource } from "../api/resource";
 import { Action } from "./action";
 import { API } from "../api/api";
 import { ResourceResult } from "./resource_result";
@@ -22,45 +22,45 @@ export class ProcessCourse extends Resource {
     }
 
     /**
-     * getById
+     * consultarPorId
      */
-    public async getById(id: number): Promise<any> {
+    public async consultarPorId(id: number): Promise<any> {
         return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
-     * getNewCourse
+     * cadastrarNovoAndamento
      */
-    public async getNewCourse(course: Course): Promise<any> {
+    public async cadastrarNovoAndamento(course: Course): Promise<any> {
         return await this.getAPI().post(`${this.getResourceEndpoint()}`, course, {}, {}, null, true);
     }
 
     /**
-     * captureCourse
+     * capturarAndamentos
      */
-    public async captureCourse(course_id: number): Promise<any> {
+    public async capturarAndamentos(course_id: number): Promise<any> {
         return await this.getAPI().get(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}/${course_id}/capture`, {}, {}, true);
     }
 
     /**
-     * getNewCourseAndCapture
+     * cadastrarNovoAndamentoECapturarAndamentos
      */
-    public async getNewCourseAndCapture(course: Course): Promise<any> {
+    public async cadastrarNovoAndamentoECapturarAndamentos(course: Course): Promise<any> {
         return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}/create-and-capture`, course, {}, {}, null, true);
     }
 
     /**
-     * getCourseResults
+     * consultarResultadosDoAndamento
      */
-    public getCourseResults(course_id: number) {
+    public consultarResultadosDoAndamento(course_id: number) {
         const resource = new ResourceResult(this.getAPI(), this, course_id);
         return resource.paginate();
     }
 
     /**
-     * deleteCourse
+     * excluirAndamento
      */
-    public async deleteCourse(course_id: number): Promise<any> {
+    public async excluirAndamento(course_id: number): Promise<any> {
         return await this.getAPI().delete(`${this.getResourceEndpoint()}/${course_id}`, {}, {}, true);
     }
 }

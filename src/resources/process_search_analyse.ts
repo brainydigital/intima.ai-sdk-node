@@ -1,4 +1,4 @@
-import { Resource } from "../resource";
+import { Resource } from "../api/resource";
 import { Action } from "./action";
 import { API } from "../api/api";
 import { ProcessSearch } from "./process_search";

@@ -1,4 +1,4 @@
-import { Resource } from "../../resource";
+import { Resource } from "../../api/resource";
 import { API } from "../../api/api";
 
 export class User extends Resource {
@@ -12,9 +12,9 @@ export class User extends Resource {
     }
 
     /**
-     * getUser
+     * consultarUsuario
      */
-    public async getUser(): Promise<any> {
+    public async consultarUsuario(): Promise<any> {
         return await this.getAPI().get(`${this.getResourceEndpoint()}`, {}, {}, true);
     }
 

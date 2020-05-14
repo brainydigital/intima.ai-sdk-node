@@ -1,4 +1,4 @@
-import { Resource } from "../resource";
+import { Resource } from "../api/resource";
 import { API } from "../api/api";
 
 export class Intimation extends Resource {
@@ -12,16 +12,16 @@ export class Intimation extends Resource {
     }
 
     /**
-     * getById
+     * consultarPorId
      */
-    public async getById(id: number): Promise<any> {
+    public async consultarPorId(id: number): Promise<any> {
         return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
-     * markAsRevised
+     * marcarIntimacaoComoRevisada
      */
-    public async markAsRevised(intimation_id: number): Promise<any> {
+    public async marcarIntimacaoComoRevisada(intimation_id: number): Promise<any> {
         return await this.getAPI().put(`${this.getResourceEndpoint()}/${intimation_id}/mark-as-revised`, {}, {}, {}, null, true);
     }
 

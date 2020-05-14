@@ -1,13 +1,13 @@
-# **processInfoResource**
+# **informacoesProcessuaisResources**
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**getById**](processInfoResource.md#getById) | **GET** /process-infos/{id} | Visualiza as informações processuais por id
-[**getNewProcessInfo**](processInfoResource.md#getNewProcessInfo) | **POST** /actions/process-infos | Cadastra uma nova captura de informações processuais de um processo
+[**consultarPorId**](informacoesProcessuaisResources.md#consultarPorId) | **GET** /process-infos/{id} | Visualiza as informações processuais por id
+[**capturarNovaInformacaoProcessual**](informacoesProcessuaisResources.md#capturarNovaInformacaoProcessual) | **POST** /actions/process-infos | Cadastra uma nova captura de informações processuais de um processo
 
-# **getById**
+# **consultarPorId**
 
 ### Parametros
 
@@ -15,13 +15,13 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **id** | **number**| é o id referente as informações processuais capturadas no Intima.ai | [obrigatório]
 
-# **getNewProcessInfo**
+# **capturarNovaInformacaoProcessual**
 
 ### Parametros
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**process** | **Process**| parametros necessários para a criação de um novo registro | [obrigatório]
+**process** | [**Process**](../models/process_info/Process.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
 ```javascript
@@ -33,11 +33,12 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const result = await intimaai.processInfoResource.getById(21);
-    const process = { process_number: '00000000000000000000', auth_id: 120 };
-    const result = await intimaai.processInfoResource.getNewProcessInfo(process);
+    const by_id_result = await intimaai.informacoesProcessuaisResources.consultarPorId(21);
 
-    const paginator = await intimaai.processInfoResource.paginate();
+    const process = { process_number: '00000000000000000000', auth_id: 120 };
+    const new_info_result = await intimaai.informacoesProcessuaisResources.capturarNovaInformacaoProcessual(process);
+
+    const paginator = await intimaai.informacoesProcessuaisResources.paginate();
     await paginator.getPage(1);
 }
 catch (error)

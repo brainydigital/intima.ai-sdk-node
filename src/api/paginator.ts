@@ -1,4 +1,3 @@
-import { API } from "./api/api";
 import { Resource } from "./resource";
 
 export class Paginator {
@@ -42,8 +41,8 @@ export class Paginator {
     }
 
     /**
-     * Return a array of resources
-     * @return Array<Resource>
+     * Return a array with resources
+     * @return Array<any>
      */
     public getCollection()
     {
@@ -80,7 +79,7 @@ export class Paginator {
 
     /**
      * Verify if next page exists
-     * @return Paginator
+     * @return boolean
      */
     public hasNextPage(): boolean
     {

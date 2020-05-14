@@ -44,12 +44,12 @@ try
 
     //Get a new process copy
     const copy = { process_number: '0000000-00.0000.0.00.0000', auth_id: 1 };
-    const result = await intimaai.copyResource.getNewCopy(copy);
+    const result = await intimaai.copiasProcessuaisResources.cadastrarNovaCopia(copy);
 
     console.log(result);
 
     //Resource paginated
-    const paginator_actions = intimaai.actionResource.paginate();
+    const paginator_actions = intimaai.acoesResources.paginate();
     await paginator_actions.getPage(1);
     // await paginator.nextPage();
     // await paginator.previousPage();
@@ -72,24 +72,21 @@ Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Resource | Descrição
 ------------ | -------------
-[**authResource**](docs/resources/authResource.md#authResource) | Contém todos os endpoints/métodos para os auths
-[**tribunalResource**](docs/resources/tribunalResource.md#tribunalResource) | Contém todos os endpoints/métodos para os tribunais
-[**certificateResource**](docs/resources/certificateResource.md#certificateResource) | Contém todos os endpoints/métodos para os seus certificados
-[**userResource**](docs/resources/user/userResource.md#userResource) | Contém todos os endpoints/métodos para seu usuário
-[**userDependentResource**](docs/resources/user/userDependentResource.md#userDependentResource) | Contém todos os endpoints/métodos para seu os dependentes do usuário (que irão receber notificações)
-[**userWebhookResource**](docs/resources/user/userWebhookResource.md#userWebhookResource) | Contém todos os endpoints/métodos para os webhooks do usuário
-[**actionResource**](docs/resources/actionResource.md#actionResource) | Contém todos os endpoints/métodos para ações
-[**qualificationProtocolResource**](docs/resources/qualificationProtocolResource.md#qualificationProtocolResource) | Contém todos os endpoints/métodos para os protocolos de habilitação
-[**processInfoResource**](docs/resources/processInfoResource.md#processInfoResource) | Contém todos os endpoints/métodos para as informações processuais
-[**processCourseResource**](docs/resources/processCourseResource.md#processCourseResource) | Contém todos os endpoints/métodos para os andamentos processuais
-[**processSearchResource**](docs/resources/processSearchResource.md#processSearchResource) | Contém todos os endpoints/métodos para consultas processuais e pré-análises
-[**copyResource**](docs/resources/copyResource.md#copyResource) | Contém todos os endpoints/métodos para as cópias processuais
-[**listenerResource**](docs/resources/listenerResource.md#listenerResource) | Contém todos os endpoints/métodos para as escutas processuais
-[**intimationResource**](docs/resources/intimationResource.md#intimationResource) | Contém todos os endpoints/métodos para intimações capturadas
-[**processProtocolResource**](docs/resources/processProtocolResource.md#processProtocolResource) | Contém todos os endpoints/métodos para os protocolos
-
-
-<!-- ## Documentação para os Models -->
+[**autenticacoesResources**](docs/resources/autenticacoesResources.md#autenticacoesResources) | Contém todos os endpoints/métodos para os auths
+[**tribunaisResources**](docs/resources/tribunaisResources.md#tribunaisResources) | Contém todos os endpoints/métodos para os tribunais
+[**certificadosResources**](docs/resources/certificadosResources.md#certificadosResources) | Contém todos os endpoints/métodos para os seus certificados
+[**intimacoesResources**](docs/resources/intimacoesResources.md#intimacoesResources) | Contém todos os endpoints/métodos para intimações capturadas
+[**usuariosResources**](docs/resources/user/usuariosResources.md#usuariosResources) | Contém todos os endpoints/métodos para seu usuário
+[**notificacoesResources**](docs/resources/user/notificacoesResources.md#notificacoesResources) | Contém todos os endpoints/métodos para seu os dependentes do usuário (que irão receber notificações)
+[**webhooksResources**](docs/resources/user/webhooksResources.md#webhooksResources) | Contém todos os endpoints/métodos para os webhooks do usuário
+[**acoesResources**](docs/resources/acoesResources.md#acoesResources) | Contém todos os endpoints/métodos para ações
+[**copiasProcessuaisResources**](docs/resources/copiasProcessuaisResources.md#copiasProcessuaisResources) | Contém todos os endpoints/métodos para as cópias processuais
+[**escutasProcessuaisResources**](docs/resources/escutasProcessuaisResources.md#escutasProcessuaisResources) | Contém todos os endpoints/métodos para as escutas processuais
+[**protocolosDeHabilitacaoResources**](docs/resources/protocolosDeHabilitacaoResources.md#protocolosDeHabilitacaoResources) | Contém todos os endpoints/métodos para os protocolos de habilitação
+[**informacoesProcessuaisResources**](docs/resources/informacoesProcessuaisResources.md#informacoesProcessuaisResources) | Contém todos os endpoints/métodos para as informações processuais
+[**andamentosProcessuaisResources**](docs/resources/andamentosProcessuaisResources.md#andamentosProcessuaisResources) | Contém todos os endpoints/métodos para os andamentos processuais
+[**protocolosProcessuaisResources**](docs/resources/protocolosProcessuaisResources.md#protocolosProcessuaisResources) | Contém todos os endpoints/métodos para os protocolos
+[**consultasProcessuaisResources**](docs/resources/consultasProcessuaisResources.md#consultasProcessuaisResources) | Contém todos os endpoints/métodos para consultas processuais e pré-análises
 
 
 ## Documentação para Autenticação

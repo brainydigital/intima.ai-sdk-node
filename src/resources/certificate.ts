@@ -1,4 +1,4 @@
-import { Resource } from "../resource";
+import { Resource } from "../api/resource";
 import { Action } from "./action";
 import { API } from "../api/api";
 import * as fs from 'fs';
@@ -24,32 +24,32 @@ export class Certificate extends Resource {
     }
 
     /**
-     * getById
+     * consultarPorId
      */
-    public async getById(id: number): Promise<any> {
+    public async consultarPorId(id: number): Promise<any> {
         return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
-     * getNewCertificate
+     * cadastrarNovoCertificado
      */
-    public async getNewCertificate(certificate: NewCertificate): Promise<any> {
+    public async cadastrarNovoCertificado(certificate: NewCertificate): Promise<any> {
         let attachs = this.validateCertificate(certificate);
         return await this.getAPI().post(`${this.getResourceEndpoint()}`, certificate, {} , {}, attachs, true);
     }
 
     /**
-     * updateCertificate
+     * atualizarCertificado
      */
-    public async updateCertificate(certificate_id: number, certificate: UpdateCertificate): Promise<any> {
+    public async atualizarCertificado(certificate_id: number, certificate: UpdateCertificate): Promise<any> {
         let attachs = this.validateCertificate(certificate);
         return await this.getAPI().post(`${this.getResourceEndpoint()}/${certificate_id}`, certificate, {} , {}, attachs, true);
     }
 
     /**
-     * deleteCertificate
+     * excluirCertificado
      */
-    public async deleteCertificate(certificate_id: number): Promise<any> {
+    public async excluirCertificado(certificate_id: number): Promise<any> {
         return await this.getAPI().delete(`${this.getResourceEndpoint()}/${certificate_id}`, {}, {}, true);
     }
 

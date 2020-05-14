@@ -1,4 +1,4 @@
-import { Resource } from "../resource";
+import { Resource } from "../api/resource";
 import { API } from "../api/api";
 
 export class ResourceResult extends Resource {

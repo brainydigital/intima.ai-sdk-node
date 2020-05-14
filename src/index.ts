@@ -1,6 +1,6 @@
 import { API } from "./api/api";
 import { User } from "./resources/user/user";
-import { UserDependent } from "./resources/user/user_dependent";
+import { UserNotification } from "./resources/user/user_notification";
 import { UserWebhook, ACTION_TYPE, HTTP_VERB } from "./resources/user/user_webhook";
 import { Action } from "./resources/action";
 import { ProcessCopy } from "./resources/process_copy";
@@ -19,53 +19,53 @@ class Intimaai {
 
     private API: API;
 
-    public authResource: Auth;
+    public autenticacoesResources: Auth;
 
-    public tribunalResource: Tribunal;
+    public tribunaisResources: Tribunal;
 
-    public intimationResource: Intimation;
+    public certificadosResources: Certificate;
 
-    public certificateResource: Certificate;
+    public intimacoesResources: Intimation;
 
-    public userResource: User;
+    public usuariosResources: User;
 
-    public userDependentResource: UserDependent;
+    public notificacoesResources: UserNotification;
 
-    public userWebhookResource: UserWebhook;
+    public webhooksResources: UserWebhook;
 
-    public actionResource: Action;
+    public acoesResources: Action;
 
-    public copyResource: ProcessCopy;
+    public copiasProcessuaisResources: ProcessCopy;
 
-    public listenerResource: ProcessListener;
+    public escutasProcessuaisResources: ProcessListener;
 
-    public qualificationProtocolResource: ProcessQualificationProtocol;
+    public protocolosDeHabilitacaoResources: ProcessQualificationProtocol;
 
-    public processInfoResource: ProcessInfo;
+    public informacoesProcessuaisResources: ProcessInfo;
     
-    public processCourseResource: ProcessCourse;
+    public andamentosProcessuaisResources: ProcessCourse;
 
-    public processProtocolResource: ProcessProtocol;
+    public protocolosProcessuaisResources: ProcessProtocol;
 
-    public processSearchResource: ProcessSearch;
+    public consultasProcessuaisResources: ProcessSearch;
 
     constructor(api_token: string, proxy?: string, timeout?: number, max_attempts?: number) {
         this.API = new API(api_token, proxy, timeout, max_attempts);
-        this.authResource = new Auth(this.API);
-        this.tribunalResource = new Tribunal(this.API);
-        this.intimationResource = new Intimation(this.API);
-        this.certificateResource = new Certificate(this.API);
-        this.userResource = new User(this.API);
-        this.userDependentResource = new UserDependent(this.API);
-        this.userWebhookResource = new UserWebhook(this.API);
-        this.actionResource = new Action(this.API);
-        this.copyResource = new ProcessCopy(this.API, this.actionResource);
-        this.listenerResource = new ProcessListener(this.API, this.actionResource);
-        this.qualificationProtocolResource = new ProcessQualificationProtocol(this.API, this.actionResource);
-        this.processInfoResource = new ProcessInfo(this.API, this.actionResource);
-        this.processCourseResource = new ProcessCourse(this.API, this.actionResource);
-        this.processProtocolResource = new ProcessProtocol(this.API, this.actionResource);
-        this.processSearchResource = new ProcessSearch(this.API, this.actionResource);
+        this.autenticacoesResources = new Auth(this.API);
+        this.tribunaisResources = new Tribunal(this.API);
+        this.certificadosResources = new Certificate(this.API);
+        this.intimacoesResources = new Intimation(this.API);
+        this.usuariosResources = new User(this.API);
+        this.notificacoesResources = new UserNotification(this.API);
+        this.webhooksResources = new UserWebhook(this.API);
+        this.acoesResources = new Action(this.API);
+        this.copiasProcessuaisResources = new ProcessCopy(this.API, this.acoesResources);
+        this.escutasProcessuaisResources = new ProcessListener(this.API, this.acoesResources);
+        this.protocolosDeHabilitacaoResources = new ProcessQualificationProtocol(this.API, this.acoesResources);
+        this.informacoesProcessuaisResources = new ProcessInfo(this.API, this.acoesResources);
+        this.andamentosProcessuaisResources = new ProcessCourse(this.API, this.acoesResources);
+        this.protocolosProcessuaisResources = new ProcessProtocol(this.API, this.acoesResources);
+        this.consultasProcessuaisResources = new ProcessSearch(this.API, this.acoesResources);
     }
 
     private getAPI(): API {
@@ -79,7 +79,7 @@ export default Intimaai;
 // async function test() {
 //     try {
 
-//         const intimaai = new Intimaai('');
+        const intimaai = new Intimaai('');
 
         // const result = await intimaai.actionResource.getById(95388);
         // const paginator = await intimaai.actionResource.getActionResults(95371);
@@ -162,9 +162,8 @@ export default Intimaai;
         // const paginator = await intimaai.userDependentResource.paginate();
         // await paginator.getPage(1);
         
-
         // const result = await intimaai.userWebhookResource.getById(4);
-        // const result = await intimaai.userWebhookResource.getNewUserWebhook({ action_type: ACTION_TYPE.PROCESS_COPY, http_verb: HTTP_VERB.GET, url: 'https://example.com' });
+        // const result = await intimaai.webhooksResources.cadastrarNovoWebhook({ action_type: ACTION_TYPE.PROCESS_COPY, http_verb: HTTP_VERB.GET, url: 'https://example.com' });
         // const result = await intimaai.userWebhookResource.deleteUserWebhook(6);
         // const paginator = await intimaai.userWebhookResource.paginate();
         // await paginator.getPage(1);
