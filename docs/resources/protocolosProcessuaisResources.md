@@ -21,7 +21,7 @@ Nome | Tipo | Descrição | Notas
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**protocol** | [**Protocol**](../models/protocol/Protocol.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+**protocol** | [**ProtocoloProcessual**](../models/protocol/ProtocoloProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
 ```javascript
