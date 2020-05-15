@@ -2,11 +2,7 @@ import { Resource } from "../api/resource";
 import { Action } from "./action";
 import { API } from "../api/api";
 import { ResourceResult } from "./resource_result";
-
-export type Course = {
-    process_number: string,
-    auth_id: number
-}
+import { AndamentoProcessual } from "../models/AndamentoProcessual";
 
 export class ProcessCourse extends Resource {
 
@@ -31,7 +27,7 @@ export class ProcessCourse extends Resource {
     /**
      * cadastrarNovoAndamento
      */
-    public async cadastrarNovoAndamento(course: Course): Promise<any> {
+    public async cadastrarNovoAndamento(course: AndamentoProcessual): Promise<any> {
         return await this.getAPI().post(`${this.getResourceEndpoint()}`, course, {}, {}, null, true);
     }
 
@@ -45,7 +41,7 @@ export class ProcessCourse extends Resource {
     /**
      * cadastrarNovoAndamentoECapturarAndamentos
      */
-    public async cadastrarNovoAndamentoECapturarAndamentos(course: Course): Promise<any> {
+    public async cadastrarNovoAndamentoECapturarAndamentos(course: AndamentoProcessual): Promise<any> {
         return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}/create-and-capture`, course, {}, {}, null, true);
     }
 

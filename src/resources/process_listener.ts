@@ -2,16 +2,8 @@ import { Resource } from "../api/resource";
 import { Action } from "./action";
 import { API } from "../api/api";
 import { ResourceResult } from "./resource_result";
-
-export type Listener = {
-    process_number: string,
-    auth_id: number,
-    schedule_times: Array<string>
-}
-
-export type ListenerUpdate = {
-    schedule_times: Array<string>
-}
+import { EscutaProcessual } from "../models/EscutaProcessual";
+import { AtualizarEscutaProcessual } from "../models/AtualizarEscutaProcessual";
 
 export class ProcessListener extends Resource {
 
@@ -36,7 +28,7 @@ export class ProcessListener extends Resource {
     /**
      * cadastrarNovaEscuta
      */
-    public async cadastrarNovaEscuta(listener: Listener): Promise<any> {
+    public async cadastrarNovaEscuta(listener: EscutaProcessual): Promise<any> {
         return await this.getAPI().post(`${this.getResourceEndpoint()}`, listener, {}, {}, null, true);
     }
 
@@ -50,7 +42,7 @@ export class ProcessListener extends Resource {
     /**
      * cadastrarNovaEscutaECapturar
      */
-    public async cadastrarNovaEscutaECapturar(listener: Listener): Promise<any> {
+    public async cadastrarNovaEscutaECapturar(listener: EscutaProcessual): Promise<any> {
         return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}/create-and-capture`, listener, {}, {}, null, true);
     }
 
@@ -65,7 +57,7 @@ export class ProcessListener extends Resource {
     /**
      * atualizarEscuta
      */
-    public async atualizarEscuta(listener_id: number, listener: ListenerUpdate): Promise<any> {
+    public async atualizarEscuta(listener_id: number, listener: AtualizarEscutaProcessual): Promise<any> {
         return await this.getAPI().put(`${this.getResourceEndpoint()}/${listener_id}`, listener, {}, {}, null, true);
     }
 

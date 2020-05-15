@@ -1,18 +1,7 @@
 import { Resource } from "../api/resource";
 import { API } from "../api/api";
-
-export type NewAuth = {
-    tribunal_id: number, 
-    user_certificate_id?: number,
-    login?: string,
-    password?: string
-};
-
-export type EnableAuth = {
-    tabs: Array<string>, 
-    week_days: Array<number>,
-    day_hour: Array<string>
-};
+import { AtivarIntimacoesParaAutenticacao } from "../models/AtivarIntimacoesParaAutenticacao";
+import { NovaAutenticacao } from "../models/NovaAutenticacao";
 
 export class Auth extends Resource {
     
@@ -34,14 +23,14 @@ export class Auth extends Resource {
     /**
      * cadastrarNovaAutenticacao
      */
-    public async cadastrarNovaAutenticacao(auth: NewAuth): Promise<any> {
+    public async cadastrarNovaAutenticacao(auth: NovaAutenticacao): Promise<any> {
         return await this.getAPI().post(`${this.getResourceEndpoint()}`, auth, {}, {}, null, true);
     }
 
     /**
      * ativarCapturaDeIntimacoesParaAutenticacao
      */
-    public async ativarCapturaDeIntimacoesParaAutenticacao(auth_id: number, enable_auth: EnableAuth): Promise<any> {
+    public async ativarCapturaDeIntimacoesParaAutenticacao(auth_id: number, enable_auth: AtivarIntimacoesParaAutenticacao): Promise<any> {
         return await this.getAPI().put(`${this.getResourceEndpoint()}/${auth_id}/intimations/enable`, enable_auth, {}, {}, null, true);
     }
 

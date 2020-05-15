@@ -16,7 +16,7 @@ Este repositório é a implementação da API do [Intima.ai](https://app.intima.
 
 - Versão da API: 2.0.0
 
-## Instalação
+## **Instalação**
 
 ### [Node.js](https://nodejs.org/)
 
@@ -30,7 +30,7 @@ npm install @brainy-digital/intima.ai-sdk-node --save
 
 ## Començando
 
-Após seguir a [instalação](#installation):
+Após seguir a [instalação](#Instalação):
 
 ```javascript
 const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;

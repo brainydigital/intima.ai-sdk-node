@@ -2,17 +2,11 @@ import { Resource } from "../api/resource";
 import { Action } from "./action";
 import { API } from "../api/api";
 import { ResourceResult } from "./resource_result";
-import { ProcessSearchAnalyse, SearchAnalyse } from "./process_search_analyse";
+import { ConsultaProcessual } from "../models/ConsultaProcessual";
+import { PreAnaliseDeConsultaProcessual } from "../models/PreAnaliseDeConsultaProcessual";
 import { isEmpty } from "../utils/utils";
 import { Paginator } from "../api/paginator";
-
-export type Search = {
-    auth_id: number,
-    process_number?: string,
-    nome_parte?: string,
-    nome_representante?: string,
-    token?: string
-}
+import { ProcessSearchAnalyse } from "./process_search_analyse";
 
 export class ProcessSearch extends Resource {
 
@@ -40,7 +34,7 @@ export class ProcessSearch extends Resource {
     /**
      * cadastrarNovaConsulta
      */
-    public async cadastrarNovaConsulta(search: Search): Promise<any> {
+    public async cadastrarNovaConsulta(search: ConsultaProcessual): Promise<any> {
         if (isEmpty(search.process_number) && isEmpty(search.nome_parte) && isEmpty(search.nome_representante)) {
             throw 'Você precisa fornecer ao menos um parametro para a busca.';
         }
@@ -72,7 +66,7 @@ export class ProcessSearch extends Resource {
      /**
      * cadastrarPreAnaliseDeConsulta
      */
-    public async cadastrarPreAnaliseDeConsulta(search_analyse: SearchAnalyse): Promise<any> {
+    public async cadastrarPreAnaliseDeConsulta(search_analyse: PreAnaliseDeConsultaProcessual): Promise<any> {
         if (isEmpty(search_analyse.process_number) && isEmpty(search_analyse.nome_parte) && isEmpty(search_analyse.nome_representante)) {
             throw 'Você precisa fornecer ao menos um parametro para a busca.';
         }

@@ -47,7 +47,7 @@ Nome | Tipo | Descrição | Notas
 const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
 // ou
 // import Intimaai from '@brainy-digital/intima.ai-sdk-node';
-import { ACTION_TYPE, HTTP_VERB } from '@brainy-digital/intima.ai-sdk-node/resources/user/user_webhook';
+import { ACTION_TYPE, HTTP_VERB } from '@brainy-digital/intima.ai-sdk-node/models/Webhook';
 
 try
 {

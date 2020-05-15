@@ -1,4 +1,4 @@
-# ProtocoloHabilitacao
+# SegundaEtapaParaProtocoloDeHabilitacao
 
 ## Propriedades
 Nome | Tipo | Descrição | Notas
@@ -10,7 +10,7 @@ Nome | Tipo | Descrição | Notas
 **tipo_documento_mensagem_geral** | **number** | é o tipo do documento geral | [obrigatório] 
 **descricao** | **string** | é a descrição do protocolo de habilitação | [opcional] 
 **mensagem_geral** | **string** | é a mensagem geral do protocolo de habilitação | [opcional] 
-**documentos** | [**Array\<Document\>**](../Document.md) | são os documentos anexados | [opcional] 
+**documentos** | [**Array\<Documento\>**](../Documento.md) | são os documentos anexados | [opcional] 
 
 [[Voltar a lista da API]](../../../README.md#Documentação-para-os-Endpoints-da-API)    
 [[Voltar para o README]](../../../README.md#Intima.ai---SDK-NodeJS)

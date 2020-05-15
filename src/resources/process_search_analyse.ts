@@ -3,14 +3,6 @@ import { Action } from "./action";
 import { API } from "../api/api";
 import { ProcessSearch } from "./process_search";
 
-export type SearchAnalyse = {
-    auth_id: number,
-    process_number?: string,
-    nome_parte?: string,
-    nome_representante?: string,
-    token?: string
-}
-
 export class ProcessSearchAnalyse extends Resource {
 
     protected action: Action;

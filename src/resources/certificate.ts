@@ -1,17 +1,7 @@
 import { Resource } from "../api/resource";
-import { Action } from "./action";
 import { API } from "../api/api";
+import { Certificado } from "../models/Certificado";
 import * as fs from 'fs';
-
-export type NewCertificate = {
-    pfx: string, 
-    password: string
-};
-
-export type UpdateCertificate = {
-    pfx: string, 
-    password: string
-};
 
 export class Certificate extends Resource {
     
@@ -33,7 +23,7 @@ export class Certificate extends Resource {
     /**
      * cadastrarNovoCertificado
      */
-    public async cadastrarNovoCertificado(certificate: NewCertificate): Promise<any> {
+    public async cadastrarNovoCertificado(certificate: Certificado): Promise<any> {
         let attachs = this.validateCertificate(certificate);
         return await this.getAPI().post(`${this.getResourceEndpoint()}`, certificate, {} , {}, attachs, true);
     }
@@ -41,7 +31,7 @@ export class Certificate extends Resource {
     /**
      * atualizarCertificado
      */
-    public async atualizarCertificado(certificate_id: number, certificate: UpdateCertificate): Promise<any> {
+    public async atualizarCertificado(certificate_id: number, certificate: Certificado): Promise<any> {
         let attachs = this.validateCertificate(certificate);
         return await this.getAPI().post(`${this.getResourceEndpoint()}/${certificate_id}`, certificate, {} , {}, attachs, true);
     }
@@ -53,7 +43,7 @@ export class Certificate extends Resource {
         return await this.getAPI().delete(`${this.getResourceEndpoint()}/${certificate_id}`, {}, {}, true);
     }
 
-    private validateCertificate(certificate: UpdateCertificate) {
+    private validateCertificate(certificate: Certificado) {
         let attachs = null;
         if (certificate.pfx) {
             const file_path = certificate.pfx;

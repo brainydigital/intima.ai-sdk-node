@@ -1,4 +1,4 @@
-# EnableAuth
+# AtivarIntimacoesParaAutenticacao
 
 ## Propriedades
 Nome | Tipo | Descrição | Notas

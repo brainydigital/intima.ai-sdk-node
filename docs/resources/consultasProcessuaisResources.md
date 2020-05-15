@@ -25,7 +25,7 @@ Nome | Tipo | Descrição | Notas
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**search** | [**Search**](../models/process_search/Search.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+**search** | [**ConsultaProcessual**](../models/process_search/ConsultaProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 # **consultarResultadosDaConsulta**
 
@@ -55,7 +55,7 @@ Nome | Tipo | Descrição | Notas
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**search_analyse** | [**SearchAnalyse**](../models/process_search/SearchAnalyse.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+**search_analyse** | [**PreAnaliseDeConsultaProcessual**](../models/process_search/PreAnaliseDeConsultaProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
 ```javascript
@@ -69,8 +69,8 @@ try
 
     const by_id_result = await intimaai.consultasProcessuaisResources.consultarPorId(44);
 
-    const process = { process_number: '0000000-00.0000.0.00.0000', auth_id: 3 };
-    const new_result = await intimaai.consultasProcessuaisResources.cadastrarNovaConsulta(process);
+    const process_search = { process_number: '0000000-00.0000.0.00.0000', auth_id: 3 };
+    const new_result = await intimaai.consultasProcessuaisResources.cadastrarNovaConsulta(process_search);
 
     const results_paginator = await intimaai.consultasProcessuaisResources.consultarResultadosDaConsulta(44);
     await results_paginator.getPage(1);
@@ -80,7 +80,7 @@ try
 
     const pre_analyse_result = await intimaai.consultasProcessuaisResources.consultarPorIdPreAnaliseDeConsulta(23);
 
-    const new_pre_analyse_result = await intimaai.consultasProcessuaisResources.cadastrarPreAnaliseDeConsulta(process);
+    const new_pre_analyse_result = await intimaai.consultasProcessuaisResources.cadastrarPreAnaliseDeConsulta(process_search);
 
     const analyses_paginator = await intimaai.consultasProcessuaisResources.listarPreAnalisesDeConsultas();
     await analyses_paginator.getPage(1);

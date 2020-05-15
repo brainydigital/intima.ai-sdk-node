@@ -23,7 +23,7 @@ Nome | Tipo | Descrição | Notas
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**auth** | [**NewAuth**](../models/auth/NewAuth.md)| parametros necessários para a criação de um novo registro | [obrigatório]
+**auth** | [**NovaAutenticacao**](../models/auth/NovaAutenticacao.md)| parametros necessários para a criação de um novo registro | [obrigatório]
 
 # **ativarCapturaDeIntimacoesParaAutenticacao**
 
@@ -32,7 +32,7 @@ Nome | Tipo | Descrição | Notas
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **auth_id** | **number**| é o id referente ao tribunal cadastrado em "Tribunais ativos" no Intima.ai | [obrigatório]
-**enable_auth** | [**EnableAuth**](../models/auth/EnableAuth.md)| parametros necessários para a ativação da captura de intimações | [obrigatório]
+**enable_auth** | [**AtivarIntimacoesParaAutenticacao**](../models/auth/AtivarIntimacoesParaAutenticacao.md)| parametros necessários para a ativação da captura de intimações | [obrigatório]
 
 # **desativarCapturaDeIntimacoesParaAutenticacao**
 

@@ -1,23 +1,9 @@
 import { Resource } from "../api/resource";
 import { Action } from "./action";
 import { API } from "../api/api";
+import { PrimeiraEtapaParaProtocoloDeHabilitacao } from "../models/PrimeiraEtapaParaProtocoloDeHabilitacao";
+import { SegundaEtapaParaProtocoloDeHabilitacao } from "../models/SegundaEtapaParaProtocoloDeHabilitacao";
 import * as fs from 'fs';
-
-export type FirstStepQualificationProtocol = {
-    process_number: string,
-    auth_id: number
-};
-
-export type SecondStepQualificationProtocol = {
-    tipo_solicitacao: number,
-    tipo_declaracao: number,
-    polo: number,
-    partes_vinculadas: Array<string>,
-    tipo_documento_mensagem_geral: number,
-    descricao?: string,
-    mensagem_geral?: string,
-    documentos?: Array<{ arquivo: string, tipo_documento: number, descricao_documento: string, order: number }>
-};
 
 export class ProcessQualificationProtocol extends Resource {
 
@@ -42,14 +28,14 @@ export class ProcessQualificationProtocol extends Resource {
     /**
      * cadastrarPrimeiraEtapaParaNovoProtocoloDeHabilitacao
      */
-    public async cadastrarPrimeiraEtapaParaNovoProtocoloDeHabilitacao(qualification_protocol: FirstStepQualificationProtocol): Promise<any> {
+    public async cadastrarPrimeiraEtapaParaNovoProtocoloDeHabilitacao(qualification_protocol: PrimeiraEtapaParaProtocoloDeHabilitacao): Promise<any> {
         return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}`, qualification_protocol, {}, {}, null, true);
     }
 
     /**
      * cadastrarSegundaEtapaParaNovoProtocoloDeHabilitacao
      */
-    public async cadastrarSegundaEtapaParaNovoProtocoloDeHabilitacao(qualification_protocol_id: number, qualification_protocol: SecondStepQualificationProtocol): Promise<any> {
+    public async cadastrarSegundaEtapaParaNovoProtocoloDeHabilitacao(qualification_protocol_id: number, qualification_protocol: SegundaEtapaParaProtocoloDeHabilitacao): Promise<any> {
 
         let attachs = null;
 

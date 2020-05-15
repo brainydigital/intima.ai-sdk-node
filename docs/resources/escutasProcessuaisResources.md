@@ -26,7 +26,7 @@ Nome | Tipo | Descrição | Notas
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**listener** | [**Listener**](../models/listener/Listener.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+**listener** | [**EscutaProcessual**](../models/listener/EscutaProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 # **capturarEscuta**
 
@@ -42,7 +42,7 @@ Nome | Tipo | Descrição | Notas
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**listener** | [**Listener**](../models/listener/Listener.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+**listener** | [**EscutaProcessual**](../models/listener/EscutaProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 # **consultarResultadosCapturadosDaEscuta**
 
@@ -59,7 +59,7 @@ Nome | Tipo | Descrição | Notas
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **listener_id** | **number**| é o id referente a escuta processual no Intima.ai | [obrigatório]
-**listener** | [**ListenerUpdate**](../models/listener/ListenerUpdate.md) | parametros necessários para a atualizar o registro | [obrigatório]
+**listener** | [**AtualizarEscutaProcessual**](../models/listener/AtualizarEscutaProcessual.md) | parametros necessários para a atualizar o registro | [obrigatório]
 
 # **excluirEscuta**
 

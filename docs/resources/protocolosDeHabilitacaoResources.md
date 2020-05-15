@@ -22,7 +22,7 @@ Nome | Tipo | Descrição | Notas
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**qualification_protocol** | [**FirstStepQualificationProtocol**](../models/qualification_protocol/FirstStepQualificationProtocol.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+**qualification_protocol** | [**PrimeiraEtapaParaProtocoloDeHabilitacao**](../models/qualification_protocol/PrimeiraEtapaParaProtocoloDeHabilitacao.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 # **cadastrarSegundaEtapaParaNovoProtocoloDeHabilitacao**
 
@@ -31,7 +31,7 @@ Nome | Tipo | Descrição | Notas
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **qualification_protocol_id** | **number**| é o id referente ao protocolo de habilitação cadastrado no Intima.ai, fornecido na primeira etapa | [obrigatório]
-**qualification_protocol** | [**SecondStepQualificationProtocol**](../models/qualification_protocol/SecondStepQualificationProtocol.md) | parametros necessários para a segunda e ultima etapa do protocolo de habilitação | [obrigatório]
+**qualification_protocol** | [**SegundaEtapaParaProtocoloDeHabilitacao**](../models/qualification_protocol/SegundaEtapaParaProtocoloDeHabilitacao.md) | parametros necessários para a segunda e ultima etapa do protocolo de habilitação | [obrigatório]
 
 ### Exemplos
 ```javascript

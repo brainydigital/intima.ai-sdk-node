@@ -1,11 +1,7 @@
 import { Resource } from "../api/resource";
 import { Action } from "./action";
 import { API } from "../api/api";
-
-export type Copy = {
-    process_number: string, 
-    auth_id: number
-};
+import { CopiaProcessual } from "../models/CopiaProcessual";
 
 export class ProcessCopy extends Resource {
 
@@ -30,7 +26,7 @@ export class ProcessCopy extends Resource {
     /**
      * cadastrarNovaCopia
      */
-    public async cadastrarNovaCopia(copy: Copy): Promise<any> {
+    public async cadastrarNovaCopia(copy: CopiaProcessual): Promise<any> {
         return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}`, copy, {}, {}, null, true);
     }
 }

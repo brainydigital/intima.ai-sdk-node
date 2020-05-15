@@ -1,4 +1,4 @@
-# NewAuth
+# NovaAutenticacao
 
 ## Propriedades
 Nome | Tipo | Descrição | Notas

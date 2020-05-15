@@ -23,9 +23,6 @@ try
     const intimaai = new Intimaai('api_secret_token');
 
     const user_result = await intimaai.usuariosResources.consultarUsuario();
-
-    const paginator = await intimaai.usuariosResources.paginate();
-    await paginator.getPage(1);
 }
 catch (error)
 {

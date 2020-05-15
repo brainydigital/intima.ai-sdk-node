@@ -1,11 +1,7 @@
 import { Resource } from "../api/resource";
 import { Action } from "./action";
 import { API } from "../api/api";
-
-export type Process = {
-    process_number: string, 
-    auth_id: number
-};
+import { InformacaoProcessual } from "../models/InformacaoProcessual";
 
 export class ProcessInfo extends Resource {
 
@@ -30,7 +26,7 @@ export class ProcessInfo extends Resource {
     /**
      * capturarNovaInformacaoProcessual
      */
-    public async capturarNovaInformacaoProcessual(process: Process): Promise<any> {
+    public async capturarNovaInformacaoProcessual(process: InformacaoProcessual): Promise<any> {
         return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}`, process, {}, {}, null, true);
     }
 }

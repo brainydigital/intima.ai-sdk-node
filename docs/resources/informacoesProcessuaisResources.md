@@ -21,7 +21,7 @@ Nome | Tipo | Descrição | Notas
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**process** | [**Process**](../models/process_info/Process.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+**process** | [**InformacaoProcessual**](../models/process_info/InformacaoProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
 ```javascript

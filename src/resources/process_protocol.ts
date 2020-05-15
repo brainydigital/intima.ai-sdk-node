@@ -1,16 +1,7 @@
 import { Resource } from "../api/resource";
 import { Action } from "./action";
 import { API } from "../api/api";
-
-export type Protocol = {
-    process_number: string,
-    auth_id: number,
-    tipo_documento_mensagem_geral: number,
-    descricao?: string,
-    mensagem_geral?: string,
-    peticao?: { arquivo: string, tipo_documento: number, descricao_documento: string },
-    documentos?: Array<{ arquivo: string, tipo_documento: number, descricao_documento: string, order: number }>
-}
+import { ProtocoloProcessual } from "../models/ProtocoloProcessual";
 
 export class ProcessProtocol extends Resource {
 
@@ -35,7 +26,7 @@ export class ProcessProtocol extends Resource {
     /**
      * cadastrarNovoProtocolo
      */
-    public async cadastrarNovoProtocolo(protocol: Protocol): Promise<any> {
+    public async cadastrarNovoProtocolo(protocol: ProtocoloProcessual): Promise<any> {
         return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}`, protocol, {}, {}, null, true);
     }
 }

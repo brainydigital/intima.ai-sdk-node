@@ -36,7 +36,7 @@ try
     const by_id_result = await intimaai.protocolosProcessuaisResources.consultarPorId(14362);
 
     const protocol = {
-        process_number: '',
+        process_number: '0000000-00.0000.0.00.0000',
         auth_id: 1,
         tipo_documento_mensagem_geral: 0,
         // peticao: { arquivo: '/path/to/peticao.pdf', tipo_documento: 0, descricao_documento: 'peticao' },

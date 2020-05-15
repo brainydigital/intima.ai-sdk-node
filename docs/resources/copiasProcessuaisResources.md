@@ -21,7 +21,7 @@ Nome | Tipo | Descrição | Notas
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**copy** | [**Copy**](../models/copy/Copy.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+**copy** | [**CopiaProcessual**](../models/copy/CopiaProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
 ```javascript

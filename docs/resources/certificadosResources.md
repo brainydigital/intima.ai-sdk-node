@@ -23,7 +23,7 @@ Nome | Tipo | Descrição | Notas
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**certificate** | [**NewCertificate**](../models/certificate/NewCertificate.md)| parametros necessários para a criação de um novo registro | [obrigatório]
+**certificate** | [**Certificado**](../models/certificate/Certificado.md)| parametros necessários para a criação de um novo registro | [obrigatório]
 
 # **atualizarCertificado**
 
@@ -32,7 +32,7 @@ Nome | Tipo | Descrição | Notas
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **certificate_id** | **number**| é o id referente ao certificado cadastrado no Intima.ai | [obrigatório]
-**certificate** | [**UpdateCertificate**](../models/certificate/UpdateCertificate.md)| parametros necessários para a atualização do registro | [obrigatório]
+**certificate** | [**Certificado**](../models/certificate/Certificado.md)| parametros necessários para a atualização do registro | [obrigatório]
 
 # **excluirCertificado**
 
