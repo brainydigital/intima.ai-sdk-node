@@ -1,15 +1,16 @@
 import { Resource } from "../api/resource";
 import { Action } from "./action";
 import { API } from "../api/api";
-import { ProtocoloProcessual } from "../models/ProtocoloProcessual";
+import { PrimeiraEtapaParaProtocoloProcessualEsaj } from "../models/PrimeiraEtapaParaProtocoloProcessualEsaj";
+import { SegundaEtapaParaProtocoloProcessualEsaj } from "../models/SegundaEtapaParaProtocoloProcessualEsaj";
 import * as fs from 'fs';
 
-export class ProcessProtocol extends Resource {
+export class ProcessProtocolEsaj extends Resource {
 
     protected action: Action;
 
     getResourceEndpoint() {
-        return 'process-protocols';
+        return 'process-protocols-esaj';
     }
 
     constructor(API: API, action: Action) {
@@ -17,17 +18,17 @@ export class ProcessProtocol extends Resource {
         this.action = action;
     }
 
-    /**
-     * consultarPorId
+     /**
+     * cadastrarPrimeiraEtapaParaNovoProtocoloEsaj
      */
-    public async consultarPorId(id: number): Promise<any> {
-        return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
+    public async cadastrarPrimeiraEtapaParaNovoProtocoloEsaj(protocol: PrimeiraEtapaParaProtocoloProcessualEsaj): Promise<any> {
+        return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}`, protocol, {}, {}, null, true);
     }
 
     /**
-     * cadastrarNovoProtocolo
+     * cadastrarSegundaEtapaParaNovoProtocoloEsaj
      */
-    public async cadastrarNovoProtocolo(protocol: ProtocoloProcessual): Promise<any> {
+    public async cadastrarSegundaEtapaParaNovoProtocoloEsaj(protocol_id: number, protocol: SegundaEtapaParaProtocoloProcessualEsaj): Promise<any> {
 
         let attachs = null;
 
@@ -71,7 +72,7 @@ export class ProcessProtocol extends Resource {
 
         return await this.getAPI()
             .post(
-                `${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}`,
+                `${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}/${protocol_id}`,
                 protocol,
                 {},
                 {},

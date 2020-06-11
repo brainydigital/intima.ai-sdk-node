@@ -14,6 +14,7 @@ import { Certificate } from "./resources/certificate";
 import { Auth } from "./resources/auth";
 import { Tribunal } from "./resources/tribunal";
 import { Intimation } from "./resources/intimation";
+import { ProcessProtocolEsaj } from "./resources/process_protocol_esaj";
 
 class Intimaai {
 
@@ -47,6 +48,8 @@ class Intimaai {
 
     public protocolosProcessuaisResources: ProcessProtocol;
 
+    public protocolosProcessuaisEsajResources: ProcessProtocolEsaj;
+
     public consultasProcessuaisResources: ProcessSearch;
 
     constructor(api_token: string, proxy?: string, timeout?: number, max_attempts?: number) {
@@ -65,6 +68,7 @@ class Intimaai {
         this.informacoesProcessuaisResources = new ProcessInfo(this.API, this.acoesResources);
         this.andamentosProcessuaisResources = new ProcessCourse(this.API, this.acoesResources);
         this.protocolosProcessuaisResources = new ProcessProtocol(this.API, this.acoesResources);
+        this.protocolosProcessuaisEsajResources = new ProcessProtocolEsaj(this.API, this.acoesResources);
         this.consultasProcessuaisResources = new ProcessSearch(this.API, this.acoesResources);
     }
 

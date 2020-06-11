@@ -47,6 +47,7 @@ declare module '@brainy-digital/intima.ai-sdk-node/index' {
   import { Auth } from "@brainy-digital/intima.ai-sdk-node/resources/auth";
   import { Tribunal } from "@brainy-digital/intima.ai-sdk-node/resources/tribunal";
   import { Intimation } from "@brainy-digital/intima.ai-sdk-node/resources/intimation";
+  import { ProcessProtocolEsaj } from "@brainy-digital/intima.ai-sdk-node/resources/process_protocol_esaj";
   class Intimaai {
     private API;
     autenticacoesResources: Auth;
@@ -63,6 +64,7 @@ declare module '@brainy-digital/intima.ai-sdk-node/index' {
     informacoesProcessuaisResources: ProcessInfo;
     andamentosProcessuaisResources: ProcessCourse;
     protocolosProcessuaisResources: ProcessProtocol;
+    protocolosProcessuaisEsajResources: ProcessProtocolEsaj;
     consultasProcessuaisResources: ProcessSearch;
     constructor(api_token: string, proxy?: string, timeout?: number, max_attempts?: number);
     private getAPI;
@@ -234,6 +236,21 @@ declare module '@brainy-digital/intima.ai-sdk-node/models' {
     action_type: ACTION_TYPE | number,
     http_verb: HTTP_VERB | string,
     url: string
+  };
+  export type ParteVinculada = {
+    nome: string,
+    participacao?: string
+  };
+  export type PrimeiraEtapaParaProtocoloProcessualEsaj = {
+    process_number: string,
+    auth_id: number
+  };
+  export type SegundaEtapaParaProtocoloProcessualEsaj = {
+    classe_id: number,
+    categoria_id: number,
+    partes_vinculadas: Array<ParteVinculada>,
+    peticao: Peticao,
+    documentos?: Array<Documento>
   };
 }
 declare module '@brainy-digital/intima.ai-sdk-node/resources/action' {
@@ -456,6 +473,26 @@ declare module '@brainy-digital/intima.ai-sdk-node/resources/process_protocol' {
      * cadastrarNovoProtocolo
      */
     cadastrarNovoProtocolo(protocol: ProtocoloProcessual): Promise<any>;
+  }
+
+}
+declare module '@brainy-digital/intima.ai-sdk-node/resources/process_protocol_esaj' {
+  import { Resource } from "@brainy-digital/intima.ai-sdk-node/api/resource";
+  import { Action } from "@brainy-digital/intima.ai-sdk-node/resources/action";
+  import { API } from "@brainy-digital/intima.ai-sdk-node/api/api";
+  import { PrimeiraEtapaParaProtocoloProcessualEsaj, SegundaEtapaParaProtocoloProcessualEsaj } from "@brainy-digital/intima.ai-sdk-node/models";
+  export class ProcessProtocolEsaj extends Resource {
+    protected action: Action;
+    getResourceEndpoint(): string;
+    constructor(API: API, action: Action);
+    /**
+     * cadastrarPrimeiraEtapaParaNovoProtocoloEsaj
+     */
+    cadastrarPrimeiraEtapaParaNovoProtocoloEsaj(protocol: PrimeiraEtapaParaProtocoloProcessualEsaj): Promise<any>;
+    /**
+     * cadastrarSegundaEtapaParaNovoProtocoloEsaj
+     */
+    cadastrarSegundaEtapaParaNovoProtocoloEsaj(protocol_id: number, protocol: SegundaEtapaParaProtocoloProcessualEsaj): Promise<any>;
   }
 
 }

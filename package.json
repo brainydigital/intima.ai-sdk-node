@@ -1,6 +1,6 @@
 {
   "name": "@brainy-digital/intima.ai-sdk-node",
-  "version": "2.0.11",
+  "version": "2.0.12",
   "description": "Implementação da API do Intima.ai em forma de SDK Client para NodeJS.",
   "homepage": "https://intima.ai",
   "repository": {

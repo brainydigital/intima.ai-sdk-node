@@ -71,14 +71,14 @@ export class API {
         });
     }
 
-    public post(endpoint, body: any = {}, query: any = {}, options: any = {}, attachs: { field_name: string, files: Array<string> | string } = null, get_data_only: boolean = false): Promise<any> {
+    public post(endpoint, body: any = {}, query: any = {}, options: any = {}, attachs: Array<{ field_name: string, files: Array<string> | string }> = null, get_data_only: boolean = false): Promise<any> {
         return new Promise((resolve, reject) => {
 
             let content_type = 'application/json';
 
             if (attachs) {
                 content_type = 'multipart/form-data';
-            }
+            }            
 
             let formData = serializeForm(body);
 
@@ -117,7 +117,7 @@ export class API {
         });
     }
 
-    public put(endpoint, body: any = {}, query: any = {}, options: any = {}, attachs: { field_name: string, files: Array<string> | string } = null, get_data_only: boolean = false) {
+    public put(endpoint, body: any = {}, query: any = {}, options: any = {}, attachs: Array<{ field_name: string, files: Array<string> | string }> = null, get_data_only: boolean = false) {
         return new Promise((resolve, reject) => {
 
             let content_type = 'application/json';
@@ -197,29 +197,31 @@ export class API {
         });
     }
 
-    private appendFiles(attachs: { field_name: string, files: Array<string> | string }) {
+    private appendFiles(attachs: Array<{ field_name: string, files: Array<string> | string }>) {
         let formData = {};
-        const file_name = attachs.field_name;
-        if (attachs.files instanceof Array) {
-            attachs.files.map((file_path, index) => {
-                formData[`${file_name}[${index}][arquivo]`] = {
+        attachs.map((attach) => {
+            const field_name = attach.field_name;
+            if (attach.files instanceof Array) {
+                attach.files.map((file_path, index) => {
+                    formData[`${field_name}[${index}][arquivo]`] = {
+                        value: fs.createReadStream(file_path),
+                        options: {
+                            filename: file_path.split('/').pop(),
+                            contentType: 'application/pdf'
+                        }
+                    };
+                });
+            } else {
+                const file_path = attach.files;
+                formData[`${field_name}[arquivo]`] = {
                     value: fs.createReadStream(file_path),
                     options: {
                         filename: file_path.split('/').pop(),
                         contentType: 'application/pdf'
                     }
                 };
-            });
-        } else {
-            const file_path = attachs.files;
-            formData[`${file_name}`] = {
-                value: fs.createReadStream(file_path),
-                options: {
-                    filename: file_path.split('/').pop(),
-                    contentType: 'application/pdf'
-                }
-            };
-        }
+            }
+        });
         return formData;
     }
 

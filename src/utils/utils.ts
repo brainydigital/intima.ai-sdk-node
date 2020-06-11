@@ -17,7 +17,14 @@ export function serializeForm(body) {
                 }
             });
         } else {
-            formData[field] = body[field];
+            if (body[field] instanceof Object) {
+                Object.keys(body[field]).map((item_key) => {
+                    formData[`${field}[${item_key}]`] = body[field][item_key];
+                });
+            }
+            else {
+                formData[field] = body[field];
+            }
         }
 
     });

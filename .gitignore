@@ -5,3 +5,7 @@ main.js
 .DS_Store
 dist
 main.ts
+test.ts
+src/test.ts
+dist/test.js
+dist/src/test.js
