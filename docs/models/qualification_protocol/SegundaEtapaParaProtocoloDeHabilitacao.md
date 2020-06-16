@@ -3,9 +3,9 @@
 ## Propriedades
 Nome | Tipo | Descrição | Notas
 ------------ | ------------- | ------------- | -------------
-**tipo_solicitacao** | **number** | é o tipo de solicitação do protocolo de habilitação (0) | [obrigatório] 
-**tipo_declaracao** | **number** | é o tipo de declaração do protocolo de habilitação (0 ou 1)  | [obrigatório] 
-**polo** | **number** | é o polo selecionado do protocolo de habilitação (0 ou 1)  | [obrigatório] 
+**tipo_solicitacao** | **number** | é o tipo de solicitação do protocolo de habilitação (0 (Habilitação Simples)) | [obrigatório] 
+**tipo_declaracao** | **number** | é o tipo de declaração do protocolo de habilitação (0 (Declaração sob pena de lei) ou 1 (Declaração pela apresentação oportuna do instrumento de mandato))  | [obrigatório] 
+**polo** | **number** | é o polo selecionado do protocolo de habilitação (0 (Polo Ativo) ou 1 (Polo Passivo))  | [obrigatório] 
 **partes_vinculadas** | **Array\<string\>** | são as partes vinculadas ao protocolo de habilitação | [obrigatório] 
 **tipo_documento_mensagem_geral** | **number** | é o tipo do documento geral | [obrigatório] 
 **descricao** | **string** | é a descrição do protocolo de habilitação | [opcional] 
