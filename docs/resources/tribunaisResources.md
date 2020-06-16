@@ -24,10 +24,8 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const result = await intimaai.tribunaisResources.consultarPorId(18);
-
-    const paginator = await intimaai.tribunaisResources.paginate();
-    await paginator.getPage(1);
+    const result_by_id = await intimaai.tribunaisResources.consultarPorId(18);
+    console.log(result_by_id);
 }
 catch (error)
 {

@@ -32,7 +32,7 @@ npm install @brainy-digital/intima.ai-sdk-node --save
 
 ## Començando
 
-Após seguir a [instalação](#Instalação):
+Após seguir os passos da [instalação](#Instalação). Por exemplo, para realizar uma cópia processual:
 
 ```javascript
 const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
@@ -49,14 +49,35 @@ try
     const result = await intimaai.copiasProcessuaisResources.cadastrarNovaCopia(copy);
 
     console.log(result);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
+
+## Paginação
+
+A maioria dos recursos do SDK (Resources) possuem paginação, que pode ser acessada atravez do 
+[**Paginator**](./docs/models/api/Paginator.md). A utilização da paginação de um recurso é bem simples:
+
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// or
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
 
     //Resource paginated
     const paginator_actions = intimaai.acoesResources.paginate();
     await paginator_actions.getPage(1);
-    // await paginator.nextPage();
-    // await paginator.previousPage();
-    // await paginator.hasNextPage();
-    // await paginator.loadAll();
+    await paginator_actions.nextPage();
+    await paginator_actions.previousPage();
+    await paginator_actions.hasNextPage();
+    await paginator_actions.loadAll();
 
     const paginator_results = paginator_actions.getCollection();
 

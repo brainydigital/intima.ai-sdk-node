@@ -16,6 +16,25 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **id** | **number**| é o id referente ao protocolo de habilitação cadastrado no Intima.ai | [obrigatório]
 
+### Exemplos
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// ou
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const by_id_result = await intimaai.protocolosDeHabilitacaoResources.consultarPorId(21);
+    console.log(by_id_result);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
+
 # **cadastrarPrimeiraEtapaParaNovoProtocoloDeHabilitacao**
 
 ### Parametros
@@ -23,6 +42,26 @@ Nome | Tipo | Descrição | Notas
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **qualification_protocol** | [**PrimeiraEtapaParaProtocoloDeHabilitacao**](../models/qualification_protocol/PrimeiraEtapaParaProtocoloDeHabilitacao.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+
+### Exemplos
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// ou
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const protocol = { process_number: '0000000-00.0000.0.00.0000', auth_id: 1 };
+    const new_first_step_result = await intimaai.protocolosDeHabilitacaoResources.cadastrarPrimeiraEtapaParaNovoProtocoloDeHabilitacao(protocol);
+    console.log(new_first_step_result);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
 
 # **cadastrarSegundaEtapaParaNovoProtocoloDeHabilitacao**
 
@@ -43,11 +82,6 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const by_id_result = await intimaai.protocolosDeHabilitacaoResources.consultarPorId(21);
-
-    const protocol = { process_number: '0000000-00.0000.0.00.0000', auth_id: 1 };
-    const new_first_step_result = await intimaai.protocolosDeHabilitacaoResources.cadastrarPrimeiraEtapaParaNovoProtocoloDeHabilitacao(protocol);
-
     const qualification_protocol = {
         tipo_solicitacao: 0,
         tipo_declaracao: 0,
@@ -65,9 +99,7 @@ try
     };
 
     const new_first_second_result = await intimaai.protocolosDeHabilitacaoResources.cadastrarSegundaEtapaParaNovoProtocoloDeHabilitacao(4039, qualification_protocol);
-
-    const paginator = await intimaai.protocolosDeHabilitacaoResources.paginate();
-    await paginator.getPage(1);
+    console.log(new_first_second_result);
 }
 catch (error)
 {

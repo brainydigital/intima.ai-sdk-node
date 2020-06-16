@@ -17,6 +17,25 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **id** | **number**| é o id referente ao tribunal cadastrado em "Tribunais ativos" no Intima.ai | [obrigatório]
 
+### Exemplos
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// or
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const auth_by_id_result = await intimaai.autenticacoesResources.consultarPorId(1);
+    console.log(auth_by_id_result);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
+
 # **cadastrarNovaAutenticacao**
 
 ### Parametros
@@ -24,6 +43,32 @@ Nome | Tipo | Descrição | Notas
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **auth** | [**NovaAutenticacao**](../models/auth/NovaAutenticacao.md)| parametros necessários para a criação de um novo registro | [obrigatório]
+
+### Exemplos
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// or
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const new_auth = { 
+        tribunal_id: 1, 
+        user_certificate_id: 1,
+        // or
+        // login: '',
+        // password: ''
+    };
+    const new_auth_result = await intimaai.autenticacoesResources.cadastrarNovaAutenticacao(new_auth);
+    console.log(new_auth_result);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
 
 # **ativarCapturaDeIntimacoesParaAutenticacao**
 
@@ -33,6 +78,26 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **auth_id** | **number**| é o id referente ao tribunal cadastrado em "Tribunais ativos" no Intima.ai | [obrigatório]
 **enable_auth** | [**AtivarIntimacoesParaAutenticacao**](../models/auth/AtivarIntimacoesParaAutenticacao.md)| parametros necessários para a ativação da captura de intimações | [obrigatório]
+
+### Exemplos
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// or
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const auth_enable = { day_hour: ['06:00'], tabs: ['SEM_PRAZO'], week_days: [0] };
+    const enable_auth_intimations_result = await intimaai.autenticacoesResources.ativarCapturaDeIntimacoesParaAutenticacao(199, auth_enable);
+    console.log(enable_auth_intimations_result);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
 
 # **desativarCapturaDeIntimacoesParaAutenticacao**
 
@@ -52,24 +117,8 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const auth_by_id = await intimaai.autenticacoesResources.consultarPorId(1);
-
-    const new_auth = { 
-        tribunal_id: 1, 
-        user_certificate_id: 1,
-        // or
-        // login: '',
-        // password: ''
-    };
-    const new_auth_result = await intimaai.autenticacoesResources.cadastrarNovaAutenticacao(new_auth);
-
-    const auth_enable = { day_hour: ['06:00'], tabs: ['SEM_PRAZO'], week_days: [0] };
-    const enable_auth_intimations_result = await intimaai.autenticacoesResources.ativarCapturaDeIntimacoesParaAutenticacao(199, auth_enable);
-
     const disable_auth_intimations_result = await intimaai.autenticacoesResources.desativarCapturaDeIntimacoesParaAutenticacao(199);
-    
-    const paginator = await intimaai.autenticacoesResources.paginate();
-    await paginator.getPage(1);
+    console.log(disable_auth_intimations_result);
 }
 catch (error)
 {

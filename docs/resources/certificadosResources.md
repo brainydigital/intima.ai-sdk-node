@@ -17,6 +17,25 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **id** | **number**| é o id referente ao certificado cadastrado no Intima.ai | [obrigatório]
 
+### Exemplos
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// or
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const by_id_result = await intimaai.certificadosResources.consultarPorId(18);
+    console.log(by_id_result);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
+
 # **cadastrarNovoCertificado**
 
 ### Parametros
@@ -24,6 +43,26 @@ Nome | Tipo | Descrição | Notas
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **certificate** | [**Certificado**](../models/certificate/Certificado.md)| parametros necessários para a criação de um novo registro | [obrigatório]
+
+### Exemplos
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// or
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const certificate = { pfx: '/path/to/file.pfx', password: '12345678' };
+    const new_certificate_result = await intimaai.certificadosResources.cadastrarNovoCertificado(certificate);
+    console.log(new_certificate_result);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
 
 # **atualizarCertificado**
 
@@ -33,6 +72,26 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **certificate_id** | **number**| é o id referente ao certificado cadastrado no Intima.ai | [obrigatório]
 **certificate** | [**Certificado**](../models/certificate/Certificado.md)| parametros necessários para a atualização do registro | [obrigatório]
+
+### Exemplos
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// or
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const certificate = { pfx: '/path/to/file.pfx', password: '12345678' };
+    const new_certificate_result = await intimaai.certificadosResources.atualizarCertificado(1, certificate);
+    console.log(new_certificate_result);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
 
 # **excluirCertificado**
 
@@ -52,15 +111,8 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const by_id_result = await intimaai.certificadosResources.consultarPorId(18);
-
-    const certificate = { pfx: '/path/to/file.pfx', password: '12345678' };
-    const new_certificate_result = await intimaai.certificadosResources.cadastrarNovoCertificado(certificate);
-
     const delete_certificate_result = await intimaai.certificadosResources.excluirCertificado(19);
-
-    const paginator = await intimaai.certificadosResources.paginate();
-    await paginator.getPage(1);
+    console.log(delete_certificate_result);
 }
 catch (error)
 {

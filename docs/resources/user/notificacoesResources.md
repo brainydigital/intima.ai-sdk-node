@@ -17,6 +17,25 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **id** | **number**| é o id referente ao email cadastrado que recebe notificações | [obrigatório]
 
+### Exemplos
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// or
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const by_id_result = await intimaai.notificacoesResources.consultarPorId(1);
+    console.log(by_id_result);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
+
 # **cadastrarNovoEmailParaNotificacoes**
 
 ### Parametros
@@ -24,6 +43,25 @@ Nome | Tipo | Descrição | Notas
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **email** | **string**| email que deseja cadastrar para receber notificações | [obrigatório]
+
+### Exemplos
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// or
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const new_email_result = await intimaai.notificacoesResources.cadastrarNovoEmailParaNotificacoes('user@email.com');
+    console.log(new_email_result);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
 
 # **atualizarEmailParaNotificacoes**
 
@@ -33,6 +71,25 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **user_email_notification_id** | **number**| é o id referente ao email cadastrado que recebe notificações | [obrigatório]
 **email** | **string**| email que deseja atualizar para receber notificações | [obrigatório]
+
+### Exemplos
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// or
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const update_email_result = await intimaai.notificacoesResources.atualizarEmailParaNotificacoes(3, 'user2@email.com');
+    console.log(update_email_result);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
 
 # **excluirEmailParaNotificacoes**
 
@@ -52,16 +109,8 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const by_id_result = await intimaai.notificacoesResources.consultarPorId(1);
-
-    const new_email_result = await intimaai.notificacoesResources.cadastrarNovoEmailParaNotificacoes('user@email.com');
-
-    const update_email_result = await intimaai.notificacoesResources.atualizarEmailParaNotificacoes(3, 'user2@email.com');
-
     const delete_email_result = await intimaai.notificacoesResources.excluirEmailParaNotificacoes(3);
-    
-    const paginator = await intimaai.notificacoesResources.paginate();
-    await paginator.getPage(1);
+    console.log(delete_email_result);
 }
 catch (error)
 {

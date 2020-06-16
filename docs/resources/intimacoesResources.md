@@ -15,6 +15,25 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **id** | **number**| é o id referente a intimação no Intima.ai | [obrigatório]
 
+### Exemplos
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// or
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const by_id_result = await intimaai.intimacoesResources.consultarPorId(1);
+    console.log(by_id_result);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
+
 # **marcarIntimacaoComoRevisada**
 
 ### Parametros
@@ -33,12 +52,8 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const by_id_result = await intimaai.intimacoesResources.consultarPorId(1);
-
     const mark_intimation_result = await intimaai.intimacoesResources.marcarIntimacaoComoRevisada(1);
-    
-    const paginator = await intimaai.intimacoesResources.paginate();
-    await paginator.getPage(1);
+    console.log(mark_intimation_result);
 }
 catch (error)
 {

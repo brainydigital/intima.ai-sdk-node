@@ -15,6 +15,25 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **id** | **number**| é o id referente as informações processuais capturadas no Intima.ai | [obrigatório]
 
+### Exemplos
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// or
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const by_id_result = await intimaai.informacoesProcessuaisResources.consultarPorId(21);
+    console.log(by_id_result);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
+
 # **capturarNovaInformacaoProcessual**
 
 ### Parametros
@@ -33,13 +52,9 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const by_id_result = await intimaai.informacoesProcessuaisResources.consultarPorId(21);
-
     const process = { process_number: '00000000000000000000', auth_id: 120 };
     const new_info_result = await intimaai.informacoesProcessuaisResources.capturarNovaInformacaoProcessual(process);
-
-    const paginator = await intimaai.informacoesProcessuaisResources.paginate();
-    await paginator.getPage(1);
+    console.log(new_info_result);
 }
 catch (error)
 {

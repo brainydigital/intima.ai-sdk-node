@@ -19,6 +19,25 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **id** | **number**| é o id referente ao andamento processual no Intima.ai | [obrigatório]
 
+### Exemplos
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// ou
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const by_id_result = await intimaai.andamentosProcessuaisResources.consultarPorId(18);
+    console.log(by_id_result);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
+
 # **cadastrarNovoAndamento**
 
 ### Parametros
@@ -26,6 +45,26 @@ Nome | Tipo | Descrição | Notas
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **course** | [**AndamentoProcessual**](../models/process_course/AndamentoProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+
+### Exemplos
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// ou
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const course = { process_number: '0000000-00.0000.0.00.0000', auth_id: 120 };
+    const new_result = await intimaai.andamentosProcessuaisResources.cadastrarNovoAndamento(course);
+    console.log(new_result);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
 
 # **capturarAndamentos**
 
@@ -35,6 +74,25 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **course_id** | **number**| é o id referente ao andamento processual no Intima.ai | [obrigatório]
 
+### Exemplos
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// ou
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const capture_result = await intimaai.andamentosProcessuaisResources.capturarAndamentos(31);
+    console.log(capture_result);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
+
 # **cadastrarNovoAndamentoECapturarAndamentos**
 
 ### Parametros
@@ -43,6 +101,26 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **course** | [**AndamentoProcessual**](../models/process_course/AndamentoProcessual.md) | parametros necessários para a criação e captura de um novo registro | [obrigatório]
 
+### Exemplos
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// ou
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const course = { process_number: '0000000-00.0000.0.00.0000', auth_id: 120 };
+    const new_result = await intimaai.andamentosProcessuaisResources.cadastrarNovoAndamentoECapturarAndamentos(course);
+    console.log(new_result);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
+
 # **consultarResultadosDoAndamento**
 
 ### Parametros
@@ -50,6 +128,26 @@ Nome | Tipo | Descrição | Notas
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **course_id** | **number**| é o id referente ao andamento processual no Intima.ai | [obrigatório]
+
+### Exemplos
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// ou
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const capture_results_paginator = await intimaai.andamentosProcessuaisResources.consultarResultadosDoAndamento(31);
+    await capture_results_paginator.getPage(1);
+    console.log(capture_results_paginator.getCollection());
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
 
 # **excluirAndamento**
 
@@ -69,20 +167,8 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const by_id_result = await intimaai.andamentosProcessuaisResources.consultarPorId(18);
-
-    const course = { process_number: '0000000-00.0000.0.00.0000', auth_id: 120 };
-    const new_result = await intimaai.andamentosProcessuaisResources.cadastrarNovoAndamento(course);
-
-    const capture_result = await intimaai.andamentosProcessuaisResources.capturarAndamentos(31);
-
-    const capture_results_paginator = await intimaai.andamentosProcessuaisResources.consultarResultadosDoAndamento(31);
-    await capture_results_paginator.getPage(1);
-
     const delete_result = await intimaai.andamentosProcessuaisResources.excluirAndamento(25);
-
-    const paginator = await intimaai.andamentosProcessuaisResources.paginate();
-    await paginator.getPage(1);
+    console.log(delete_result);
 }
 catch (error)
 {

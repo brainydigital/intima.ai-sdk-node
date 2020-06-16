@@ -15,6 +15,25 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **id** | **number**| é o id referente ao protocolo no Intima.ai | [obrigatório]
 
+### Exemplos
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// ou
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const by_id_result = await intimaai.protocolosProcessuaisResources.consultarPorId(14362);
+    console.log(by_id_result);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
+
 # **cadastrarNovoProtocolo**
 
 ### Parametros
@@ -33,8 +52,6 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const by_id_result = await intimaai.protocolosProcessuaisResources.consultarPorId(14362);
-
     const protocol = {
         process_number: '0000000-00.0000.0.00.0000',
         auth_id: 1,
@@ -46,9 +63,7 @@ try
     };
 
     const new_protocol_result = await intimaai.protocolosProcessuaisResources.cadastrarNovoProtocolo(protocol);
-    
-    const paginator = await intimaai.protocolosProcessuaisResources.paginate();
-    await paginator.getPage(1);
+    console.log(new_protocol_result);
 }
 catch (error)
 {

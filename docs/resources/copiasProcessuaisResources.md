@@ -15,6 +15,25 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **id** | **number**| é o id referente a cópia processual no Intima.ai | [obrigatório]
 
+### Exemplos
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// or
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const by_id_result = await intimaai.copiasProcessuaisResources.consultarPorId(45202);
+    console.log(by_id_result);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
+
 # **cadastrarNovaCopia**
 
 ### Parametros
@@ -33,13 +52,9 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const by_id_result = await intimaai.copiasProcessuaisResources.consultarPorId(45202);
-
     const copy = { process_number: '0000000-00.0000.0.00.0000', auth_id: 1 };
     const new_copy_result = await intimaai.copiasProcessuaisResources.cadastrarNovaCopia(copy);
-
-    const paginator = await intimaai.copiasProcessuaisResources.paginate();
-    await paginator.getPage(1);
+    console.log(new_copy_result);
 }
 catch (error)
 {

@@ -15,6 +15,25 @@ Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
 **id** | **number**| é o id referente a ação no Intima.ai | [obrigatório]
 
+### Exemplos
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// or
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const by_id_result = await intimaai.acoesResources.consultarPorId(95388);
+    console.log(by_id_result);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
+
 # **consultarResultadosDaAcao**
 
 ### Parametros
@@ -33,13 +52,9 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const by_id_result = await intimaai.acoesResources.consultarPorId(95388);
-
     const results_action_paginator = await intimaai.acoesResources.consultarResultadosDaAcao(95371);
     await results_action_paginator.getPage(1);
-    
-    const paginator = await intimaai.acoesResources.paginate();
-    await paginator.getPage(1);
+    console.log(results_action_paginator.getCollection());
 }
 catch (error)
 {
