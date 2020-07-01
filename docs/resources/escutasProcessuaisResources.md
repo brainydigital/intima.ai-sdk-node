@@ -14,7 +14,7 @@ Metodo | Requisição HTTP | Descrição
 [**cadastrarNovaEscuta**](escutasProcessuaisResources.md#cadastrarNovaEscuta) | **POST** /escutas-processuais | Cadastra uma nova escuta processual
 [**capturarEscuta**](escutasProcessuaisResources.md#capturarEscuta) | **GET** /acoes/escutas-processuais/{escuta_id}/capturar | Executa a escuta processual
 [**cadastrarNovaEscutaECapturar**](escutasProcessuaisResources.md#cadastrarNovaEscutaECapturar) | **POST** /acoes/escutas-processuais/criar-e-capturar| Cadastra e executa a escuta processual
-[**consultarResultadosCapturadosDaEscuta**](escutasProcessuaisResources.md#consultarResultadosCapturadosDaEscuta) | **GET** /escutas-processuais/{escuta_id}/results | Retorna os resultados da escuta processual
+[**consultarResultadosCapturadosDaEscuta**](escutasProcessuaisResources.md#consultarResultadosCapturadosDaEscuta) | **GET** /escutas-processuais/{escuta_id}/resultados | Retorna os resultados da escuta processual
 [**atualizarEscuta**](escutasProcessuaisResources.md#atualizarEscuta) | **PUT** /escutas-processuais/{escuta_id} | Atualiza uma escuta processual
 [**excluirEscuta**](escutasProcessuaisResources.md#excluirEscuta) | **DELETE** /escutas-processuais/{escuta_id} | Exclui uma escuta processual
 

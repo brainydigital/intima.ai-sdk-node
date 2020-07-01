@@ -18,7 +18,7 @@ Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
 [**consultarPorId**](consultasProcessuaisResources.md#consultarPorId) | **GET** /consultas-processuais/{id} | Visualiza uma consulta processual
 [**cadastrarNovaConsulta**](consultasProcessuaisResources.md#cadastrarNovaConsulta) | **POST** /acoes/consultas-processuais | Cadastra uma nova consulta processual
-[**consultarResultadosDaConsulta**](consultasProcessuaisResources.md#consultarResultadosDaConsulta) | **GET** /consultas-processuais/{consulta_id}/results | Retorna um [**Paginator**](../models/api/Paginator.md) com os processos capturados
+[**consultarResultadosDaConsulta**](consultasProcessuaisResources.md#consultarResultadosDaConsulta) | **GET** /consultas-processuais/{consulta_id}/resultados | Retorna um [**Paginator**](../models/api/Paginator.md) com os processos capturados
 [**listarPreAnalisesDeConsultas**](consultasProcessuaisResources.md#listarPreAnalisesDeConsultas) | **GET** /consultas-processuais/consultas-analises | Retorna um [**Paginator**](../models/api/Paginator.md) com as pré-análises previamente realizadas para as consultas processuais
 [**consultarPorIdPreAnaliseDeConsulta**](consultasProcessuaisResources.md#consultarPorIdPreAnaliseDeConsulta) | **GET** /consultas-processuais/consultas-analises/{id} | Visualiza uma pré-análise que foi realizada para uma determinada consulta processual
 [**cadastrarPreAnaliseDeConsulta**](consultasProcessuaisResources.md#cadastrarPreAnaliseDeConsulta) | **POST** /acoes/consultas-processuais/consultas-analises | Cadastra uma nova pré-análise para uma determinada consulta processual

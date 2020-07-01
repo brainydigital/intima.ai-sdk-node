@@ -12,7 +12,7 @@ Metodo | Requisição HTTP | Descrição
 [**cadastrarNovoAndamento**](andamentosProcessuaisResources.md#cadastrarNovoAndamento) | **POST** /andamentos-processuais | Cadastra um novo andamento processual
 [**capturarAndamentos**](andamentosProcessuaisResources.md#capturarAndamentos) | **GET** /actions/andamentos-processuais/{andamento_id}/capture | Captura os andamentos processuais de um andamento processual previamente cadastrado no Intima.ai
 [**cadastrarNovoAndamentoECapturarAndamentos**](andamentosProcessuaisResources.md#cadastrarNovoAndamentoECapturarAndamentos) | **POST** /actions/andamentos-processuais/create-and-capture | Cadastra e captura os andamento processuais no Intima.ai
-[**consultarResultadosDoAndamento**](andamentosProcessuaisResources.md#consultarResultadosDoAndamento) | **GET** /andamentos-processuais/{andamento_id}/results | Retorna um *Paginator* com os andamento processuais capturados
+[**consultarResultadosDoAndamento**](andamentosProcessuaisResources.md#consultarResultadosDoAndamento) | **GET** /andamentos-processuais/{andamento_id}/resultados | Retorna um *Paginator* com os andamento processuais capturados
 [**excluirAndamento**](andamentosProcessuaisResources.md#excluirAndamento) | **DELETE** /andamentos-processuais/{andamento_id} | Exclui um andamento processual
 
 # **consultarPorId**
