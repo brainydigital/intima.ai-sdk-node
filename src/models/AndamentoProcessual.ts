@@ -1,4 +1,4 @@
 export type AndamentoProcessual = {
-    process_number: string,
-    auth_id: number
+    numero_processo: string,
+    autenticacao_id: number
 }

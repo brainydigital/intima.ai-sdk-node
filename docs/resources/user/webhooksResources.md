@@ -1,13 +1,17 @@
-# **webhooksResources**
+# Recurso: **webhooksResources**
+
+> Atravez deste recurso você poderá cadastrar e manter todos os webhooks que deseja ser notificado, 
+>após o termino de uma ação realizada pelo `Intima.ai`.
+
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**consultarPorId**](webhooksResources.md#consultarPorId) | **GET** /user-webhooks | Visualiza um webhook do usuário
-[**cadastrarNovoWebhook**](webhooksResources.md#cadastrarNovoWebhook) | **POST** /user-webhooks | Cadastra um novo webhook do usuário
-[**atualizarWebhook**](webhooksResources.md#atualizarWebhook) | **PUT** /user-webhooks/{user_webhook_id} | Atualiza um webhook do usuário
-[**excluirWebhook**](webhooksResources.md#excluirWebhook) | **DELETE** /user-webhooks/{user_webhook_id} | Exclui um webhook do usuário
+[**consultarPorId**](webhooksResources.md#consultarPorId) | **GET** /usuarios-webhooks | Visualiza um webhook do usuário
+[**cadastrarNovoWebhook**](webhooksResources.md#cadastrarNovoWebhook) | **POST** /usuarios-webhooks | Cadastra um novo webhook do usuário
+[**atualizarWebhook**](webhooksResources.md#atualizarWebhook) | **PUT** /usuarios-webhooks/{webhook_id} | Atualiza um webhook do usuário
+[**excluirWebhook**](webhooksResources.md#excluirWebhook) | **DELETE** /usuarios-webhooks/{webhook_id} | Exclui um webhook do usuário
 
 # **consultarPorId**
 
@@ -22,14 +26,13 @@ Nome | Tipo | Descrição | Notas
 const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
 // ou
 // import Intimaai from '@brainy-digital/intima.ai-sdk-node';
-import { ACTION_TYPE, HTTP_VERB } from '@brainy-digital/intima.ai-sdk-node/models/Webhook';
 
 try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const by_id_result = await intimaai.webhooksResources.consultarPorId(4);
-    console.log(by_id_result);
+    const resultado = await intimaai.webhooks.consultarPorId(4);
+    console.log(resultado);
 }
 catch (error)
 {
@@ -43,7 +46,7 @@ catch (error)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**user_webhook** | [**Webhook**](../../models/webhook/Webhook.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+**webhook** | [**Webhook**](../../models/webhook/Webhook.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
 ```javascript
@@ -57,13 +60,13 @@ try
     const intimaai = new Intimaai('api_secret_token');
 
     const webhook = { 
-        action_type: ACTION_TYPE.PROCESS_COPY // ou apenas 1, 
-        http_verb: HTTP_VERB.GET // ou apenas 'GET', 
+        tipo_acao: ACTION_TYPE.PROCESS_COPY // ou apenas 1, 
+        verbo_http: HTTP_VERB.GET // ou apenas 'GET', 
         url: 'https://example.com' 
     };
 
-    const new_webhook_result = await intimaai.webhooksResources.cadastrarNovoWebhook(webhook);
-    console.log(new_webhook_result);
+    const resultado = await intimaai.webhooks.cadastrarNovoWebhook(webhook);
+    console.log(resultado);
 }
 catch (error)
 {
@@ -77,8 +80,8 @@ catch (error)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**user_webhook_id** | **number**| é o id referente ao webhook do usuário no Intima.ai | [obrigatório]
-**user_webhook** | [**Webhook**](../../models/webhook/Webhook.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+**webhook_id** | **number**| é o id referente ao webhook do usuário no Intima.ai | [obrigatório]
+**webhook** | [**Webhook**](../../models/webhook/Webhook.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
 ```javascript
@@ -92,13 +95,13 @@ try
     const intimaai = new Intimaai('api_secret_token');
 
     const webhook = { 
-        action_type: ACTION_TYPE.PROCESS_COPY // ou apenas 1, 
-        http_verb: HTTP_VERB.GET // ou apenas 'GET', 
+        tipo_acao: ACTION_TYPE.PROCESS_COPY // ou apenas 1, 
+        verbo_http: HTTP_VERB.GET // ou apenas 'GET', 
         url: 'https://example.com' 
     };
 
-    const update_webhook_result = await intimaai.webhooksResources.atualizarWebhook(2, webhook);
-    console.log(update_webhook_result);
+    const resultado = await intimaai.webhooks.atualizarWebhook(2, webhook);
+    console.log(resultado);
 }
 catch (error)
 {
@@ -112,21 +115,20 @@ catch (error)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**user_webhook_id** | **number**| é o id referente ao webhook do usuário no Intima.ai | [obrigatório]
+**webhook_id** | **number**| é o id referente ao webhook do usuário no Intima.ai | [obrigatório]
 
 ### Exemplos
 ```javascript
 const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
 // ou
 // import Intimaai from '@brainy-digital/intima.ai-sdk-node';
-import { ACTION_TYPE, HTTP_VERB } from '@brainy-digital/intima.ai-sdk-node/models/Webhook';
 
 try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const delete_webhook_result = await intimaai.webhooksResources.excluirWebhook(6);
-    console.log(delete_webhook_result);
+    const resultado = await intimaai.webhooks.excluirWebhook(6);
+    console.log(resultado);
 }
 catch (error)
 {

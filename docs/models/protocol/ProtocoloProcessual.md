@@ -3,8 +3,8 @@
 ## Propriedades
 Nome | Tipo | Descrição | Notas
 ------------ | ------------- | ------------- | -------------
-**auth_id** | **number** | é o id referente ao tribunal cadastrado em "Tribunais ativos" no Intima.ai | [obrigatório] 
-**process_number** | **string** | é o numero do processo no qual se deseja realizar o protocolo | [obrigatório] 
+**autenticacao_id** | **number** | é o id referente ao tribunal cadastrado em "Tribunais ativos" no Intima.ai | [obrigatório] 
+**numero_processo** | **string** | é o numero do processo no qual se deseja realizar o protocolo | [obrigatório] 
 **tipo_documento_mensagem_geral** | **number** | é o tipo do documento geral | [obrigatório] 
 **descricao** | **string** | é a descrição do protocolo de habilitação | [opcional] 
 **mensagem_geral** | **string** | é a mensagem geral do protocolo de habilitação | [opcional] 

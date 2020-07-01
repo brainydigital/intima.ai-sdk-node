@@ -5,7 +5,7 @@ import { ResourceResult } from "./resource_result";
 export class Action extends Resource {
     
     getResourceEndpoint() {
-        return 'actions';
+        return 'acoes';
     }
 
     constructor(API: API) {
@@ -13,17 +13,17 @@ export class Action extends Resource {
     }
 
     /**
-     * consultarPorId
+     * Obtem uma ação pelo id
      */
     public async consultarPorId(id: number): Promise<any> {
         return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
     
     /**
-     * consultarResultadosDaAcao
+     * Obtem os resultados de uma ação pelo id
      */
-    public consultarResultadosDaAcao(action_id: number) {
-        const resource = new ResourceResult(this.getAPI(), this, action_id);
-        return resource.paginate();
+    public consultarResultadosDaAcao(acao_id: number) {
+        const resource = new ResourceResult(this.getAPI(), this, acao_id);
+        return resource.paginar();
     }
 }

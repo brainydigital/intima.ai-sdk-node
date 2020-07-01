@@ -14,62 +14,58 @@ import { Certificate } from "./resources/certificate";
 import { Auth } from "./resources/auth";
 import { Tribunal } from "./resources/tribunal";
 import { Intimation } from "./resources/intimation";
-import { ProcessProtocolEsaj } from "./resources/process_protocol_esaj";
 
 class Intimaai {
 
     private API: API;
 
-    public autenticacoesResources: Auth;
+    public autenticacoes: Auth;
 
-    public tribunaisResources: Tribunal;
+    public tribunais: Tribunal;
 
-    public certificadosResources: Certificate;
+    public certificados: Certificate;
 
-    public intimacoesResources: Intimation;
+    public intimacoes: Intimation;
 
-    public usuariosResources: User;
+    public usuarios: User;
 
-    public notificacoesResources: UserNotification;
+    public notificacoes: UserNotification;
 
-    public webhooksResources: UserWebhook;
+    public webhooks: UserWebhook;
 
-    public acoesResources: Action;
+    public acoes: Action;
 
-    public copiasProcessuaisResources: ProcessCopy;
+    public copiasProcessuais: ProcessCopy;
 
-    public escutasProcessuaisResources: ProcessListener;
+    public escutasProcessuais: ProcessListener;
 
-    public protocolosDeHabilitacaoResources: ProcessQualificationProtocol;
+    public protocolosDeHabilitacao: ProcessQualificationProtocol;
 
-    public informacoesProcessuaisResources: ProcessInfo;
+    public informacoesProcessuais: ProcessInfo;
     
-    public andamentosProcessuaisResources: ProcessCourse;
+    public andamentosProcessuais: ProcessCourse;
 
-    public protocolosProcessuaisResources: ProcessProtocol;
+    public protocolosProcessuais: ProcessProtocol;
 
-    public protocolosProcessuaisEsajResources: ProcessProtocolEsaj;
-
-    public consultasProcessuaisResources: ProcessSearch;
+    public consultasProcessuais: ProcessSearch;
 
     constructor(api_token: string, proxy?: string, timeout?: number, max_attempts?: number) {
         this.API = new API(api_token, proxy, timeout, max_attempts);
-        this.autenticacoesResources = new Auth(this.API);
-        this.tribunaisResources = new Tribunal(this.API);
-        this.certificadosResources = new Certificate(this.API);
-        this.intimacoesResources = new Intimation(this.API);
-        this.usuariosResources = new User(this.API);
-        this.notificacoesResources = new UserNotification(this.API);
-        this.webhooksResources = new UserWebhook(this.API);
-        this.acoesResources = new Action(this.API);
-        this.copiasProcessuaisResources = new ProcessCopy(this.API, this.acoesResources);
-        this.escutasProcessuaisResources = new ProcessListener(this.API, this.acoesResources);
-        this.protocolosDeHabilitacaoResources = new ProcessQualificationProtocol(this.API, this.acoesResources);
-        this.informacoesProcessuaisResources = new ProcessInfo(this.API, this.acoesResources);
-        this.andamentosProcessuaisResources = new ProcessCourse(this.API, this.acoesResources);
-        this.protocolosProcessuaisResources = new ProcessProtocol(this.API, this.acoesResources);
-        this.protocolosProcessuaisEsajResources = new ProcessProtocolEsaj(this.API, this.acoesResources);
-        this.consultasProcessuaisResources = new ProcessSearch(this.API, this.acoesResources);
+        this.autenticacoes = new Auth(this.API);
+        this.tribunais = new Tribunal(this.API);
+        this.certificados = new Certificate(this.API);
+        this.intimacoes = new Intimation(this.API);
+        this.usuarios = new User(this.API);
+        this.notificacoes = new UserNotification(this.API);
+        this.webhooks = new UserWebhook(this.API);
+        this.acoes = new Action(this.API);
+        this.copiasProcessuais = new ProcessCopy(this.API, this.acoes);
+        this.escutasProcessuais = new ProcessListener(this.API, this.acoes);
+        this.protocolosDeHabilitacao = new ProcessQualificationProtocol(this.API, this.acoes);
+        this.informacoesProcessuais = new ProcessInfo(this.API, this.acoes);
+        this.andamentosProcessuais = new ProcessCourse(this.API, this.acoes);
+        this.protocolosProcessuais = new ProcessProtocol(this.API, this.acoes);
+        this.consultasProcessuais = new ProcessSearch(this.API, this.acoes);
     }
 
     private getAPI(): API {

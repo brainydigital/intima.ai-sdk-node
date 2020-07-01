@@ -1,3 +1,3 @@
 export type AtualizarEscutaProcessual = {
-    schedule_times: Array<string>
+    horarios_de_captura: Array<string>
 }

@@ -1,6 +1,6 @@
 export type PreAnaliseDeConsultaProcessual = {
-    auth_id: number,
-    process_number?: string,
+    autenticacao_id: number,
+    numero_processo?: string,
     nome_parte?: string,
     nome_representante?: string
 };

@@ -4,7 +4,7 @@ import { API } from "../api/api";
 export class Intimation extends Resource {
     
     getResourceEndpoint() {
-        return 'intimations';
+        return 'intimacoes';
     }
 
     constructor(API: API) {
@@ -12,17 +12,17 @@ export class Intimation extends Resource {
     }
 
     /**
-     * consultarPorId
+     * Obtem uma intimação pelo id
      */
     public async consultarPorId(id: number): Promise<any> {
         return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
-     * marcarIntimacaoComoRevisada
+     * Marca uma intimação como revisada
      */
-    public async marcarIntimacaoComoRevisada(intimation_id: number): Promise<any> {
-        return await this.getAPI().put(`${this.getResourceEndpoint()}/${intimation_id}/mark-as-revised`, {}, {}, {}, null, true);
+    public async marcarIntimacaoComoRevisada(intimacao_id: number): Promise<any> {
+        return await this.getAPI().put(`${this.getResourceEndpoint()}/${intimacao_id}/marcar-como-revisada`, {}, {}, {}, null, true);
     }
 
 }

@@ -8,7 +8,7 @@ export class ProcessInfo extends Resource {
     protected action: Action;
     
     getResourceEndpoint() {
-        return 'process-infos';
+        return 'informacoes-processuais';
     }
 
     constructor(API: API, action: Action) {
@@ -17,16 +17,16 @@ export class ProcessInfo extends Resource {
     }
 
     /**
-     * consultarPorId
+     * Obtem uma informação processual pelo id
      */
     public async consultarPorId(id: number): Promise<any> {
         return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
-     * capturarNovaInformacaoProcessual
+     * Cadastra uma nova informação processual
      */
-    public async capturarNovaInformacaoProcessual(process: InformacaoProcessual): Promise<any> {
-        return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}`, process, {}, {}, null, true);
+    public async capturarNovaInformacaoProcessual(informacao_processual: InformacaoProcessual): Promise<any> {
+        return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}`, informacao_processual, {}, {}, null, true);
     }
 }

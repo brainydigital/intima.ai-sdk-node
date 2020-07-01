@@ -9,7 +9,7 @@ export class ProcessCourse extends Resource {
     protected action: Action;
 
     getResourceEndpoint() {
-        return 'process-courses';
+        return 'andamentos-processuais';
     }
 
     constructor(API: API, action: Action) {
@@ -18,45 +18,45 @@ export class ProcessCourse extends Resource {
     }
 
     /**
-     * consultarPorId
+     * Obtem um andamento processual pelo id
      */
     public async consultarPorId(id: number): Promise<any> {
         return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
-     * cadastrarNovoAndamento
+     * Cadastra um novo andamento processual
      */
-    public async cadastrarNovoAndamento(course: AndamentoProcessual): Promise<any> {
-        return await this.getAPI().post(`${this.getResourceEndpoint()}`, course, {}, {}, null, true);
+    public async cadastrarNovoAndamento(andamento_processual: AndamentoProcessual): Promise<any> {
+        return await this.getAPI().post(`${this.getResourceEndpoint()}`, andamento_processual, {}, {}, null, true);
     }
 
     /**
-     * capturarAndamentos
+     * Captura os andamentos de um andamento processual pré-cadastrado no Intima.ai
      */
-    public async capturarAndamentos(course_id: number): Promise<any> {
-        return await this.getAPI().get(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}/${course_id}/capture`, {}, {}, true);
+    public async capturarAndamentos(andamento_processual_id: number): Promise<any> {
+        return await this.getAPI().get(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}/${andamento_processual_id}/capturar`, {}, {}, true);
     }
 
     /**
-     * cadastrarNovoAndamentoECapturarAndamentos
+     * Castrada e captura os andamentos de um andamento processual
      */
-    public async cadastrarNovoAndamentoECapturarAndamentos(course: AndamentoProcessual): Promise<any> {
-        return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}/create-and-capture`, course, {}, {}, null, true);
+    public async cadastrarNovoAndamentoECapturarAndamentos(andamento_processual: AndamentoProcessual): Promise<any> {
+        return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}/criar-e-capturar`, andamento_processual, {}, {}, null, true);
     }
 
     /**
-     * consultarResultadosDoAndamento
+     * Obtem os resultados da captura do andamento processual pré-cadastrado no Intima.ai
      */
-    public consultarResultadosDoAndamento(course_id: number) {
-        const resource = new ResourceResult(this.getAPI(), this, course_id);
-        return resource.paginate();
+    public consultarResultadosDoAndamento(andamento_processual_id: number) {
+        const resource = new ResourceResult(this.getAPI(), this, andamento_processual_id);
+        return resource.paginar();
     }
 
     /**
-     * excluirAndamento
+     * Deleta um andamento processual pelo id
      */
-    public async excluirAndamento(course_id: number): Promise<any> {
-        return await this.getAPI().delete(`${this.getResourceEndpoint()}/${course_id}`, {}, {}, true);
+    public async excluirAndamento(andamento_processual_id: number): Promise<any> {
+        return await this.getAPI().delete(`${this.getResourceEndpoint()}/${andamento_processual_id}`, {}, {}, true);
     }
 }

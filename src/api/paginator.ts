@@ -32,28 +32,54 @@ export class Paginator {
     }
 
     /**
+     * Returna um Paginator com os recursos da página informada
+     * @return Paginator
+     */
+    public async obterPagina(pagina: number) {
+        return this.getPage(pagina);
+    }
+
+    /**
      * getPage
      */
-    public async getPage(page: number) {
+    private async getPage(page: number) {
         this.paginationData = await this.resourceClass.getAPI().get(this.resourceClass.getResourceEndpoint(), { page });
         this.prepare();
         return this;
     }
 
     /**
+     * Retorna uma coleção de recursos
+     * @return Array<any>
+     */
+    public obterColecao()
+    {
+        return this.getCollection;
+    }
+
+    /**
      * Return a array with resources
      * @return Array<any>
      */
-    public getCollection()
+    private getCollection()
     {
         return this.data;
+    }
+
+    /**
+     * Obtem a proxima página da paginação
+     * @return Paginator
+     */
+    public async proximaPagina(): Promise<Paginator>
+    {
+        return this.nextPage();
     }
 
     /**
      * Get next page
      * @return Paginator
      */
-    public async nextPage(): Promise<Paginator>
+    private async nextPage(): Promise<Paginator>
     {
         if((this.currentPage < this.lastPage) || (!this.currentPage && !this.paginationData)) {
             this.currentPage++;            
@@ -61,6 +87,15 @@ export class Paginator {
         }
 
         return this;
+    }
+
+    /**
+     * Obtem a página anterior da paginação
+     * @return Paginator
+     */
+    public async paginaAnterior(): Promise<Paginator>
+    {
+        return this.previousPage();
     }
 
     /**
@@ -78,16 +113,36 @@ export class Paginator {
     }
 
     /**
+     * Verifica se a proxima página existe
+     * @return boolean
+     */
+    public existeProximaPagina(): boolean
+    {
+        return this.hasNextPage();
+    }
+
+    /**
      * Verify if next page exists
      * @return boolean
      */
-    public hasNextPage(): boolean
+    private hasNextPage(): boolean
     {
         if(this.currentPage < this.lastPage) {
             return true;
         }
 
         return false;
+    }
+
+    /**
+     * Carrega todas as paginações deste recurso.
+     * Tenha cuidado ao utilizar este método.
+     * Sua conta pode ser banida temporariamente devido ao grande numero de requisições sequênciais.
+     * @return Paginator
+     */
+    public async carregarTudo()
+    {
+        return this.loadAll();
     }
 
     /**

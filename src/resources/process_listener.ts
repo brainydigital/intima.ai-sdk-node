@@ -10,7 +10,7 @@ export class ProcessListener extends Resource {
     protected action: Action;
 
     getResourceEndpoint() {
-        return 'process-listeners';
+        return 'escutas-processuais';
     }
 
     constructor(API: API, action: Action) {
@@ -19,52 +19,52 @@ export class ProcessListener extends Resource {
     }
 
     /**
-     * consultarPorId
+     * Obtem uma escuta processual pelo id
      */
     public async consultarPorId(id: number): Promise<any> {
         return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
-     * cadastrarNovaEscuta
+     * Cadastra uma nova escuta processual
      */
-    public async cadastrarNovaEscuta(listener: EscutaProcessual): Promise<any> {
-        return await this.getAPI().post(`${this.getResourceEndpoint()}`, listener, {}, {}, null, true);
+    public async cadastrarNovaEscuta(escuta_processual: EscutaProcessual): Promise<any> {
+        return await this.getAPI().post(`${this.getResourceEndpoint()}`, escuta_processual, {}, {}, null, true);
     }
 
     /**
-     * capturarEscuta
+     * Captura uma escuta processual pelo id
      */
-    public async capturarEscuta(listener_id: number): Promise<any> {
-        return await this.getAPI().get(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}/${listener_id}/capture`, {}, {}, true);
+    public async capturarEscuta(escuta_processual_id: number): Promise<any> {
+        return await this.getAPI().get(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}/${escuta_processual_id}/capturar`, {}, {}, true);
     }
 
     /**
-     * cadastrarNovaEscutaECapturar
+     * Cadastra e captura uma escuta processual no Intima.ai
      */
-    public async cadastrarNovaEscutaECapturar(listener: EscutaProcessual): Promise<any> {
-        return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}/create-and-capture`, listener, {}, {}, null, true);
+    public async cadastrarNovaEscutaECapturar(escuta_processual: EscutaProcessual): Promise<any> {
+        return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}/criar-e-capturar`, escuta_processual, {}, {}, null, true);
     }
 
     /**
-     * consultarResultadosCapturadosDaEscuta
+     * Obtem os resultados capturados de uma escuta processual
      */
-    public consultarResultadosCapturadosDaEscuta(listener_id: number) {
-        const resource = new ResourceResult(this.getAPI(), this, listener_id);
-        return resource.paginate();
+    public consultarResultadosCapturadosDaEscuta(escuta_processual_id: number) {
+        const resource = new ResourceResult(this.getAPI(), this, escuta_processual_id);
+        return resource.paginar();
     }
 
     /**
-     * atualizarEscuta
+     * Atualiza uma escuta processual pelo id
      */
-    public async atualizarEscuta(listener_id: number, listener: AtualizarEscutaProcessual): Promise<any> {
-        return await this.getAPI().put(`${this.getResourceEndpoint()}/${listener_id}`, listener, {}, {}, null, true);
+    public async atualizarEscuta(escuta_processual_id: number, escuta_processual: AtualizarEscutaProcessual): Promise<any> {
+        return await this.getAPI().put(`${this.getResourceEndpoint()}/${escuta_processual_id}`, escuta_processual, {}, {}, null, true);
     }
 
     /**
-     * excluirEscuta
+     * Deleta uma escuta processual pelo id
      */
-    public async excluirEscuta(listener_id: number): Promise<any> {
-        return await this.getAPI().delete(`${this.getResourceEndpoint()}/${listener_id}`, {}, {}, true);
+    public async excluirEscuta(escuta_processual_id: number): Promise<any> {
+        return await this.getAPI().delete(`${this.getResourceEndpoint()}/${escuta_processual_id}`, {}, {}, true);
     }
 }

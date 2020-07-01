@@ -14,7 +14,7 @@ export abstract class Resource {
 
     abstract getResourceEndpoint(): string;
 
-    public paginate(): Paginator {
+    public paginar(): Paginator {
         return this.paginator;
     }
 

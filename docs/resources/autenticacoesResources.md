@@ -1,13 +1,17 @@
-# **autenticacoesResources**
+# Recurso: **autenticacoes**
+
+> As autenticações são os serviços de autenticação do `Intima.ai` para os tribunais. 
+> Você pode criar diversas autenticações para diversos tribunais sendo uma autenticação para cada tribunal.
+
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**consultarPorId**](autenticacoesResources.md#consultarPorId) | **GET** /auths/{id} | Visualiza um auth
-[**cadastrarNovaAutenticacao**](autenticacoesResources.md#cadastrarNovaAutenticacao) | **POST** /auths | Cadastra um novo auth
-[**ativarCapturaDeIntimacoesParaAutenticacao**](autenticacoesResources.md#ativarCapturaDeIntimacoesParaAutenticacao) | **PUT** /auths/{auth_id}/intimations/enable | Ativa a captura de intimações para um auth
-[**desativarCapturaDeIntimacoesParaAutenticacao**](autenticacoesResources.md#desativarCapturaDeIntimacoesParaAutenticacao) | **PUT** /auths/{auth_id}/intimations/disable | Desativa a captura de intimações para um auth
+[**consultarPorId**](autenticacoesResources.md#consultarPorId) | **GET** /autenticacoes/{id} | Visualiza uma autenticação pelo id
+[**cadastrarNovaAutenticacao**](autenticacoesResources.md#cadastrarNovaAutenticacao) | **POST** /autenticacoes | Cadastra uma nova autenticação
+[**ativarCapturaDeIntimacoesParaAutenticacao**](autenticacoesResources.md#ativarCapturaDeIntimacoesParaAutenticacao) | **PUT** /autenticacoes/{autenticacao_id}/intimacoes/ativar | Ativa a captura de intimações para uma autenticação
+[**desativarCapturaDeIntimacoesParaAutenticacao**](autenticacoesResources.md#desativarCapturaDeIntimacoesParaAutenticacao) | **PUT** /autenticacoes/{autenticacao_id}/intimacoes/desativar | Desativa a captura de intimações para uma autenticação
 
 # **consultarPorId**
 
@@ -27,8 +31,8 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const auth_by_id_result = await intimaai.autenticacoesResources.consultarPorId(1);
-    console.log(auth_by_id_result);
+    const resultado = await intimaai.autenticacoes.consultarPorId(1);
+    console.log(resultado);
 }
 catch (error)
 {
@@ -54,15 +58,15 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const new_auth = { 
+    const autenticacao = { 
         tribunal_id: 1, 
-        user_certificate_id: 1,
-        // or
+        certificado_id: 1,
+        // ou
         // login: '',
-        // password: ''
+        // senha: ''
     };
-    const new_auth_result = await intimaai.autenticacoesResources.cadastrarNovaAutenticacao(new_auth);
-    console.log(new_auth_result);
+    const resultado = await intimaai.autenticacoes.cadastrarNovaAutenticacao(autenticacao);
+    console.log(resultado);
 }
 catch (error)
 {
@@ -76,7 +80,7 @@ catch (error)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**auth_id** | **number**| é o id referente ao tribunal cadastrado em "Tribunais ativos" no Intima.ai | [obrigatório]
+**autenticacao_id** | **number**| é o id referente ao tribunal cadastrado em "Tribunais ativos" no Intima.ai | [obrigatório]
 **enable_auth** | [**AtivarIntimacoesParaAutenticacao**](../models/auth/AtivarIntimacoesParaAutenticacao.md)| parametros necessários para a ativação da captura de intimações | [obrigatório]
 
 ### Exemplos
@@ -89,9 +93,9 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const auth_enable = { day_hour: ['06:00'], tabs: ['SEM_PRAZO'], week_days: [0] };
-    const enable_auth_intimations_result = await intimaai.autenticacoesResources.ativarCapturaDeIntimacoesParaAutenticacao(199, auth_enable);
-    console.log(enable_auth_intimations_result);
+    const ativar_autenticacao = { horas_do_dia: ['06:00'], abas: ['SEM_PRAZO'], dias_da_semana: [0] };
+    const resultado = await intimaai.autenticacoes.ativarCapturaDeIntimacoesParaAutenticacao(199, ativar_autenticacao);
+    console.log(resultado);
 }
 catch (error)
 {
@@ -105,7 +109,7 @@ catch (error)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**auth_id** | **number**| é o id referente ao tribunal cadastrado em "Tribunais ativos" no Intima.ai | [obrigatório]
+**autenticacao_id** | **number**| é o id referente ao tribunal cadastrado em "Tribunais ativos" no Intima.ai | [obrigatório]
 
 ### Exemplos
 ```javascript
@@ -117,8 +121,8 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const disable_auth_intimations_result = await intimaai.autenticacoesResources.desativarCapturaDeIntimacoesParaAutenticacao(199);
-    console.log(disable_auth_intimations_result);
+    const resultado = await intimaai.autenticacoes.desativarCapturaDeIntimacoesParaAutenticacao(199);
+    console.log(resultado);
 }
 catch (error)
 {

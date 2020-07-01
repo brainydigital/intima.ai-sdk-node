@@ -19,7 +19,7 @@ export enum HTTP_VERB {
 }
 
 export type Webhook = {
-    action_type: ACTION_TYPE | number,
-    http_verb: HTTP_VERB | string,
+    tipo_acao: ACTION_TYPE | number,
+    verbo_http: HTTP_VERB | string,
     url: string
 }

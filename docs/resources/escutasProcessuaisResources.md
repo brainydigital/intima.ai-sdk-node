@@ -1,16 +1,22 @@
-# **escutasProcessuaisResources**
+# Recurso: **escutasProcessuais**
+
+> Com a escuta processual você pode saber todas as movimentações que ocorreram em um processo, 
+>e baixar todos os novos documentos anexados ao processo. Para realizar uma escuta processual 
+>é bastante simples, bastando somente informar o numero do processo, tribunal e os horários que 
+>deseja realizar a escuta processual.
+
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**consultarPorId**](escutasProcessuaisResources.md#consultarPorId) | **GET** /process-listeners/{id} | Visualiza a escuta processual
-[**cadastrarNovaEscuta**](escutasProcessuaisResources.md#cadastrarNovaEscuta) | **POST** /process-listeners | Cadastra uma nova escuta processual
-[**capturarEscuta**](escutasProcessuaisResources.md#capturarEscuta) | **GET** /actions/process-listeners/{listener_id}/capture | Executa a escuta processual
-[**cadastrarNovaEscutaECapturar**](escutasProcessuaisResources.md#cadastrarNovaEscutaECapturar) | **POST** /actions/process-listeners/create-and-capture| Cadastra e executa a escuta processual
-[**consultarResultadosCapturadosDaEscuta**](escutasProcessuaisResources.md#consultarResultadosCapturadosDaEscuta) | **GET** /process-listeners/{listener_id}/results | Retorna os resultados da escuta processual
-[**atualizarEscuta**](escutasProcessuaisResources.md#atualizarEscuta) | **PUT** /process-listeners/{listener_id} | Atualiza uma escuta processual
-[**excluirEscuta**](escutasProcessuaisResources.md#excluirEscuta) | **DELETE** /process-listeners/{listener_id} | Exclui uma escuta processual
+[**consultarPorId**](escutasProcessuaisResources.md#consultarPorId) | **GET** /escutas-processuais/{id} | Visualiza a escuta processual
+[**cadastrarNovaEscuta**](escutasProcessuaisResources.md#cadastrarNovaEscuta) | **POST** /escutas-processuais | Cadastra uma nova escuta processual
+[**capturarEscuta**](escutasProcessuaisResources.md#capturarEscuta) | **GET** /acoes/escutas-processuais/{escuta_id}/capturar | Executa a escuta processual
+[**cadastrarNovaEscutaECapturar**](escutasProcessuaisResources.md#cadastrarNovaEscutaECapturar) | **POST** /acoes/escutas-processuais/criar-e-capturar| Cadastra e executa a escuta processual
+[**consultarResultadosCapturadosDaEscuta**](escutasProcessuaisResources.md#consultarResultadosCapturadosDaEscuta) | **GET** /escutas-processuais/{escuta_id}/results | Retorna os resultados da escuta processual
+[**atualizarEscuta**](escutasProcessuaisResources.md#atualizarEscuta) | **PUT** /escutas-processuais/{escuta_id} | Atualiza uma escuta processual
+[**excluirEscuta**](escutasProcessuaisResources.md#excluirEscuta) | **DELETE** /escutas-processuais/{escuta_id} | Exclui uma escuta processual
 
 # **consultarPorId**
 
@@ -30,8 +36,8 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const by_id_result = await intimaai.escutasProcessuaisResources.consultarPorId(21);
-    console.log(by_id_result);
+    const resultado = await intimaai.escutasProcessuais.consultarPorId(21);
+    console.log(resultado);
 }
 catch (error)
 {
@@ -45,7 +51,7 @@ catch (error)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**listener** | [**EscutaProcessual**](../models/listener/EscutaProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+**escuta_processual** | [**EscutaProcessual**](../models/listener/EscutaProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
 ```javascript
@@ -57,13 +63,13 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const listener = { 
-        process_number: '0000000-00.0000.0.00.0000', 
-        auth_id: 1, 
+    const escuta = { 
+        numero_processo: '0000000-00.0000.0.00.0000', 
+        autenticacao_id: 1, 
         schedule_times: ['07:00'] 
     };
-    const new_result = await intimaai.escutasProcessuaisResources.cadastrarNovaEscuta(listener);
-    console.log(new_result);
+    const resultado = await intimaai.escutasProcessuais.cadastrarNovaEscuta(escuta);
+    console.log(resultado);
 }
 catch (error)
 {
@@ -77,7 +83,7 @@ catch (error)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**listener_id** | **number**| é o id referente a escuta processual no Intima.ai | [obrigatório]
+**escuta_processual_id** | **number**| é o id referente a escuta processual no Intima.ai | [obrigatório]
 
 ### Exemplos
 ```javascript
@@ -89,7 +95,7 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const capture_result = await intimaai.escutasProcessuaisResources.capturarEscuta(30);
+    const capture_result = await intimaai.escutasProcessuais.capturarEscuta(30);
     console.log(capture_result);
 }
 catch (error)
@@ -104,7 +110,7 @@ catch (error)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**listener** | [**EscutaProcessual**](../models/listener/EscutaProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+**escuta_processual** | [**EscutaProcessual**](../models/listener/EscutaProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
 ```javascript
@@ -116,13 +122,13 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const listener = { 
-        process_number: '0000000-00.0000.0.00.0000', 
-        auth_id: 1, 
-        schedule_times: ['07:00'] 
+    const escuta = { 
+        numero_processo: '0000000-00.0000.0.00.0000', 
+        autenticacao_id: 1, 
+        horarios_de_captura: ['07:00'] 
     };
-    const new_and_capture_result = await intimaai.escutasProcessuaisResources.cadastrarNovaEscutaECapturar(listener);
-    console.log(new_and_capture_result);
+    const resultado = await intimaai.escutasProcessuais.cadastrarNovaEscutaECapturar(escuta);
+    console.log(resultado);
 }
 catch (error)
 {
@@ -136,7 +142,7 @@ catch (error)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**listener_id** | **number**| é o id referente a escuta processual no Intima.ai | [obrigatório]
+**escuta_processual_id** | **number**| é o id referente a escuta processual no Intima.ai | [obrigatório]
 
 ### Exemplos
 ```javascript
@@ -148,9 +154,9 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
     
-    const results_paginator = await intimaai.escutasProcessuaisResources.consultarResultadosCapturadosDaEscuta(31);
-    await results_paginator.getPage(1);
-    console.log(results_paginator.getCollection());
+    const resultados = await intimaai.escutasProcessuais.consultarResultadosCapturadosDaEscuta(31);
+    await resultados.obterPagina(1);
+    console.log(resultados.obterColecao());
 }
 catch (error)
 {
@@ -164,8 +170,8 @@ catch (error)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**listener_id** | **number**| é o id referente a escuta processual no Intima.ai | [obrigatório]
-**listener** | [**AtualizarEscutaProcessual**](../models/listener/AtualizarEscutaProcessual.md) | parametros necessários para a atualizar o registro | [obrigatório]
+**escuta_processual_id** | **number**| é o id referente a escuta processual no Intima.ai | [obrigatório]
+**escuta_processual** | [**AtualizarEscutaProcessual**](../models/listener/AtualizarEscutaProcessual.md) | parametros necessários para a atualizar o registro | [obrigatório]
 
 ### Exemplos
 ```javascript
@@ -177,8 +183,8 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const update_result = await intimaai.escutasProcessuaisResources.atualizarEscuta(31, { schedule_times: ['11:00'] });
-    console.log(update_result);
+    const resultado = await intimaai.escutasProcessuais.atualizarEscuta(31, { horarios_de_captura: ['11:00'] });
+    console.log(resultado);
 }
 catch (error)
 {
@@ -192,7 +198,7 @@ catch (error)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**listener_id** | **number**| é o id referente a escuta processual no Intima.ai | [obrigatório]
+**escuta_processual_id** | **number**| é o id referente a escuta processual no Intima.ai | [obrigatório]
 
 ### Exemplos
 ```javascript
@@ -204,8 +210,8 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const delete_result = await intimaai.escutasProcessuaisResources.excluirEscuta(27);
-    console.log(delete_result);
+    const resultado = await intimaai.escutasProcessuais.excluirEscuta(27);
+    console.log(resultado);
 }
 catch (error)
 {

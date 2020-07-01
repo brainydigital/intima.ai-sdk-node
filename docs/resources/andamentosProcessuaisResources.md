@@ -1,15 +1,19 @@
-# **andamentosProcessuaisResources**
+# Recurso: **andamentosProcessuais**
+
+> Com os andamentos processuais, você poderá visualizar todas as movimentações e documentos 
+>(PDF e HTML) do polo interno.
+
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**consultarPorId**](andamentosProcessuaisResources.md#consultarPorId) | **GET** /process-courses/{id} | Visualiza um andamento processual
-[**cadastrarNovoAndamento**](andamentosProcessuaisResources.md#cadastrarNovoAndamento) | **POST** /process-courses | Cadastra um novo andamento processual
-[**capturarAndamentos**](andamentosProcessuaisResources.md#capturarAndamentos) | **GET** /actions/process-courses/{course_id}/capture | Captura os andamentos processuais de um andamento processual previamente cadastrado no Intima.ai
-[**cadastrarNovoAndamentoECapturarAndamentos**](andamentosProcessuaisResources.md#cadastrarNovoAndamentoECapturarAndamentos) | **POST** /actions/process-courses/create-and-capture | Cadastra e captura os andamento processuais no Intima.ai
-[**consultarResultadosDoAndamento**](andamentosProcessuaisResources.md#consultarResultadosDoAndamento) | **GET** /process-courses/{course_id}/results | Retorna um *Paginator* com os andamento processuais capturados
-[**excluirAndamento**](andamentosProcessuaisResources.md#excluirAndamento) | **DELETE** /process-courses/{course_id} | Exclui um andamento processual
+[**consultarPorId**](andamentosProcessuaisResources.md#consultarPorId) | **GET** /andamentos-processuais/{id} | Visualiza um andamento processual
+[**cadastrarNovoAndamento**](andamentosProcessuaisResources.md#cadastrarNovoAndamento) | **POST** /andamentos-processuais | Cadastra um novo andamento processual
+[**capturarAndamentos**](andamentosProcessuaisResources.md#capturarAndamentos) | **GET** /actions/andamentos-processuais/{andamento_id}/capture | Captura os andamentos processuais de um andamento processual previamente cadastrado no Intima.ai
+[**cadastrarNovoAndamentoECapturarAndamentos**](andamentosProcessuaisResources.md#cadastrarNovoAndamentoECapturarAndamentos) | **POST** /actions/andamentos-processuais/create-and-capture | Cadastra e captura os andamento processuais no Intima.ai
+[**consultarResultadosDoAndamento**](andamentosProcessuaisResources.md#consultarResultadosDoAndamento) | **GET** /andamentos-processuais/{andamento_id}/results | Retorna um *Paginator* com os andamento processuais capturados
+[**excluirAndamento**](andamentosProcessuaisResources.md#excluirAndamento) | **DELETE** /andamentos-processuais/{andamento_id} | Exclui um andamento processual
 
 # **consultarPorId**
 
@@ -29,8 +33,8 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const by_id_result = await intimaai.andamentosProcessuaisResources.consultarPorId(18);
-    console.log(by_id_result);
+    const resultado = await intimaai.andamentosProcessuais.consultarPorId(18);
+    console.log(resultado);
 }
 catch (error)
 {
@@ -44,7 +48,7 @@ catch (error)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**course** | [**AndamentoProcessual**](../models/process_course/AndamentoProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+**andamento_processual** | [**AndamentoProcessual**](../models/process_course/AndamentoProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
 ```javascript
@@ -56,9 +60,9 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const course = { process_number: '0000000-00.0000.0.00.0000', auth_id: 120 };
-    const new_result = await intimaai.andamentosProcessuaisResources.cadastrarNovoAndamento(course);
-    console.log(new_result);
+    const andamento_processual = { numero_processo: '0000000-00.0000.0.00.0000', autenticacao_id: 120 };
+    const resultado = await intimaai.andamentosProcessuais.cadastrarNovoAndamento(andamento_processual);
+    console.log(resultado);
 }
 catch (error)
 {
@@ -84,8 +88,8 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const capture_result = await intimaai.andamentosProcessuaisResources.capturarAndamentos(31);
-    console.log(capture_result);
+    const resultado = await intimaai.andamentosProcessuais.capturarAndamentos(31);
+    console.log(resultado);
 }
 catch (error)
 {
@@ -111,9 +115,9 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const course = { process_number: '0000000-00.0000.0.00.0000', auth_id: 120 };
-    const new_result = await intimaai.andamentosProcessuaisResources.cadastrarNovoAndamentoECapturarAndamentos(course);
-    console.log(new_result);
+    const andamento_processual = { numero_processo: '0000000-00.0000.0.00.0000', autenticacao_id: 120 };
+    const resultado = await intimaai.andamentosProcessuais.cadastrarNovoAndamentoECapturarAndamentos(andamento_processual);
+    console.log(resultado);
 }
 catch (error)
 {
@@ -139,9 +143,9 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const capture_results_paginator = await intimaai.andamentosProcessuaisResources.consultarResultadosDoAndamento(31);
-    await capture_results_paginator.getPage(1);
-    console.log(capture_results_paginator.getCollection());
+    const resultados = await intimaai.andamentosProcessuais.consultarResultadosDoAndamento(31);
+    await resultados.obterPagina(1);
+    console.log(resultados.obterColecao());
 }
 catch (error)
 {
@@ -167,8 +171,8 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const delete_result = await intimaai.andamentosProcessuaisResources.excluirAndamento(25);
-    console.log(delete_result);
+    const resultado = await intimaai.andamentosProcessuais.excluirAndamento(25);
+    console.log(resultado);
 }
 catch (error)
 {

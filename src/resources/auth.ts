@@ -1,12 +1,12 @@
-import { Resource } from "../api/resource";
 import { API } from "../api/api";
+import { Resource } from "../api/resource";
 import { AtivarIntimacoesParaAutenticacao } from "../models/AtivarIntimacoesParaAutenticacao";
 import { NovaAutenticacao } from "../models/NovaAutenticacao";
 
 export class Auth extends Resource {
-    
+
     getResourceEndpoint() {
-        return 'auths';
+        return 'autenticacoes';
     }
 
     constructor(API: API) {
@@ -14,31 +14,31 @@ export class Auth extends Resource {
     }
 
     /**
-     * consultarPorId
+     * Obtem uma autenticação por id
      */
     public async consultarPorId(id: number): Promise<any> {
         return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
-     * cadastrarNovaAutenticacao
+     * Cadastra uma nova autenticação
      */
-    public async cadastrarNovaAutenticacao(auth: NovaAutenticacao): Promise<any> {
-        return await this.getAPI().post(`${this.getResourceEndpoint()}`, auth, {}, {}, null, true);
+    public async cadastrarNovaAutenticacao(autenticacao: NovaAutenticacao): Promise<any> {
+        return await this.getAPI().post(`${this.getResourceEndpoint()}`, autenticacao, {}, {}, null, true);
     }
 
     /**
-     * ativarCapturaDeIntimacoesParaAutenticacao
+     * Ativa a captura de intimações para uma autenticação
      */
-    public async ativarCapturaDeIntimacoesParaAutenticacao(auth_id: number, enable_auth: AtivarIntimacoesParaAutenticacao): Promise<any> {
-        return await this.getAPI().put(`${this.getResourceEndpoint()}/${auth_id}/intimations/enable`, enable_auth, {}, {}, null, true);
+    public async ativarCapturaDeIntimacoesParaAutenticacao(autenticacao_id: number, ativar_autenticacao: AtivarIntimacoesParaAutenticacao): Promise<any> {
+        return await this.getAPI().put(`${this.getResourceEndpoint()}/${autenticacao_id}/intimacoes/ativar`, ativar_autenticacao, {}, {}, null, true);
     }
 
     /**
-     * desativarCapturaDeIntimacoesParaAutenticacao
+     * Desativa a captura de intimações para uma autenticação
      */
-    public async desativarCapturaDeIntimacoesParaAutenticacao(auth_id: number): Promise<any> {
-        return await this.getAPI().put(`${this.getResourceEndpoint()}/${auth_id}/intimations/disable`, {}, {}, {}, null, true);
+    public async desativarCapturaDeIntimacoesParaAutenticacao(autenticacao_id: number): Promise<any> {
+        return await this.getAPI().put(`${this.getResourceEndpoint()}/${autenticacao_id}/intimacoes/desativar`, {}, {}, {}, null, true);
     }
 
 }

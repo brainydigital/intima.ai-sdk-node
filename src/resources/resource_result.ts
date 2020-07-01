@@ -11,7 +11,7 @@ export class ResourceResult extends Resource {
 
     constructor(API: API, resource: Resource, resource_id: number) {
         super(API);
-        this.resource_path = `${resource.getResourceEndpoint()}/${resource_id}/results`;
+        this.resource_path = `${resource.getResourceEndpoint()}/${resource_id}/resultados`;
     }
 
 }

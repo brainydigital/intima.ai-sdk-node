@@ -1,11 +1,15 @@
-# **informacoesProcessuaisResources**
+# Recurso: **informacoesProcessuais**
+
+> Com as informações processuais, você poderá obter todas as informações do processo, tais como: 
+>valor da causa, classe judicial, assuntos, polos e etc.
+
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**consultarPorId**](informacoesProcessuaisResources.md#consultarPorId) | **GET** /process-infos/{id} | Visualiza as informações processuais por id
-[**capturarNovaInformacaoProcessual**](informacoesProcessuaisResources.md#capturarNovaInformacaoProcessual) | **POST** /actions/process-infos | Cadastra uma nova captura de informações processuais de um processo
+[**consultarPorId**](informacoesProcessuaisResources.md#consultarPorId) | **GET** /informacoes-processuais/{id} | Visualiza as informações processuais por id
+[**capturarNovaInformacaoProcessual**](informacoesProcessuaisResources.md#capturarNovaInformacaoProcessual) | **POST** /acoes/informacoes-processuais | Cadastra uma nova captura de informações processuais de um processo
 
 # **consultarPorId**
 
@@ -25,8 +29,8 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const by_id_result = await intimaai.informacoesProcessuaisResources.consultarPorId(21);
-    console.log(by_id_result);
+    const resultado = await intimaai.informacoesProcessuais.consultarPorId(21);
+    console.log(resultado);
 }
 catch (error)
 {
@@ -40,7 +44,7 @@ catch (error)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**process** | [**InformacaoProcessual**](../models/process_info/InformacaoProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
+**informacao_processual** | [**InformacaoProcessual**](../models/process_info/InformacaoProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
 ```javascript
@@ -52,9 +56,9 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const process = { process_number: '00000000000000000000', auth_id: 120 };
-    const new_info_result = await intimaai.informacoesProcessuaisResources.capturarNovaInformacaoProcessual(process);
-    console.log(new_info_result);
+    const processo = { numero_processo: '00000000000000000000', autenticacao_id: 120 };
+    const resultado = await intimaai.informacoesProcessuais.capturarNovaInformacaoProcessual(processo);
+    console.log(resultado);
 }
 catch (error)
 {

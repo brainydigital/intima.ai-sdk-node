@@ -1,11 +1,16 @@
-# **acoesResources**
+# Recurso: **acoes**
+
+> Todas as ações realizadas dentro do `Intima.ai`, ficam registradas neste recurso. Você pode 
+>utilizar o método `consultarResultadosDaAcao` para visualizar detalhamente os resultados da ação 
+>solicitada.
+
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**consultarPorId**](acoesResources.md#consultarPorId) | **GET** /actions/{id} | Visualiza uma ação pelo id
-[**consultarResultadosDaAcao**](acoesResources.md#consultarResultadosDaAcao) | **GET** /actions/{action_id}/results | Retorna um [**Paginator**](../models/api/Paginator.md) com o resultados de uma ação
+[**consultarPorId**](acoesResources.md#consultarPorId) | **GET** /acoes/{id} | Visualiza uma ação pelo id
+[**consultarResultadosDaAcao**](acoesResources.md#consultarResultadosDaAcao) | **GET** /acoes/{acao_id}/resultados | Retorna um [**Paginator**](../models/api/Paginator.md) com o resultados de uma ação
 
 # **consultarPorId**
 
@@ -25,8 +30,8 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const by_id_result = await intimaai.acoesResources.consultarPorId(95388);
-    console.log(by_id_result);
+    const resultado = await intimaai.acoes.consultarPorId(95388);
+    console.log(resultado);
 }
 catch (error)
 {
@@ -40,7 +45,7 @@ catch (error)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**action_id** | **number**| é o id referente a ação no Intima.ai | [obrigatório]
+**acao_id** | **number**| é o id referente a ação no Intima.ai | [obrigatório]
 
 ### Exemplos
 ```javascript
@@ -52,9 +57,9 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const results_action_paginator = await intimaai.acoesResources.consultarResultadosDaAcao(95371);
-    await results_action_paginator.getPage(1);
-    console.log(results_action_paginator.getCollection());
+    const resultados = await intimaai.acoes.consultarResultadosDaAcao(95371);
+    await resultados.obterPagina(1);
+    console.log(resultados.obterColecao());
 }
 catch (error)
 {

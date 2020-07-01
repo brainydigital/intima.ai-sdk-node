@@ -1,5 +1,5 @@
 export type AtivarIntimacoesParaAutenticacao = {
-    tabs: Array<string>, 
-    week_days: Array<number>,
-    day_hour: Array<string>
+    abas: Array<string>, 
+    dias_da_semana: Array<number>,
+    horas_do_dia: Array<string>
 };

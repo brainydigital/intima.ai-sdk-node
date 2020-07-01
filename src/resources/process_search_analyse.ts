@@ -7,7 +7,7 @@ export class ProcessSearchAnalyse extends Resource {
 
     protected action: Action;
 
-    protected resource_path = 'search-analyses';
+    protected resource_path = 'consultas-analises';
 
     getResourceEndpoint() {
         return this.resource_path;

@@ -4,7 +4,7 @@ import { API } from "../../api/api";
 export class UserNotification extends Resource {
     
     getResourceEndpoint() {
-        return 'user-notifications';
+        return 'usuarios-notificacoes';
     }
 
     constructor(API: API) {
@@ -12,30 +12,30 @@ export class UserNotification extends Resource {
     }
 
     /**
-     * consultarPorId
+     * Obtem um email cadastrado para receber notificações pelo id
      */
     public async consultarPorId(id: number): Promise<any> {
         return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
-     * cadastrarNovoEmailParaNotificacoes
+     * Cadastra um novo email para receber notificações
      */
     public async cadastrarNovoEmailParaNotificacoes(email: string): Promise<any> {
         return await this.getAPI().post(`${this.getResourceEndpoint()}`, { user_dependent: email }, {}, {}, null, true);
     }
 
     /**
-     * atualizarEmailParaNotificacoes
+     * Atualiza um email para receber notificações pelo id
      */
-    public async atualizarEmailParaNotificacoes(user_email_notification_id: number, email: string): Promise<any> {
-        return await this.getAPI().put(`${this.getResourceEndpoint()}/${user_email_notification_id}`, { user_dependent: email }, {}, {}, null, true);
+    public async atualizarEmailParaNotificacoes(email_notificacao_id: number, email: string): Promise<any> {
+        return await this.getAPI().put(`${this.getResourceEndpoint()}/${email_notificacao_id}`, { user_dependent: email }, {}, {}, null, true);
     }
 
     /**
-     * excluirEmailParaNotificacoes
+     * Deleta um email cadastrado pelo id, que deixara de receber notificações
      */
-    public async excluirEmailParaNotificacoes(user_email_notification_id: number): Promise<any> {
-        return await this.getAPI().delete(`${this.getResourceEndpoint()}/${user_email_notification_id}`, {}, {}, true);
+    public async excluirEmailParaNotificacoes(email_notificacao_id: number): Promise<any> {
+        return await this.getAPI().delete(`${this.getResourceEndpoint()}/${email_notificacao_id}`, {}, {}, true);
     }
 }

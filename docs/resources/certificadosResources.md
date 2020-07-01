@@ -1,13 +1,20 @@
-# **certificadosResources**
+# Recurso: **certificados**
+
+> Certas ações como protocolar, por exemplo, exigem que possua um `Tribunal` com o tipo de autenticação 
+> `Certificado A1`.
+> 
+> Após associar um `Certificado A1` a sua conta, você deverá esperar até que o mesmo seja aprovado e 
+> liberado por nossa equipe.
+
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**consultarPorId**](certificadosResources.md#consultarPorId) | **GET** /certificates/{id} | Visualiza um certificado
-[**cadastrarNovoCertificado**](certificadosResources.md#cadastrarNovoCertificado) | **POST** /certificates | Cadastra um novo certificado
-[**atualizarCertificado**](certificadosResources.md#atualizarCertificado) | **POST** /certificates/{certificate_id} | Atualiza um certificado
-[**excluirCertificado**](certificadosResources.md#excluirCertificado) | **DELETE** /certificates/{certificate_id} | Exclui um certificado
+[**consultarPorId**](certificadosResources.md#consultarPorId) | **GET** /certificados/{id} | Visualiza um certificado
+[**cadastrarNovoCertificado**](certificadosResources.md#cadastrarNovoCertificado) | **POST** /certificados | Cadastra um novo certificado
+[**atualizarCertificado**](certificadosResources.md#atualizarCertificado) | **POST** /certificados/{certificado_id} | Atualiza um certificado
+[**excluirCertificado**](certificadosResources.md#excluirCertificado) | **DELETE** /certificados/{certificado_id} | Exclui um certificado
 
 # **consultarPorId**
 
@@ -27,8 +34,8 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const by_id_result = await intimaai.certificadosResources.consultarPorId(18);
-    console.log(by_id_result);
+    const resultado = await intimaai.certificados.consultarPorId(18);
+    console.log(resultado);
 }
 catch (error)
 {
@@ -42,7 +49,7 @@ catch (error)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**certificate** | [**Certificado**](../models/certificate/Certificado.md)| parametros necessários para a criação de um novo registro | [obrigatório]
+**certificado** | [**Certificado**](../models/certificate/Certificado.md)| parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
 ```javascript
@@ -54,9 +61,9 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const certificate = { pfx: '/path/to/file.pfx', password: '12345678' };
-    const new_certificate_result = await intimaai.certificadosResources.cadastrarNovoCertificado(certificate);
-    console.log(new_certificate_result);
+    const certificado = { pfx: '/path/to/file.pfx', senha: '12345678' };
+    const resultado = await intimaai.certificados.cadastrarNovoCertificado(certificado);
+    console.log(resultado);
 }
 catch (error)
 {
@@ -70,8 +77,8 @@ catch (error)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**certificate_id** | **number**| é o id referente ao certificado cadastrado no Intima.ai | [obrigatório]
-**certificate** | [**Certificado**](../models/certificate/Certificado.md)| parametros necessários para a atualização do registro | [obrigatório]
+**certificado_id** | **number**| é o id referente ao certificado cadastrado no Intima.ai | [obrigatório]
+**certificado** | [**Certificado**](../models/certificate/Certificado.md)| parametros necessários para a atualização do registro | [obrigatório]
 
 ### Exemplos
 ```javascript
@@ -83,9 +90,9 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const certificate = { pfx: '/path/to/file.pfx', password: '12345678' };
-    const new_certificate_result = await intimaai.certificadosResources.atualizarCertificado(1, certificate);
-    console.log(new_certificate_result);
+    const certificado = { pfx: '/path/to/file.pfx', senha: '12345678' };
+    const resultado = await intimaai.certificados.atualizarCertificado(1, certificado);
+    console.log(resultado);
 }
 catch (error)
 {
@@ -99,7 +106,7 @@ catch (error)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**certificate_id** | **number**| é o id referente ao certificado cadastrado no Intima.ai | [obrigatório]
+**certificado_id** | **number**| é o id referente ao certificado cadastrado no Intima.ai | [obrigatório]
 
 ### Exemplos
 ```javascript
@@ -111,8 +118,8 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const delete_certificate_result = await intimaai.certificadosResources.excluirCertificado(19);
-    console.log(delete_certificate_result);
+    const resultado = await intimaai.certificados.excluirCertificado(19);
+    console.log(resultado);
 }
 catch (error)
 {

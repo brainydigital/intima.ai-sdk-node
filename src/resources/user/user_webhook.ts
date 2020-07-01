@@ -5,7 +5,7 @@ import { Webhook } from "../../models/Webhook";
 export class UserWebhook extends Resource {
     
     getResourceEndpoint() {
-        return 'user-webhooks';
+        return 'usuarios-webhooks';
     }
 
     constructor(API: API) {
@@ -13,31 +13,31 @@ export class UserWebhook extends Resource {
     }
 
     /**
-     * consultarPorId
+     * Obtem um webhook de usuário cadastrado no Intima.ai pelo id
      */
     public async consultarPorId(id: number): Promise<any> {
         return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
-     * cadastrarNovoWebhook
+     * Cadastra um novo webhook de usuário
      */
-    public async cadastrarNovoWebhook(user_webhook: Webhook): Promise<any> {
-        return await this.getAPI().post(`${this.getResourceEndpoint()}`, user_webhook, {}, {}, null, true);
+    public async cadastrarNovoWebhook(webhook: Webhook): Promise<any> {
+        return await this.getAPI().post(`${this.getResourceEndpoint()}`, webhook, {}, {}, null, true);
     }
 
     /**
-     * atualizarWebhook
+     * Atualiza um webhook de usuário pelo id
      */
-    public async atualizarWebhook(user_webhook_id: number, user_webhook: Webhook): Promise<any> {
-        return await this.getAPI().put(`${this.getResourceEndpoint()}/${user_webhook_id}`, user_webhook, {}, {}, null, true);
+    public async atualizarWebhook(webhook_id: number, webhook: Webhook): Promise<any> {
+        return await this.getAPI().put(`${this.getResourceEndpoint()}/${webhook_id}`, webhook, {}, {}, null, true);
     }
 
     /**
-     * excluirWebhook
+     * Deleta um webhook de usuário pelo id
      */
-    public async excluirWebhook(user_webhook_id: number): Promise<any> {
-        return await this.getAPI().delete(`${this.getResourceEndpoint()}/${user_webhook_id}`, {}, {}, true);
+    public async excluirWebhook(webhook_id: number): Promise<any> {
+        return await this.getAPI().delete(`${this.getResourceEndpoint()}/${webhook_id}`, {}, {}, true);
     }
 
 }

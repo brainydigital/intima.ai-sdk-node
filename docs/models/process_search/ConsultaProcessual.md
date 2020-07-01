@@ -3,8 +3,8 @@
 ## Propriedades
 Nome | Tipo | Descrição | Notas
 ------------ | ------------- | ------------- | -------------
-**auth_id** | **number** | é o id referente ao tribunal cadastrado em "Tribunais ativos" no Intima.ai | [obrigatório] 
-**process_number** | **string** | é o numero do processo no qual se deseja realizar a consulta | [opcional] 
+**autenticacao_id** | **number** | é o id referente ao tribunal cadastrado em "Tribunais ativos" no Intima.ai | [obrigatório] 
+**numero_processo** | **string** | é o numero do processo no qual se deseja realizar a consulta | [opcional] 
 **nome_parte** | **string** | é o nome_parte na qual se deseja realizar a consulta | [opcional] 
 **nome_representante** | **string** | é o nome_representante no qual se deseja realizar a consulta | [opcional] 
 **token** | **string** | é o token obtido na pré-análise da consulta | [opcional] 

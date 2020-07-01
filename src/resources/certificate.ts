@@ -6,7 +6,7 @@ import * as fs from 'fs';
 export class Certificate extends Resource {
     
     getResourceEndpoint() {
-        return 'certificates';
+        return 'certificados';
     }
 
     constructor(API: API) {
@@ -14,45 +14,45 @@ export class Certificate extends Resource {
     }
 
     /**
-     * consultarPorId
+     * Obtem um certificado pelo id
      */
     public async consultarPorId(id: number): Promise<any> {
         return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
-     * cadastrarNovoCertificado
+     * Cadastra um novo certificado
      */
-    public async cadastrarNovoCertificado(certificate: Certificado): Promise<any> {
-        let attachs = this.validateCertificate(certificate);
-        return await this.getAPI().post(`${this.getResourceEndpoint()}`, certificate, {} , {}, attachs, true);
+    public async cadastrarNovoCertificado(certificado: Certificado): Promise<any> {
+        let attachs = this.validateCertificate(certificado);
+        return await this.getAPI().post(`${this.getResourceEndpoint()}`, certificado, {} , {}, attachs, true);
     }
 
     /**
-     * atualizarCertificado
+     * Atualiza um certificado pelo id
      */
-    public async atualizarCertificado(certificate_id: number, certificate: Certificado): Promise<any> {
-        let attachs = this.validateCertificate(certificate);
-        return await this.getAPI().post(`${this.getResourceEndpoint()}/${certificate_id}`, certificate, {} , {}, attachs, true);
+    public async atualizarCertificado(certificado_id: number, certificado: Certificado): Promise<any> {
+        let attachs = this.validateCertificate(certificado);
+        return await this.getAPI().post(`${this.getResourceEndpoint()}/${certificado_id}`, certificado, {} , {}, attachs, true);
     }
 
     /**
-     * excluirCertificado
+     * Deleta um certificado pelo id
      */
-    public async excluirCertificado(certificate_id: number): Promise<any> {
-        return await this.getAPI().delete(`${this.getResourceEndpoint()}/${certificate_id}`, {}, {}, true);
+    public async excluirCertificado(certificado_id: number): Promise<any> {
+        return await this.getAPI().delete(`${this.getResourceEndpoint()}/${certificado_id}`, {}, {}, true);
     }
 
-    private validateCertificate(certificate: Certificado) {
+    private validateCertificate(certificado: Certificado) {
         let attachs = null;
-        if (certificate.pfx) {
-            const file_path = certificate.pfx;
+        if (certificado.pfx) {
+            const file_path = certificado.pfx;
 
             if (!fs.existsSync(file_path)) {
                 throw "O caminho do arquivo informado é inválido!";
             }
 
-            delete certificate['pfx'];
+            delete certificado['pfx'];
             
             attachs = { field_name: 'pfx', files: file_path } ;
         }

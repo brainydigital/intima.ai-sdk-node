@@ -1,10 +1,13 @@
-# **usuariosResources**
+# Recurso: **usuariosResources**
+
+> Atravez deste recurso você pode consultar todas as informações do usuário.
+
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**consultarUsuario**](usuariosResources.md#consultarUsuario) | **GET** /user | Visualiza as informações do seu usuário
+[**consultarUsuario**](usuariosResources.md#consultarUsuario) | **GET** /usuarios | Visualiza as informações do seu usuário
 
 # **consultarUsuario**
 
@@ -22,7 +25,8 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const user_result = await intimaai.usuariosResources.consultarUsuario();
+    const resultado = await intimaai.usuarios.consultarUsuario();
+    console.log(resultado);
 }
 catch (error)
 {

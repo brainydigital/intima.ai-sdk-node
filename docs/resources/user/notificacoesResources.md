@@ -1,13 +1,17 @@
-# **notificacoesResources**
+# Recurso: **notificacoesResources**
+
+> Atravez deste recurso você poderá ter o controle de todos os outros emails em que se deseja 
+>receber notificações, além do seu email principal.
+
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**consultarPorId**](notificacoesResources.md#consultarPorId) | **GET** /user-notifications/{user_email_notification_id} | Visualiza um email cadastrado para receber notificações
-[**cadastrarNovoEmailParaNotificacoes**](notificacoesResources.md#cadastrarNovoEmailParaNotificacoes) | **POST** /user-notifications | Cadastra um novo email para receber notificações
-[**atualizarEmailParaNotificacoes**](notificacoesResources.md#atualizarEmailParaNotificacoes) | **PUT** /user-notifications/{user_email_notification_id} | Atualiza um email para receber notificações
-[**excluirEmailParaNotificacoes**](notificacoesResources.md#excluirEmailParaNotificacoes) | **DELETE** /user-notifications/{user_email_notification_id} | Exclui um email, que deixara de receber notificações
+[**consultarPorId**](notificacoesResources.md#consultarPorId) | **GET** /usuarios-notificacoes/{email_notificacao_id} | Visualiza um email cadastrado para receber notificações
+[**cadastrarNovoEmailParaNotificacoes**](notificacoesResources.md#cadastrarNovoEmailParaNotificacoes) | **POST** /usuarios-notificacoes | Cadastra um novo email para receber notificações
+[**atualizarEmailParaNotificacoes**](notificacoesResources.md#atualizarEmailParaNotificacoes) | **PUT** /usuarios-notificacoes/{email_notificacao_id} | Atualiza um email para receber notificações
+[**excluirEmailParaNotificacoes**](notificacoesResources.md#excluirEmailParaNotificacoes) | **DELETE** /usuarios-notificacoes/{email_notificacao_id} | Exclui um email, que deixara de receber notificações
 
 # **consultarPorId**
 
@@ -27,8 +31,8 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const by_id_result = await intimaai.notificacoesResources.consultarPorId(1);
-    console.log(by_id_result);
+    const resultado = await intimaai.notificacoes.consultarPorId(1);
+    console.log(resultado);
 }
 catch (error)
 {
@@ -54,8 +58,8 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const new_email_result = await intimaai.notificacoesResources.cadastrarNovoEmailParaNotificacoes('user@email.com');
-    console.log(new_email_result);
+    const resultado = await intimaai.notificacoes.cadastrarNovoEmailParaNotificacoes('user@email.com');
+    console.log(resultado);
 }
 catch (error)
 {
@@ -69,7 +73,7 @@ catch (error)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**user_email_notification_id** | **number**| é o id referente ao email cadastrado que recebe notificações | [obrigatório]
+**email_notificacao_id** | **number**| é o id referente ao email cadastrado que recebe notificações | [obrigatório]
 **email** | **string**| email que deseja atualizar para receber notificações | [obrigatório]
 
 ### Exemplos
@@ -82,8 +86,8 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const update_email_result = await intimaai.notificacoesResources.atualizarEmailParaNotificacoes(3, 'user2@email.com');
-    console.log(update_email_result);
+    const resultado = await intimaai.notificacoes.atualizarEmailParaNotificacoes(3, 'user2@email.com');
+    console.log(resultado);
 }
 catch (error)
 {
@@ -97,7 +101,7 @@ catch (error)
 
 Nome | Tipo | Descrição | Notas
 ------------- | ------------- | ------------- | -------------
-**user_email_notification_id** | **number**| é o id referente ao email cadastrado que recebe notificações | [obrigatório]
+**email_notificacao_id** | **number**| é o id referente ao email cadastrado que recebe notificações | [obrigatório]
 
 ### Exemplos
 ```javascript
@@ -109,8 +113,8 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const delete_email_result = await intimaai.notificacoesResources.excluirEmailParaNotificacoes(3);
-    console.log(delete_email_result);
+    const resultado = await intimaai.notificacoes.excluirEmailParaNotificacoes(3);
+    console.log(resultado);
 }
 catch (error)
 {

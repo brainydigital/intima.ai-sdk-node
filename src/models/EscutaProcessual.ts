@@ -1,5 +1,5 @@
 export type EscutaProcessual = {
-    process_number: string,
-    auth_id: number,
-    schedule_times: Array<string>
+    numero_processo: string,
+    autenticacao_id: number,
+    horarios_de_captura: Array<string>
 }

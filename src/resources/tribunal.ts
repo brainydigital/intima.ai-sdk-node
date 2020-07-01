@@ -4,7 +4,7 @@ import { API } from "../api/api";
 export class Tribunal extends Resource {
     
     getResourceEndpoint() {
-        return 'tribunals';
+        return 'tribunais';
     }
 
     constructor(API: API) {
@@ -12,7 +12,7 @@ export class Tribunal extends Resource {
     }
 
     /**
-     * consultarPorId
+     * Obtem um tribunal pelo id
      */
     public async consultarPorId(id: number): Promise<any> {
         return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);

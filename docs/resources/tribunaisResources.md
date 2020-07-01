@@ -1,10 +1,20 @@
-# **tribunaisResources**
+# Recurso: **tribunais**
+
+> Os tribunais correspondem a todos os sistemas jurídicos disponíveis no `Intima.ai` 
+> (PJE, ESAJ, PROJUDI e etc). 
+>
+> Para cada tribunal, você pode definir se deseja realizar as captura de intimações 
+> (definir dias e horários do seu agrado) e associar uma `Autenticação`.
+> 
+> A `Autenticação` pode ser um certificado A1 ou login e senha, mas sempre deve-se 
+> ficar atento as funcionalidades suportadas por cada tribunal.
+
 
 Todas as URIs são relativas a *https://app.intima.ai/api/v2*
 
 Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
-[**consultarPorId**](tribunaisResources.md#consultarPorId) | **GET** /tribunals/{id} | Visualiza um tribunal
+[**consultarPorId**](tribunaisResources.md#consultarPorId) | **GET** /tribunais/{id} | Visualiza um tribunal
 
 # **consultarPorId**
 
@@ -24,8 +34,8 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const result_by_id = await intimaai.tribunaisResources.consultarPorId(18);
-    console.log(result_by_id);
+    const resultado = await intimaai.tribunais.consultarPorId(18);
+    console.log(resultado);
 }
 catch (error)
 {

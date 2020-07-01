@@ -1,12 +1,12 @@
-import { Resource } from "../api/resource";
-import { Action } from "./action";
 import { API } from "../api/api";
-import { ResourceResult } from "./resource_result";
+import { Paginator } from "../api/paginator";
+import { Resource } from "../api/resource";
 import { ConsultaProcessual } from "../models/ConsultaProcessual";
 import { PreAnaliseDeConsultaProcessual } from "../models/PreAnaliseDeConsultaProcessual";
 import { isEmpty } from "../utils/utils";
-import { Paginator } from "../api/paginator";
+import { Action } from "./action";
 import { ProcessSearchAnalyse } from "./process_search_analyse";
+import { ResourceResult } from "./resource_result";
 
 export class ProcessSearch extends Resource {
 
@@ -15,7 +15,7 @@ export class ProcessSearch extends Resource {
     protected search_analyse: ProcessSearchAnalyse;
 
     getResourceEndpoint() {
-        return 'process-searchs';
+        return 'consultas-processuais';
     }
 
     constructor(API: API, action: Action) {
@@ -25,52 +25,52 @@ export class ProcessSearch extends Resource {
     }
 
     /**
-     * consultarPorId
+     * Obtem uma consulta processual pelo id
      */
     public async consultarPorId(id: number): Promise<any> {
         return await this.getAPI().get(`${this.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
     /**
-     * cadastrarNovaConsulta
+     * Cadastra uma nova consulta processual
      */
-    public async cadastrarNovaConsulta(search: ConsultaProcessual): Promise<any> {
-        if (isEmpty(search.process_number) && isEmpty(search.nome_parte) && isEmpty(search.nome_representante)) {
+    public async cadastrarNovaConsulta(consulta_processual: ConsultaProcessual): Promise<any> {
+        if (isEmpty(consulta_processual.numero_processo) && isEmpty(consulta_processual.nome_parte) && isEmpty(consulta_processual.nome_representante)) {
             throw 'Você precisa fornecer ao menos um parametro para a busca.';
         }
-        return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}`, search, {}, {}, null, true);
+        return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}`, consulta_processual, {}, {}, null, true);
     }
 
     /**
-     * consultarResultadosDaConsulta
+     * Obtem os resultados das consultas processual pelo id
      */
-    public consultarResultadosDaConsulta(search_id: number) {
-        const resource = new ResourceResult(this.getAPI(), this, search_id);
-        return resource.paginate();
+    public consultarResultadosDaConsulta(consulta_processual_id: number) {
+        const resource = new ResourceResult(this.getAPI(), this, consulta_processual_id);
+        return resource.paginar();
     }
 
     /**
-     * listarPreAnalisesDeConsultas
+     * Obtem um Paginator com as pré-analises de consultas processuais
      */
     public async listarPreAnalisesDeConsultas(): Promise<Paginator> {
-        return await this.search_analyse.paginate();
+        return await this.search_analyse.paginar();
     }
 
     /**
-     * consultarPorIdPreAnaliseDeConsulta
+     * Obtem uma pré-analise de uma consulta processual pelo id
      */
     public async consultarPorIdPreAnaliseDeConsulta(id: number): Promise<any> {
         return await this.getAPI().get(`${this.search_analyse.getResourceEndpoint()}/${id}`, {}, {}, true);
     }
 
-     /**
-     * cadastrarPreAnaliseDeConsulta
-     */
-    public async cadastrarPreAnaliseDeConsulta(search_analyse: PreAnaliseDeConsultaProcessual): Promise<any> {
-        if (isEmpty(search_analyse.process_number) && isEmpty(search_analyse.nome_parte) && isEmpty(search_analyse.nome_representante)) {
+    /**
+    * Cadastra uma nova pré-analise para uma consulta processual
+    */
+    public async cadastrarPreAnaliseDeConsulta(pre_analise_de_consulta_processual: PreAnaliseDeConsultaProcessual): Promise<any> {
+        if (isEmpty(pre_analise_de_consulta_processual.numero_processo) && isEmpty(pre_analise_de_consulta_processual.nome_parte) && isEmpty(pre_analise_de_consulta_processual.nome_representante)) {
             throw 'Você precisa fornecer ao menos um parametro para a busca.';
         }
-        return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.search_analyse.getResourceEndpoint()}`, search_analyse, {}, {}, null, true);
+        return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.search_analyse.getResourceEndpoint()}`, pre_analise_de_consulta_processual, {}, {}, null, true);
     }
 
 }
