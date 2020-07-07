@@ -1,6 +1,6 @@
 {
   "name": "@brainy-digital/intima.ai-sdk-node",
-  "version": "2.0.13",
+  "version": "2.0.14",
   "description": "Implementação da API do Intima.ai em forma de SDK Client para NodeJS.",
   "homepage": "https://intima.ai",
   "repository": {
@@ -16,7 +16,8 @@
     "api"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://npm.pkg.github.com/"
   },
   "main": "dist/index.js",
   "types": "index.d.ts",
