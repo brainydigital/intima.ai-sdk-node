@@ -64,9 +64,10 @@ try
     const intimaai = new Intimaai('api_secret_token');
 
     const escuta = { 
-        numero_processo: '0000000-00.0000.0.00.0000', 
-        autenticacao_id: 1, 
-        schedule_times: ['07:00'] 
+        numero_processo: '0000000-00.0000.0.00.0000',
+        autenticacao_id: 1,
+        dias_de_captura: [1, 2],
+        horarios_de_captura: ['07:00'] 
     };
     const resultado = await intimaai.escutasProcessuais.cadastrarNovaEscuta(escuta);
     console.log(resultado);
@@ -125,6 +126,7 @@ try
     const escuta = { 
         numero_processo: '0000000-00.0000.0.00.0000', 
         autenticacao_id: 1, 
+        dias_de_captura: [1, 2],
         horarios_de_captura: ['07:00'] 
     };
     const resultado = await intimaai.escutasProcessuais.cadastrarNovaEscutaECapturar(escuta);
@@ -183,7 +185,7 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const resultado = await intimaai.escutasProcessuais.atualizarEscuta(31, { horarios_de_captura: ['11:00'] });
+    const resultado = await intimaai.escutasProcessuais.atualizarEscuta(31, { dias_de_captura: [1, 2], horarios_de_captura: ['11:00'] });
     console.log(resultado);
 }
 catch (error)
