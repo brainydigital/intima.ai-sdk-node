@@ -2,6 +2,7 @@ import { API } from "../api/api";
 import { Resource } from "../api/resource";
 import { AtivarIntimacoesParaAutenticacao } from "../models/AtivarIntimacoesParaAutenticacao";
 import { NovaAutenticacao } from "../models/NovaAutenticacao";
+import { AtualizarAutenticacao } from "../models/AtualizarAutenticacao";
 
 export class Auth extends Resource {
 
@@ -28,6 +29,13 @@ export class Auth extends Resource {
     }
 
     /**
+     * Atualiza uma autenticação
+     */
+    public async atualizarAutenticacao(autenticacao_id: number, atualizar_autenticacao: AtualizarAutenticacao): Promise<any> {
+        return await this.getAPI().put(`${this.getResourceEndpoint()}/${autenticacao_id}/atualizar`, atualizar_autenticacao, {}, {}, null, true);
+    }
+
+    /**
      * Ativa a captura de intimações para uma autenticação
      */
     public async ativarCapturaDeIntimacoesParaAutenticacao(autenticacao_id: number, ativar_autenticacao: AtivarIntimacoesParaAutenticacao): Promise<any> {
@@ -40,5 +48,4 @@ export class Auth extends Resource {
     public async desativarCapturaDeIntimacoesParaAutenticacao(autenticacao_id: number): Promise<any> {
         return await this.getAPI().put(`${this.getResourceEndpoint()}/${autenticacao_id}/intimacoes/desativar`, {}, {}, {}, null, true);
     }
-
 }

@@ -170,8 +170,16 @@ declare module '@brainy-digital/intima.ai-sdk-node/models' {
     tribunal_id: number,
     certificado_id?: number,
     login?: string,
-    senha?: string
+    senha?: string,
+    oab_numero: string,
+    oab_letra: string,
+    oab_uf: string
   };
+  export type AtualizarAutenticacao = {
+    oab_numero: string,
+    oab_letra: string,
+    oab_uf: string
+};
   export type Peticao = {
     arquivo: string,
     tipo_documento: number,
@@ -205,13 +213,19 @@ declare module '@brainy-digital/intima.ai-sdk-node/models' {
     numero_processo?: string,
     nome_parte?: string,
     nome_representante?: string,
+    oab_numero?: string,
+    oab_letra?: string,
+    oab_uf?: string,
     token?: string
   };
   export type PreAnaliseDeConsultaProcessual = {
     autenticacao_id: number,
     numero_processo?: string,
     nome_parte?: string,
-    nome_representante?: string
+    nome_representante?: string,
+    oab_numero?: string,
+    oab_letra?: string,
+    oab_uf?: string,
   };
   export enum ACTION_TYPE {
     PROCESS_INFO = 0,
@@ -272,7 +286,7 @@ declare module '@brainy-digital/intima.ai-sdk-node/resources/action' {
 declare module '@brainy-digital/intima.ai-sdk-node/resources/auth' {
   import { API } from "@brainy-digital/intima.ai-sdk-node/api/api";
   import { Resource } from "@brainy-digital/intima.ai-sdk-node/api/resource";
-  import { AtivarIntimacoesParaAutenticacao, NovaAutenticacao } from "@brainy-digital/intima.ai-sdk-node/models";
+  import { AtivarIntimacoesParaAutenticacao, NovaAutenticacao, AtualizarAutenticacao } from "@brainy-digital/intima.ai-sdk-node/models";
   export class Auth extends Resource {
     getResourceEndpoint(): string;
     constructor(API: API);
@@ -284,6 +298,10 @@ declare module '@brainy-digital/intima.ai-sdk-node/resources/auth' {
      * Cadastra uma nova autenticação
      */
     cadastrarNovaAutenticacao(autenticacao: NovaAutenticacao): Promise<any>;
+    /**
+     * Atualiza uma autenticação
+     */
+    atualizarAutenticacao(autenticacao_id: number, atualizar_autenticacao: AtualizarAutenticacao): Promise<any>;
     /**
      * Ativa a captura de intimações para uma autenticação
      */

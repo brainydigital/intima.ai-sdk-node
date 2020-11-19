@@ -10,6 +10,7 @@ Metodo | Requisição HTTP | Descrição
 ------------- | ------------- | -------------
 [**consultarPorId**](autenticacoesResources.md#consultarPorId) | **GET** /autenticacoes/{id} | Visualiza uma autenticação pelo id
 [**cadastrarNovaAutenticacao**](autenticacoesResources.md#cadastrarNovaAutenticacao) | **POST** /autenticacoes | Cadastra uma nova autenticação
+[**atualizarAutenticacao**](autenticacoesResources.md#atualizarAutenticacao) | **PUT** /autenticacoes/{autenticacao_id}/atualizar | Atualiza uma autenticação
 [**ativarCapturaDeIntimacoesParaAutenticacao**](autenticacoesResources.md#ativarCapturaDeIntimacoesParaAutenticacao) | **PUT** /autenticacoes/{autenticacao_id}/intimacoes/ativar | Ativa a captura de intimações para uma autenticação
 [**desativarCapturaDeIntimacoesParaAutenticacao**](autenticacoesResources.md#desativarCapturaDeIntimacoesParaAutenticacao) | **PUT** /autenticacoes/{autenticacao_id}/intimacoes/desativar | Desativa a captura de intimações para uma autenticação
 
@@ -66,6 +67,35 @@ try
         // senha: ''
     };
     const resultado = await intimaai.autenticacoes.cadastrarNovaAutenticacao(autenticacao);
+    console.log(resultado);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
+
+# **atualizarAutenticacao**
+
+### Parametros
+
+Nome | Tipo | Descrição | Notas
+------------- | ------------- | ------------- | -------------
+**autenticacao_id** | **number**| é o id referente ao tribunal cadastrado em "Tribunais ativos" no Intima.ai | [obrigatório]
+**atualizar_autenticacao** | [**AtualizarAutenticacao**](../models/auth/AtualizarAutenticacao.md)| parametros necessários para atualizar uma autenticação | [obrigatório]
+
+### Exemplos
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// or
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const atualizar_autenticacao = { oab_numero: '190792', oab_letra: 'A', oab_uf: 'SP' };
+    const resultado = await intimaai.autenticacoes.atualizarAutenticacao(199, atualizar_autenticacao);
     console.log(resultado);
 }
 catch (error)
