@@ -27,7 +27,13 @@ export class API {
     }
 
     private getResponse(response, get_data_only: boolean) {
-        return (get_data_only && response.body.hasOwnProperty('data')) ? response.body.data : response.body;
+        const body = response.body;        
+        if (get_data_only) {
+            if (body.hasOwnProperty('data') && Object.keys(body).length === 1) {
+                return body.data;
+            }
+        }
+        return body;
     }
 
     private getRequestDefaultOptions() {
@@ -44,7 +50,8 @@ export class API {
 
             let request_options = {
                 headers: {
-                    'Accept': 'application/json'
+                    'Accept': 'application/json',
+                    'User-Agent': 'Intimaai_SDK/2.0.0'
                 },
                 qs: query,
                 ...this.getRequestDefaultOptions()
@@ -89,6 +96,7 @@ export class API {
             let request_options = {
                 headers: {
                     'Accept': 'application/json',
+                    'User-Agent': 'Intimaai_SDK/2.0.0',
                     'Content-Type': content_type
                 },
                 formData: formData,
@@ -138,6 +146,7 @@ export class API {
             let request_options = {
                 headers: {
                     'Accept': 'application/json',
+                    'User-Agent': 'Intimaai_SDK/2.0.0',
                     'Content-Type': content_type
                 },
                 formData: formData,
@@ -170,7 +179,8 @@ export class API {
 
             let request_options = {
                 headers: {
-                    'Accept': 'application/json'
+                    'Accept': 'application/json',
+                    'User-Agent': 'Intimaai_SDK/2.0.0'
                 },
                 qs: query,
                 ...this.getRequestDefaultOptions()

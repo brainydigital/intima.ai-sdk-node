@@ -9,3 +9,4 @@ test.ts
 src/test.ts
 dist/test.js
 dist/src/test.js
+.npmrc

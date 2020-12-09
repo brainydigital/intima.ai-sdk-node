@@ -54,7 +54,7 @@ export class Paginator {
      */
     public obterColecao()
     {
-        return this.getCollection;
+        return this.getCollection();
     }
 
     /**
