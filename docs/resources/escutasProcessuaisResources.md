@@ -185,7 +185,11 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const resultado = await intimaai.escutasProcessuais.atualizarEscuta(31, { dias_de_captura: [1, 2], horarios_de_captura: ['11:00'] });
+    const escuta = {
+        dias_de_captura: [1, 2],
+        horarios_de_captura: ['11:00']
+    };
+    const resultado = await intimaai.escutasProcessuais.atualizarEscuta(31, escuta);
     console.log(resultado);
 }
 catch (error)
