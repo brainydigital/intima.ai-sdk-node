@@ -22,14 +22,14 @@ export class UserNotification extends Resource {
      * Cadastra um novo email para receber notificações
      */
     public async cadastrarNovoEmailParaNotificacoes(email: string): Promise<any> {
-        return await this.getAPI().post(`${this.getResourceEndpoint()}`, { user_dependent: email }, {}, {}, null, true);
+        return await this.getAPI().post(`${this.getResourceEndpoint()}`, { email: email }, {}, {}, null, true);
     }
 
     /**
      * Atualiza um email para receber notificações pelo id
      */
     public async atualizarEmailParaNotificacoes(email_notificacao_id: number, email: string): Promise<any> {
-        return await this.getAPI().put(`${this.getResourceEndpoint()}/${email_notificacao_id}`, { user_dependent: email }, {}, {}, null, true);
+        return await this.getAPI().put(`${this.getResourceEndpoint()}/${email_notificacao_id}`, { email: email }, {}, {}, null, true);
     }
 
     /**
