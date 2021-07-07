@@ -64,7 +64,10 @@ try
         certificado_id: 1,
         // ou
         // login: '',
-        // senha: ''
+        // senha: '',
+        oab_numero: 111111,
+        oab_letra: 'A',
+        oab_uf: 'PB'
     };
     const resultado = await intimaai.autenticacoes.cadastrarNovaAutenticacao(autenticacao);
     console.log(resultado);

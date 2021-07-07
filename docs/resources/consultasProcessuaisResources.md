@@ -59,6 +59,7 @@ Nome | Tipo | Descrição | Notas
 **consulta_processual** | [**ConsultaProcessual**](../models/process_search/ConsultaProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
+#### Cadastrar Nova Consulta Com número do Processo
 ```javascript
 const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
 // ou
@@ -68,7 +69,61 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const consulta = { numero_processo: '0000000-00.0000.0.00.0000', autenticacao_id: 3 };
+    const consulta = { 
+        numero_processo: '0000000-00.0000.0.00.0000',
+        autenticacao_id: 3
+    };
+    const resultado = await intimaai.consultasProcessuais.cadastrarNovaConsulta(consulta);
+    console.log(resultado);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
+
+#### Cadastrar Nova Consulta Com número do Processo e número da OAB
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// ou
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const consulta = { 
+        numero_processo: '0000000-00.0000.0.00.0000',
+        oab_numero: '0000000',
+        autenticacao_id: 3 
+    };
+    const resultado = await intimaai.consultasProcessuais.cadastrarNovaConsulta(consulta);
+    console.log(resultado);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
+
+#### Cadastrar Nova Consulta Com número do Processo, Nome da Parte, Nome do Representante, Número da OAB e UF da OAB
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// ou
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const consulta = { 
+        numero_processo: '0000000-00.0000.0.00.0000',
+        nome_parte: 'Nome da Parte',
+        node_representante: 'Nome do Representante'
+        oab_numero: '0000000',
+        oab_uf: 'PB',
+        autenticacao_id: 3 
+    };
     const resultado = await intimaai.consultasProcessuais.cadastrarNovaConsulta(consulta);
     console.log(resultado);
 }
@@ -168,6 +223,7 @@ Nome | Tipo | Descrição | Notas
 **pre_analise_de_consulta_processual** | [**PreAnaliseDeConsultaProcessual**](../models/process_search/PreAnaliseDeConsultaProcessual.md) | parametros necessários para a criação de um novo registro | [obrigatório]
 
 ### Exemplos
+#### Cadastrar Pre Analise de Consulta Com Número do Processos
 ```javascript
 const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
 // ou
@@ -177,7 +233,10 @@ try
 {
     const intimaai = new Intimaai('api_secret_token');
 
-    const pre_analise = { numero_processo: '0000000-00.0000.0.00.0000', autenticacao_id: 3 };
+    const pre_analise = { 
+        numero_processo: '0000000-00.0000.0.00.0000',
+        autenticacao_id: 3
+    };
     const resultado = await intimaai.consultasProcessuais.cadastrarPreAnaliseDeConsulta(pre_analise);
     console.log(resultado);
 }
@@ -187,6 +246,54 @@ catch (error)
 }
 ```
 
+#### Cadastrar Pre Analise de Consulta Com Número do Processo, Número da OAB e UF da OAB
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// ou
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const pre_analise = { 
+        numero_processo: '0000000-00.0000.0.00.0000',
+        oab_numero: '0000000',
+        oab_ud: 'PB',
+        autenticacao_id: 3
+    };
+    const resultado = await intimaai.consultasProcessuais.cadastrarPreAnaliseDeConsulta(pre_analise);
+    console.log(resultado);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
+
+#### Cadastrar Pre Analise de Consulta Com Nome da Parte e Nome do Representante
+```javascript
+const Intimaai = require('@brainy-digital/intima.ai-sdk-node').default;
+// ou
+// import Intimaai from '@brainy-digital/intima.ai-sdk-node';
+
+try
+{
+    const intimaai = new Intimaai('api_secret_token');
+
+    const pre_analise = { 
+        nome_parte: 'Nome da Parte',
+        nome_representante: 'Nome do Representante',
+        autenticacao_id: 3
+    };
+    const resultado = await intimaai.consultasProcessuais.cadastrarPreAnaliseDeConsulta(pre_analise);
+    console.log(resultado);
+}
+catch (error)
+{
+    console.error('error: ', error);
+}
+```
 [[Voltar ao topo]](#)        
 [[Voltar a lista da API]](../../README.md#Documentação-para-os-Endpoints-da-API)    
 [[Voltar para o README]](../../README.md#Intima.ai---SDK-NodeJS)
