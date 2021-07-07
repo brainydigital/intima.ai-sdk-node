@@ -209,6 +209,21 @@ export class API {
 
     private appendFiles(attachs: Array<{ field_name: string, files: Array<string> | string }>) {
         let formData = {};
+        if (attachs.field_name == "pfx") {
+            var field_name = attachs.field_name;
+            var file_path = attachs.files;
+            formData[field_name] = {
+                value: fs.createReadStream(file_path),
+                options: {
+                    filename: file_path.split('/').pop(),
+                    contentType: 'application/pdf'
+                }
+            };
+            return formData;
+        }
+        else if (attachs instanceof Array == false) {
+            attachs = [attachs];
+        }
         attachs.map((attach) => {
             const field_name = attach.field_name;
             if (attach.files instanceof Array) {

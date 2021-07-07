@@ -35,7 +35,7 @@ export class ProcessSearch extends Resource {
      * Cadastra uma nova consulta processual
      */
     public async cadastrarNovaConsulta(consulta_processual: ConsultaProcessual): Promise<any> {
-        if (isEmpty(consulta_processual.numero_processo) && isEmpty(consulta_processual.nome_parte) && isEmpty(consulta_processual.nome_representante)) {
+        if (isEmpty(consulta_processual.numero_processo) && isEmpty(consulta_processual.nome_parte) && isEmpty(consulta_processual.nome_representante) && isEmpty(consulta_processual.oab_numero) && isEmpty(consulta_processual.oab_letra) && isEmpty(consulta_processual.oab_uf) && isEmpty(consulta_processual.token)) {
             throw 'Você precisa fornecer ao menos um parametro para a busca.';
         }
         return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.getResourceEndpoint()}`, consulta_processual, {}, {}, null, true);
@@ -67,7 +67,7 @@ export class ProcessSearch extends Resource {
     * Cadastra uma nova pré-analise para uma consulta processual
     */
     public async cadastrarPreAnaliseDeConsulta(pre_analise_de_consulta_processual: PreAnaliseDeConsultaProcessual): Promise<any> {
-        if (isEmpty(pre_analise_de_consulta_processual.numero_processo) && isEmpty(pre_analise_de_consulta_processual.nome_parte) && isEmpty(pre_analise_de_consulta_processual.nome_representante)) {
+        if (isEmpty(pre_analise_de_consulta_processual.numero_processo) && isEmpty(pre_analise_de_consulta_processual.nome_parte) && isEmpty(pre_analise_de_consulta_processual.nome_representante) && isEmpty(pre_analise_de_consulta_processual.oab_numero) && isEmpty(pre_analise_de_consulta_processual.oab_letra) && isEmpty(pre_analise_de_consulta_processual.oab_uf)) {
             throw 'Você precisa fornecer ao menos um parametro para a busca.';
         }
         return await this.getAPI().post(`${this.action.getResourceEndpoint()}/${this.search_analyse.getResourceEndpoint()}`, pre_analise_de_consulta_processual, {}, {}, null, true);
