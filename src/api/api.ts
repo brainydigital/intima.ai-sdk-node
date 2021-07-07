@@ -209,7 +209,7 @@ export class API {
 
     private appendFiles(attachs: Array<{ field_name: string, files: Array<string> | string }>) {
         let formData = {};
-        if (attachs["field_name"] == "pfx") {
+        if (attachs.field_name == "pfx") {
             var field_name = attachs.field_name;
             var file_path = attachs.files;
             formData[field_name] = {
